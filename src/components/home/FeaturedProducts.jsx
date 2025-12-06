@@ -174,62 +174,6 @@ const FeaturedProducts = () => {
           </p>
         </div>
 
-        {/* Cards Grid with Perspective */}
-        <div
-          ref={cardsContainerRef}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-          style={{ perspective: '2000px' }}
-        >
-          {products.map((product, index) => (
-            <div
-              key={index}
-              ref={(el) => (cardsRef.current[index] = el)}
-              className="group cursor-pointer"
-              style={{ transformStyle: 'preserve-3d' }}
-            >
-              <GlassSurface
-                width="100%"
-                height={420}
-                borderRadius={24}
-                brightness={98}
-                opacity={0.7}
-                blur={12}
-                className="shadow-2xl"
-              >
-                <div className="relative h-full w-full overflow-hidden rounded-3xl">
-                  {/* Background Image with Parallax */}
-                  <div
-                    className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                    style={{ backgroundImage: `url(${product.image})` }}
-                  >
-                    <div className={`absolute inset-0 bg-gradient-to-br ${product.color} opacity-60 group-hover:opacity-70 transition-opacity duration-300`}></div>
-                  </div>
-
-                  {/* Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-
-                  {/* Content */}
-                  <div className="relative h-full flex flex-col justify-end p-8 text-white">
-                    <div className="transform transition-transform duration-300 group-hover:translate-y-(-2)">
-                      <h3 className="text-2xl font-bold mb-3">{product.title}</h3>
-                      <p className="text-white/90 mb-4 leading-relaxed">{product.description}</p>
-                      <div className="inline-flex items-center text-sm font-semibold bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 group-hover:bg-white/20 transition-all duration-300">
-                        <span>View Products</span>
-                        <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Shine effect on hover */}
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-                  </div>
-                </div>
-              </GlassSurface>
-            </div>
-          ))}
-        </div>
-
         {/* CTA */}
         <div className="text-center mt-20">
           <a
