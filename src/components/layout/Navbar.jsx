@@ -82,6 +82,7 @@ const Navbar = () => {
           opacity: 0,
           duration: 0.3,
           ease: 'power3.in',
+          pointerEvents: 'none',
         });
       } else {
         gsap.to([staticLogoRef.current, staticMenuRef.current], {
@@ -90,6 +91,7 @@ const Navbar = () => {
           duration: 0.5,
           ease: 'power3.out',
           delay: 0.1,
+          pointerEvents: 'auto',
         });
       }
     }
@@ -129,7 +131,7 @@ const Navbar = () => {
       {/* Static Menu Bubble - Top Right (shows when NOT scrolled) */}
       <div
         ref={staticMenuRef}
-        className="fixed top-6 right-6 z-50 transition-all duration-300"
+        className="fixed top-6 right-6 z-50 transition-all duration-300 overflow-visible"
       >
         <GlassSurface
           width={70}
@@ -157,7 +159,7 @@ const Navbar = () => {
         </GlassSurface>
 
         {/* Dropdown Menu */}
-        {isStaticMenuOpen && (
+        {isStaticMenuOpen && !isScrolled && (
           <div
             ref={staticDropdownRef}
             className="absolute top-20 right-0 w-56 animate-in fade-in slide-in-from-top-2 duration-300"

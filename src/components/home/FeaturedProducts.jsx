@@ -173,17 +173,6 @@ const FeaturedProducts = () => {
             Authorized dealers and stockists of leading brands across multiple categories
           </p>
         </div>
-
-        {/* CTA */}
-        <div className="text-center mt-20">
-          <a
-            href="/products"
-            className="group inline-flex items-center space-x-3 px-10 py-5 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-full font-semibold text-lg shadow-2xl hover:shadow-primary-500/50 hover:scale-105 transition-all duration-300"
-          >
-            <span>Explore All Products</span>
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
-          </a>
-        </div>
       </div>
     </section>
   );

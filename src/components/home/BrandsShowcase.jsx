@@ -35,33 +35,41 @@ const BrandsShowcase = () => {
       const marqueeContent = marqueeRef.current.querySelector('.marquee-content');
       const marqueeWidth = marqueeContent.offsetWidth / 4; // Divided by 4 since we have 4 duplicates
 
-      // Base continuous marquee animation (always running)
+      // Base continuous marquee animation (always running at higher speed)
       const baseMarquee = gsap.to(marqueeContent, {
         x: -marqueeWidth,
-        duration: 10, // Slow default speed
+        duration: 15, // Base duration
         ease: 'none',
-        repeat: -2,
+        repeat: -1, // Infinite loop
+        modifiers: {
+          x: gsap.utils.unitize(x => parseFloat(x) % marqueeWidth) // Seamless loop
+        }
       });
 
-      // Scroll-lock: Speed up the marquee based on scroll
+      // Start at 2x speed even when not scrolling
+      baseMarquee.timeScale(2);
+
+      // Scroll-lock: Speed up the marquee even more based on scroll
       ScrollTrigger.create({
         trigger: sectionRef.current,
         pin: true,
         start: 'top top',
-        end: '+=500%', // 2x viewport height of scroll
+        end: '+=100%', // Short scroll lock - only 1x viewport height
         anticipatePin: 1,
         invalidateOnRefresh: true,
+        scrub: 0.5, // Smooth scrubbing
         onUpdate: (self) => {
-          // Speed up marquee: from 1x (default) to 10x speed
-          const speedMultiplier = 1 + (self.progress * 9); // 1x to 10x
+          // Speed up marquee: from 2x (base) to 20x speed when scrolling
+          const speedMultiplier = 2 + (self.progress * 18); // 2x to 20x
           baseMarquee.timeScale(speedMultiplier);
         },
         onLeave: () => {
-          // Reset to normal speed when leaving scroll-lock
-          gsap.to(baseMarquee, { timeScale: 1, duration: 1 });
+          // Reset to base 2x speed when leaving scroll-lock
+          gsap.to(baseMarquee, { timeScale: 2, duration: 0.5, ease: 'power2.out' });
         },
         onEnterBack: () => {
           // Resume speed control when scrolling back
+          baseMarquee.timeScale(2);
         }
       });
 
