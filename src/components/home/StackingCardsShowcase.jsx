@@ -335,7 +335,7 @@ const StackingCardsShowcase = () => {
         <div className="absolute top-2/3 -right-48 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob" style={{ animationDelay: '2s' }}></div>
       </div>
 
-      <div className="relative h-screen flex items-start justify-center px-4 sm:px-6 lg:px-8 pt-32">
+      <div className="relative h-screen flex items-start justify-center px-4 sm:px-6 lg:px-8 pt-72">
         {/* Cards Container with Perspective */}
         <div
           ref={cardsContainerRef}
@@ -363,7 +363,7 @@ const StackingCardsShowcase = () => {
                 brightness={98}
                 opacity={0.7}
                 blur={12}
-                className="shadow-2xl max-w-md md:max-w-sm mx-auto md:ml-12"
+                className="shadow-2xl max-w-md md:max-w-xs mx-auto md:ml-12"
               >
                 <div className="relative h-full w-full overflow-hidden rounded-3xl">
                   {/* Background Image with Parallax */}

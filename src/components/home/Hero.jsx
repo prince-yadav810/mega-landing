@@ -51,6 +51,24 @@ const Hero = () => {
         repeat: -1,
         stagger: 0.5,
       });
+
+      // Animation for wavy lines
+      gsap.to('.wavy-line-1', {
+        attr: { d: 'M0,100 C30,50 50,90 100,0' },
+        duration: 10,
+        ease: 'sine.inOut',
+        yoyo: true,
+        repeat: -1,
+      });
+
+      gsap.to('.wavy-line-2', {
+        attr: { d: 'M0,100 C40,95 60,70 100,30' },
+        duration: 8,
+        ease: 'sine.inOut',
+        yoyo: true,
+        repeat: -1,
+        delay: 1,
+      });
     }, heroRef);
 
     return () => ctx.revert();
@@ -66,6 +84,24 @@ const Hero = () => {
         <div className="absolute top-20 left-10 w-72 h-72 bg-primary-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
         <div className="absolute top-40 right-10 w-72 h-72 bg-primary-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob" style={{ animationDelay: '2s' }}></div>
         <div className="absolute bottom-20 left-1/4 w-72 h-72 bg-primary-400 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob" style={{ animationDelay: '4s' }}></div>
+
+        {/* Floating Wavy Lines */}
+        <svg className="absolute inset-0 w-full h-full pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <path
+            className="wavy-line-1 text-primary-100/40"
+            d="M0,100 C30,60 50,80 100,0"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="0.2"
+          />
+          <path
+            className="wavy-line-2 text-primary-100/40"
+            d="M0,100 C40,90 60,60 100,20"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="0.2"
+          />
+        </svg>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
@@ -93,8 +129,8 @@ const Hero = () => {
             ref={subtitleRef}
             className="text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed"
           >
-            Your trusted partner in industrial & project materials. 
-            <span className="font-semibold text-primary-700"> 20+ years of excellence</span>, 
+            Your trusted partner in industrial & project materials.
+            <span className="font-semibold text-primary-700"> 20+ years of excellence</span>,
             serving <span className="font-semibold text-primary-700">50+ major clients</span> across India.
           </p>
 

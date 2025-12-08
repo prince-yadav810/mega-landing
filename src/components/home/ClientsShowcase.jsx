@@ -5,14 +5,14 @@ import GlassSurface from '../ui/GlassSurface';
 
 const ClientsShowcase = () => {
   const clients = [
-    { name: 'TATA Projects', logo: 'https://via.placeholder.com/200x100/4A628A/FFFFFF?text=TATA' },
-    { name: 'Afcons Infrastructure', logo: 'https://via.placeholder.com/200x100/7AB2D3/FFFFFF?text=AFCONS' },
-    { name: 'HCC Ltd', logo: 'https://via.placeholder.com/200x100/4A628A/FFFFFF?text=HCC' },
-    { name: 'J Kumar Infra', logo: 'https://via.placeholder.com/200x100/7AB2D3/FFFFFF?text=J+KUMAR' },
-    { name: 'ITD Cementation', logo: 'https://via.placeholder.com/200x100/4A628A/FFFFFF?text=ITD' },
-    { name: 'NCC Ltd', logo: 'https://via.placeholder.com/200x100/7AB2D3/FFFFFF?text=NCC' },
-    { name: 'Godrej Properties', logo: 'https://via.placeholder.com/200x100/4A628A/FFFFFF?text=GODREJ' },
-    { name: 'Leighton India', logo: 'https://via.placeholder.com/200x100/7AB2D3/FFFFFF?text=LEIGHTON' },
+    { name: 'TATA Projects', logo: '/images/logos/logo_1.png' },
+    { name: 'Afcons Infrastructure', logo: '/images/logos/logo_2.png' },
+    { name: 'HCC Ltd', logo: '/images/logos/logo_3.png' },
+    { name: 'J Kumar Infra', logo: '/images/logos/logo_4.png' },
+    { name: 'ITD Cementation', logo: '/images/logos/logo_5.png' },
+    { name: 'NCC Ltd', logo: '/images/logos/logo_1.png' },
+    { name: 'Godrej Properties', logo: '/images/logos/logo_2.png' },
+    { name: 'Leighton India', logo: '/images/logos/logo_3.png' },
   ];
 
   return (
