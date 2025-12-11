@@ -307,11 +307,11 @@ const StackingCardsShowcase = () => {
           force3D: true
         },
         {
-          y: 100,
+          y: 150,
           opacity: 1,
           scale: 1,
           duration: 0.8,
-          ease: 'back.out(1.7)', // Keep this easing for nice bounce effect
+          ease: 'power3.out', // Smooth easing without overshoot
           force3D: true // Ensures GPU acceleration
         },
         exitLabel + '+=0.5'
@@ -319,7 +319,7 @@ const StackingCardsShowcase = () => {
 
       // Hold CTA visible for a moment before scroll unlocks
       masterTimeline.to(ctaRef.current, {
-        y: 100,
+        y: 150,
         opacity: 1,
         scale: 1,
         duration: 0.5,

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -12,72 +12,124 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
  */
 const GSAPCleanup = () => {
   const pathname = usePathname();
+  const router = useRouter();
+  const isNavigatingRef = useRef(false);
 
   useEffect(() => {
     // Aggressive cleanup function
     const cleanup = () => {
       try {
-        // Kill all ScrollTrigger instances FIRST
+        // STEP 1: Kill all ScrollTrigger instances FIRST (this should unpin elements)
         const triggers = ScrollTrigger.getAll();
         triggers.forEach(trigger => {
           try {
             trigger.kill(true);
           } catch (e) {
-            console.warn('Error killing ScrollTrigger:', e);
+            // Ignore errors during cleanup
           }
         });
 
-        // Disable normalize scroll
+        // STEP 2: Manually restore any pinned elements
         try {
-          ScrollTrigger.normalizeScroll(false);
-        } catch (e) {
-          console.warn('Error disabling normalizeScroll:', e);
-        }
+          const pinSpacers = document.querySelectorAll('.pin-spacer');
+          pinSpacers.forEach(spacer => {
+            try {
+              // Get the pinned element inside the spacer
+              const pinnedElement = spacer.querySelector('[data-pin]') || spacer.firstElementChild;
 
-        // Kill all GSAP tweens
-        try {
-          gsap.killTweensOf('*');
-        } catch (e) {
-          console.warn('Error killing tweens:', e);
-        }
+              if (pinnedElement && spacer.parentNode) {
+                // Move the element back to its original position
+                spacer.parentNode.insertBefore(pinnedElement, spacer);
 
-        // Clear all GSAP timelines
-        try {
-          gsap.globalTimeline.clear();
-        } catch (e) {
-          console.warn('Error clearing global timeline:', e);
-        }
-
-        // Clear any pinned elements and pin spacers
-        try {
-          const pinnedElements = document.querySelectorAll('.pin-spacer, [data-pin-spacer]');
-          pinnedElements.forEach(el => {
-            if (el && el.parentNode) {
-              gsap.set(el, { clearProps: 'all' });
+                // Remove the pin-spacer wrapper
+                spacer.parentNode.removeChild(spacer);
+              }
+            } catch (e) {
+              // Ignore errors during cleanup
             }
           });
         } catch (e) {
-          console.warn('Error clearing pinned elements:', e);
+          // Ignore errors during cleanup
+        }
+
+        // STEP 3: Disable normalize scroll
+        try {
+          ScrollTrigger.normalizeScroll(false);
+        } catch (e) {
+          // Ignore errors during cleanup
+        }
+
+        // STEP 4: Kill all GSAP tweens
+        try {
+          gsap.killTweensOf('*');
+        } catch (e) {
+          // Ignore errors during cleanup
+        }
+
+        // STEP 5: Clear all GSAP timelines
+        try {
+          gsap.globalTimeline.clear();
+        } catch (e) {
+          // Ignore errors during cleanup
+        }
+
+        // STEP 6: Clear props on all elements that might have been animated
+        try {
+          const animatedElements = document.querySelectorAll('[style*="transform"], [style*="opacity"], [style*="position"]');
+          animatedElements.forEach(el => {
+            try {
+              gsap.set(el, { clearProps: 'all' });
+            } catch (e) {
+              // Ignore errors during cleanup
+            }
+          });
+        } catch (e) {
+          // Ignore errors during cleanup
         }
       } catch (e) {
-        console.warn('Error in cleanup:', e);
+        // Ignore all errors in cleanup
       }
     };
 
-    // Intercept link clicks BEFORE navigation
+    // Intercept link clicks and ensure cleanup completes BEFORE navigation
     const handleLinkClick = (e) => {
+      // Skip if already navigating
+      if (isNavigatingRef.current) return;
+
       const target = e.target.closest('a');
       if (target && target.href) {
-        const targetUrl = new URL(target.href);
-        const currentUrl = new URL(window.location.href);
+        try {
+          const targetUrl = new URL(target.href);
+          const currentUrl = new URL(window.location.href);
 
-        // Check if it's an internal navigation to a different page
-        const isInternal = targetUrl.origin === currentUrl.origin;
-        const isDifferentPage = targetUrl.pathname !== currentUrl.pathname;
+          // Check if it's an internal navigation to a different page
+          const isInternal = targetUrl.origin === currentUrl.origin;
+          const isDifferentPage = targetUrl.pathname !== currentUrl.pathname;
 
-        if (isInternal && isDifferentPage) {
-          // Cleanup IMMEDIATELY on click, before navigation
-          cleanup();
+          if (isInternal && isDifferentPage) {
+            // Prevent default navigation
+            e.preventDefault();
+            e.stopPropagation();
+            e.stopImmediatePropagation();
+
+            // Set navigating flag
+            isNavigatingRef.current = true;
+
+            // Run cleanup
+            cleanup();
+
+            // Allow cleanup to complete, then navigate using Next.js router
+            setTimeout(() => {
+              router.push(targetUrl.pathname + targetUrl.search + targetUrl.hash);
+              // Reset flag after navigation
+              setTimeout(() => {
+                isNavigatingRef.current = false;
+              }, 100);
+            }, 50);
+          }
+        } catch (err) {
+          // If URL parsing fails, allow normal navigation
+          isNavigatingRef.current = false;
         }
       }
     };
@@ -85,13 +137,13 @@ const GSAPCleanup = () => {
     // Use capture phase to intercept clicks early
     document.addEventListener('click', handleLinkClick, { capture: true });
 
-    // Also cleanup when pathname changes
-    cleanup();
+    // Reset navigating flag when pathname changes
+    isNavigatingRef.current = false;
 
     return () => {
       document.removeEventListener('click', handleLinkClick, { capture: true });
     };
-  }, [pathname]);
+  }, [pathname, router]);
 
   return null;
 };
