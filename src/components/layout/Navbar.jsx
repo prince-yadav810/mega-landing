@@ -57,45 +57,62 @@ const Navbar = () => {
   useEffect(() => {
     if (!navRef.current) return;
 
-    // Animate floating navbar (shows when scrolled)
-    if (isScrolled) {
-      gsap.to(navRef.current, {
-        y: 0,
-        opacity: 1,
-        duration: 0.5,
-        ease: 'power3.out',
-      });
-    } else {
-      gsap.to(navRef.current, {
-        y: -100,
-        opacity: 0,
-        duration: 0.3,
-        ease: 'power3.in',
-      });
-    }
-
-    // Animate static elements (hide when scrolled)
-    if (staticLogoRef.current && staticMenuRef.current) {
+    const ctx = gsap.context(() => {
+      // Animate floating navbar (shows when scrolled)
       if (isScrolled) {
-        gsap.to([staticLogoRef.current, staticMenuRef.current], {
-          y: -100,
-          opacity: 0,
-          duration: 0.3,
-          ease: 'power3.in',
-          pointerEvents: 'none',
-        });
-      } else {
-        gsap.to([staticLogoRef.current, staticMenuRef.current], {
+        gsap.to(navRef.current, {
           y: 0,
           opacity: 1,
           duration: 0.5,
           ease: 'power3.out',
-          delay: 0.1,
-          pointerEvents: 'auto',
+        });
+      } else {
+        gsap.to(navRef.current, {
+          y: -100,
+          opacity: 0,
+          duration: 0.3,
+          ease: 'power3.in',
         });
       }
-    }
+
+      // Animate static elements (hide when scrolled)
+      if (staticLogoRef.current && staticMenuRef.current) {
+        if (isScrolled) {
+          gsap.to([staticLogoRef.current, staticMenuRef.current], {
+            y: -100,
+            opacity: 0,
+            duration: 0.3,
+            ease: 'power3.in',
+            pointerEvents: 'none',
+          });
+        } else {
+          gsap.to([staticLogoRef.current, staticMenuRef.current], {
+            y: 0,
+            opacity: 1,
+            duration: 0.5,
+            ease: 'power3.out',
+            delay: 0.1,
+            pointerEvents: 'auto',
+          });
+        }
+      }
+    });
+
+    return () => {
+      // Clean up all animations when component unmounts or isScrolled changes
+      ctx.revert();
+    };
   }, [isScrolled]);
+
+  // Cleanup all GSAP animations on component unmount
+  useEffect(() => {
+    return () => {
+      // Kill all tweens targeting our refs when component unmounts
+      if (navRef.current) gsap.killTweensOf(navRef.current);
+      if (staticLogoRef.current) gsap.killTweensOf(staticLogoRef.current);
+      if (staticMenuRef.current) gsap.killTweensOf(staticMenuRef.current);
+    };
+  }, []);
 
   const navLinks = [
     { name: 'Home', href: '/' },

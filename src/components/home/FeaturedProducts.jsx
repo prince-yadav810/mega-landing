@@ -58,9 +58,11 @@ const FeaturedProducts = () => {
   useEffect(() => {
     if (typeof window === 'undefined' || !sectionRef.current) return;
 
+    let scrollTriggerInstances = [];
+
     const ctx = gsap.context(() => {
       // Animate header on scroll
-      gsap.from(headerRef.current, {
+      const headerAnimation = gsap.from(headerRef.current, {
         scrollTrigger: {
           trigger: headerRef.current,
           start: 'top 80%',
@@ -70,6 +72,10 @@ const FeaturedProducts = () => {
         y: 50,
         opacity: 0,
       });
+
+      if (headerAnimation.scrollTrigger) {
+        scrollTriggerInstances.push(headerAnimation.scrollTrigger);
+      }
 
       // Create stacking cards effect
       cardsRef.current.forEach((card, index) => {
@@ -95,6 +101,10 @@ const FeaturedProducts = () => {
             toggleActions: 'play none none reverse',
           },
         });
+
+        if (tl.scrollTrigger) {
+          scrollTriggerInstances.push(tl.scrollTrigger);
+        }
 
         tl.to(card, {
           scale: 1,
@@ -144,7 +154,24 @@ const FeaturedProducts = () => {
       });
     }, sectionRef);
 
-    return () => ctx.revert();
+    return () => {
+      // Kill all ScrollTrigger instances immediately
+      scrollTriggerInstances.forEach(trigger => trigger.kill(true));
+
+      // Kill all GSAP animations on cards
+      cardsRef.current.forEach(card => {
+        if (card) gsap.killTweensOf(card);
+      });
+
+      // Kill header animations
+      if (headerRef.current) gsap.killTweensOf(headerRef.current);
+
+      // Revert the GSAP context
+      ctx.revert();
+
+      // Clear all ScrollTriggers
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill(true));
+    };
   }, []);
 
   return (

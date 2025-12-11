@@ -71,7 +71,18 @@ const Hero = () => {
       });
     }, heroRef);
 
-    return () => ctx.revert();
+    return () => {
+      // Kill all GSAP animations immediately
+      gsap.killTweensOf('.glass-float');
+      gsap.killTweensOf('.wavy-line-1');
+      gsap.killTweensOf('.wavy-line-2');
+      if (titleRef.current) gsap.killTweensOf(titleRef.current);
+      if (subtitleRef.current) gsap.killTweensOf(subtitleRef.current);
+      if (ctaRef.current) gsap.killTweensOf(ctaRef.current);
+
+      // Revert the GSAP context
+      ctx.revert();
+    };
   }, []);
 
   return (

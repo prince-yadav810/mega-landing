@@ -16,6 +16,7 @@ const StackingCardsShowcase = () => {
   const cardsContainerRef = useRef(null);
   const cardsRefs = useRef([]);
   const ctaRef = useRef(null);
+  const isUnmountingRef = useRef(false);
 
   // 12 products for desktop (4 stacks of 3)
   const products = [
@@ -132,6 +133,9 @@ const StackingCardsShowcase = () => {
   useEffect(() => {
     if (typeof window === 'undefined' || !sectionRef.current) return;
 
+    // Reset unmounting flag
+    isUnmountingRef.current = false;
+
     // Ensure smooth scrolling is enabled across all browsers
     ScrollTrigger.normalizeScroll(true);
 
@@ -174,9 +178,9 @@ const StackingCardsShowcase = () => {
         });
       });
 
-      // Set initial CTA state (hidden below viewport)
+      // Set initial CTA state (hidden above viewport)
       gsap.set(ctaRef.current, {
-        y: window.innerHeight,
+        y: -window.innerHeight,
         opacity: 0,
         scale: 0.9,
         force3D: true // Ensures GPU acceleration
@@ -293,17 +297,17 @@ const StackingCardsShowcase = () => {
         exitLabel
       );
 
-      // CTA reveal from bottom - comes up after cards exit
+      // CTA reveal from top - comes down after cards exit
       masterTimeline.fromTo(
         ctaRef.current,
         {
-          y: window.innerHeight,
+          y: -window.innerHeight,
           opacity: 0,
           scale: 0.9,
           force3D: true
         },
         {
-          y: 0,
+          y: 100,
           opacity: 1,
           scale: 1,
           duration: 0.8,
@@ -315,7 +319,7 @@ const StackingCardsShowcase = () => {
 
       // Hold CTA visible for a moment before scroll unlocks
       masterTimeline.to(ctaRef.current, {
-        y: 0,
+        y: 100,
         opacity: 1,
         scale: 1,
         duration: 0.5,
@@ -325,22 +329,69 @@ const StackingCardsShowcase = () => {
     }, sectionRef);
 
     return () => {
-      // Kill all GSAP animations immediately
-      gsap.killTweensOf('*');
+      // Set unmounting flag
+      isUnmountingRef.current = true;
 
-      // Kill the ScrollTrigger instance immediately
+      // Kill the ScrollTrigger instance first
       if (scrollTriggerInstance) {
-        scrollTriggerInstance.kill(true);
+        try {
+          scrollTriggerInstance.kill(true);
+        } catch (e) {
+          // Ignore errors during cleanup
+        }
+      }
+
+      // Kill all GSAP animations on specific elements
+      cardsRefs.current.forEach(card => {
+        if (card) {
+          try {
+            gsap.killTweensOf(card);
+          } catch (e) {
+            // Ignore errors during cleanup
+          }
+        }
+      });
+
+      if (ctaRef.current) {
+        try {
+          gsap.killTweensOf(ctaRef.current);
+        } catch (e) {
+          // Ignore errors during cleanup
+        }
+      }
+
+      if (cardsContainerRef.current) {
+        try {
+          gsap.killTweensOf(cardsContainerRef.current);
+        } catch (e) {
+          // Ignore errors during cleanup
+        }
       }
 
       // Disable normalize scroll before cleanup
-      ScrollTrigger.normalizeScroll(false);
+      try {
+        ScrollTrigger.normalizeScroll(false);
+      } catch (e) {
+        // Ignore errors during cleanup
+      }
 
       // Revert the GSAP context
-      ctx.revert();
+      try {
+        ctx.revert();
+      } catch (e) {
+        // Ignore errors during cleanup
+      }
 
-      // Clear all ScrollTriggers
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill(true));
+      // Clear all remaining ScrollTriggers
+      try {
+        ScrollTrigger.getAll().forEach(trigger => {
+          if (trigger.vars && trigger.vars.trigger === sectionRef.current) {
+            trigger.kill(true);
+          }
+        });
+      } catch (e) {
+        // Ignore errors during cleanup
+      }
     };
   }, []);
 

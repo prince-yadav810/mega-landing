@@ -31,6 +31,8 @@ const BrandsShowcase = () => {
   useEffect(() => {
     if (typeof window === 'undefined' || !sectionRef.current) return;
 
+    let scrollTriggerInstance = null;
+
     const ctx = gsap.context(() => {
       const marqueeContent = marqueeRef.current.querySelector('.marquee-content');
       const marqueeWidth = marqueeContent.offsetWidth / 4; // Divided by 4 since we have 4 duplicates
@@ -50,7 +52,7 @@ const BrandsShowcase = () => {
       baseMarquee.timeScale(2);
 
       // Scroll-lock: Speed up the marquee even more based on scroll
-      ScrollTrigger.create({
+      scrollTriggerInstance = ScrollTrigger.create({
         trigger: sectionRef.current,
         pin: true,
         start: 'top top',
@@ -75,7 +77,24 @@ const BrandsShowcase = () => {
 
     }, sectionRef);
 
-    return () => ctx.revert();
+    return () => {
+      // Kill the ScrollTrigger instance immediately
+      if (scrollTriggerInstance) {
+        scrollTriggerInstance.kill(true);
+      }
+
+      // Kill all GSAP animations immediately
+      if (marqueeRef.current) {
+        const marqueeContent = marqueeRef.current.querySelector('.marquee-content');
+        if (marqueeContent) gsap.killTweensOf(marqueeContent);
+      }
+
+      // Revert the GSAP context
+      ctx.revert();
+
+      // Clear all ScrollTriggers
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill(true));
+    };
   }, []);
 
   // Responsive handler
