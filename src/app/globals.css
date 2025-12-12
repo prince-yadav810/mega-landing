@@ -129,6 +129,56 @@ html {
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
+/* Lightweight glass card effect - optimized for stacking cards */
+.glass-card {
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.08) 100%
+  );
+  backdrop-filter: blur(12px) saturate(1.2) brightness(0.98);
+  -webkit-backdrop-filter: blur(12px) saturate(1.2) brightness(0.98);
+  box-shadow:
+    0 8px 32px 0 rgba(31, 38, 135, 0.2),
+    0 4px 16px 0 rgba(31, 38, 135, 0.15),
+    inset 0 1px 2px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -1px 2px 0 rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Add frosted overlay effect */
+.glass-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.12) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(255, 255, 255, 0.08) 100%
+  );
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* Fallback for browsers without backdrop-filter support */
+@supports not (backdrop-filter: blur(12px)) {
+  .glass-card {
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.3) 0%,
+      rgba(255, 255, 255, 0.2) 100%
+    );
+    box-shadow:
+      0 8px 32px 0 rgba(31, 38, 135, 0.25),
+      inset 0 1px 2px 0 rgba(255, 255, 255, 0.5);
+  }
+}
+
 /* Selection color */
 ::selection {
   background-color: #7AB2D3;

@@ -4,7 +4,6 @@ import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowRight, Package, Zap, Shield, Cpu, Cable, Lightbulb, Wrench, Settings, Box, Cpu2, Hammer, BatteryCharging } from 'lucide-react';
-import GlassSurface from '../ui/GlassSurface';
 import Link from 'next/link';
 
 if (typeof window !== 'undefined') {
@@ -446,16 +445,8 @@ const StackingCardsShowcase = () => {
                 willChange: 'transform, opacity' // Optimized for both transform and opacity changes
               }}
             >
-              <GlassSurface
-                width="100%"
-                height={420}
-                borderRadius={24}
-                brightness={98}
-                opacity={0.7}
-                blur={12}
-                className="shadow-2xl max-w-md md:max-w-xs mx-auto md:ml-12"
-              >
-                <div className="relative h-full w-full overflow-hidden rounded-3xl">
+              <div className="glass-card h-[420px] w-full max-w-md md:max-w-xs mx-auto md:ml-12 rounded-3xl shadow-2xl overflow-hidden">
+                <div className="relative h-full w-full">
                   {/* Background Image with Parallax */}
                   <div
                     className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
@@ -484,7 +475,7 @@ const StackingCardsShowcase = () => {
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
                   </div>
                 </div>
-              </GlassSurface>
+              </div>
             </div>
           ))}
 
