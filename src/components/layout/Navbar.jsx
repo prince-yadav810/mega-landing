@@ -157,7 +157,7 @@ const Navbar = () => {
           brightness={98}
           opacity={0.85}
           blur={11}
-          displace={2}
+          displace={4}
           backgroundOpacity={0.3}
           saturation={1.1}
           className="shadow-xl"
@@ -188,7 +188,7 @@ const Navbar = () => {
               brightness={98}
               opacity={0.9}
               blur={15}
-              displace={2}
+              displace={4}
               backgroundOpacity={0.4}
               saturation={1.1}
               className="shadow-2xl"
@@ -230,7 +230,7 @@ const Navbar = () => {
           brightness={98}
           opacity={0.85}
           blur={11}
-          displace={2}
+          displace={4}
           backgroundOpacity={0.3}
           saturation={1.1}
           className="shadow-2xl"
@@ -291,23 +291,20 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <div
-        className={`fixed inset-0 z-40 md:hidden transition-all duration-300 ${
-          isMobileMenuOpen ? 'visible' : 'invisible'
-        }`}
+        className={`fixed inset-0 z-40 md:hidden transition-all duration-300 ${isMobileMenuOpen ? 'visible' : 'invisible'
+          }`}
       >
         {/* Backdrop */}
         <div
-          className={`absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity duration-300 ${
-            isMobileMenuOpen ? 'opacity-100' : 'opacity-0'
-          }`}
+          className={`absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-100' : 'opacity-0'
+            }`}
           onClick={() => setIsMobileMenuOpen(false)}
         ></div>
 
         {/* Menu Panel */}
         <div
-          className={`absolute top-0 right-0 h-full w-72 transition-transform duration-300 ${
-            isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
-          }`}
+          className={`absolute top-0 right-0 h-full w-72 transition-transform duration-300 ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+            }`}
         >
           <GlassSurface
             width="100%"

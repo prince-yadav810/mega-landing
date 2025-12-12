@@ -42,77 +42,86 @@ const GeMCompliance = () => {
         {/* Two-Column Layout */}
         <div className="grid md:grid-cols-2 gap-8">
           {/* Left Column - Certifications */}
-          <GlassSurface
-            width="100%"
-            height="auto"
-            borderRadius={24}
-            brightness={98}
-            opacity={0.5}
-            className="transform hover:scale-105 transition-all duration-300"
-          >
-            <div className="p-8">
+          <div className="relative group">
+            {/* Gradient border effect */}
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-green-500 via-primary-500 to-green-600 rounded-3xl opacity-30 group-hover:opacity-50 blur transition-opacity duration-300"></div>
+            <div className="relative bg-white rounded-3xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
               <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-                <Award className="w-7 h-7 text-primary-600 mr-3" />
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center mr-3">
+                  <Award className="w-6 h-6 text-white" />
+                </div>
                 Certifications
               </h3>
               <ul className="space-y-4">
                 {certifications.map((item, index) => {
                   const Icon = item.icon;
                   return (
-                    <li key={index} className="flex items-start">
-                      <div className="flex-shrink-0 w-6 h-6 rounded-full bg-green-100 flex items-center justify-center mt-0.5">
-                        <CheckCircle2 className="w-4 h-4 text-green-600" />
+                    <li key={index} className="flex items-start group/item">
+                      <div className="flex-shrink-0 w-6 h-6 rounded-full bg-gradient-to-br from-green-400 to-green-500 flex items-center justify-center mt-0.5 shadow-sm">
+                        <CheckCircle2 className="w-4 h-4 text-white" />
                       </div>
-                      <span className="ml-3 text-gray-700 font-medium">{item.text}</span>
+                      <span className="ml-3 text-gray-700 font-medium group-hover/item:text-gray-900 transition-colors">{item.text}</span>
                     </li>
                   );
                 })}
               </ul>
             </div>
-          </GlassSurface>
+          </div>
 
           {/* Right Column - Experience */}
-          <GlassSurface
-            width="100%"
-            height="auto"
-            borderRadius={24}
-            brightness={98}
-            opacity={0.5}
-            className="transform hover:scale-105 transition-all duration-300"
-          >
-            <div className="p-8">
+          <div className="relative group">
+            {/* Gradient border effect */}
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-primary-500 via-green-500 to-primary-600 rounded-3xl opacity-30 group-hover:opacity-50 blur transition-opacity duration-300"></div>
+            <div className="relative bg-white rounded-3xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
               <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-                <Shield className="w-7 h-7 text-primary-600 mr-3" />
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center mr-3">
+                  <Shield className="w-6 h-6 text-white" />
+                </div>
                 Government Supply Experience
               </h3>
               <ul className="space-y-4">
                 {experience.map((item, index) => {
                   const Icon = item.icon;
                   return (
-                    <li key={index} className="flex items-start">
-                      <div className="flex-shrink-0 w-6 h-6 rounded-full bg-green-100 flex items-center justify-center mt-0.5">
-                        <CheckCircle2 className="w-4 h-4 text-green-600" />
+                    <li key={index} className="flex items-start group/item">
+                      <div className="flex-shrink-0 w-6 h-6 rounded-full bg-gradient-to-br from-green-400 to-green-500 flex items-center justify-center mt-0.5 shadow-sm">
+                        <CheckCircle2 className="w-4 h-4 text-white" />
                       </div>
-                      <span className="ml-3 text-gray-700 font-medium">{item.text}</span>
+                      <span className="ml-3 text-gray-700 font-medium group-hover/item:text-gray-900 transition-colors">{item.text}</span>
                     </li>
                   );
                 })}
               </ul>
             </div>
-          </GlassSurface>
+          </div>
         </div>
 
-        {/* CTA */}
-        <div className="mt-12 text-center">
-          <a
-            href="https://gem.gov.in"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center space-x-2 px-8 py-4 bg-gradient-to-r from-green-600 to-green-700 text-white rounded-full font-semibold text-lg shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"
-          >
-            <Shield className="w-5 h-5" />
-            <span>View GeM Profile</span>
-          </a>
+        {/* CTA with Glass Effect */}
+        <div className="mt-12 flex justify-center">
+          <div className="relative group cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:scale-105">
+            <GlassSurface
+              width={280}
+              height={56}
+              borderRadius={28}
+              brightness={85}
+              opacity={0.6}
+              blur={15}
+              displace={2}
+              className="shadow-xl group-hover:shadow-2xl transition-shadow duration-300"
+            >
+              <a
+                href="https://gem.gov.in"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center space-x-2 w-full h-full text-gray-900 font-semibold text-lg"
+              >
+                <Shield className="w-5 h-5" />
+                <span>View GeM Profile</span>
+              </a>
+            </GlassSurface>
+            {/* Enhanced glow effect on hover */}
+            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-green-400/0 via-primary-400/0 to-green-400/0 group-hover:from-green-400/30 group-hover:via-primary-400/40 group-hover:to-green-400/30 blur-xl transition-all duration-300 -z-10 pointer-events-none"></div>
+          </div>
         </div>
       </div>
     </section>
