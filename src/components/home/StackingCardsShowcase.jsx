@@ -16,6 +16,8 @@ const StackingCardsShowcase = () => {
   const cardsRefs = useRef([]);
   const ctaRef = useRef(null);
   const isUnmountingRef = useRef(false);
+  const backgroundLinesRef = useRef(null);
+  const uniqueId = useRef(`bg-lines-${Math.random().toString(36).substring(2, 11)}`);
 
   // 12 products for desktop (4 stacks of 3)
   const products = [
@@ -325,6 +327,39 @@ const StackingCardsShowcase = () => {
         force3D: true // Ensures GPU acceleration
       });
 
+      // Background lines parallax animation - lines flow from top to bottom
+      if (backgroundLinesRef.current) {
+        // Set initial state - completely hidden
+        gsap.set(backgroundLinesRef.current, {
+          y: -200,
+          opacity: 0
+        });
+
+        // Create timeline for lines animation
+        const linesTimeline = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top top',
+            end: 'bottom top',
+            scrub: 2,  // Increased from 0.8 to 2 for slower, smoother movement
+            invalidateOnRefresh: true
+          }
+        });
+
+        // Fade in quickly at start, then flow downward slowly
+        linesTimeline
+          .to(backgroundLinesRef.current, {
+            opacity: 1,
+            duration: 0.05,
+            ease: 'none'
+          })
+          .to(backgroundLinesRef.current, {
+            y: 600,  // Reduced from 1200 to 600 for slower movement
+            duration: 0.95,
+            ease: 'none'
+          }, 0.05);
+      }
+
     }, sectionRef);
 
     return () => {
@@ -417,6 +452,68 @@ const StackingCardsShowcase = () => {
       >
         Skip product showcase
       </a>
+
+      {/* Tilted Wavy Lines Background */}
+      <div
+        ref={backgroundLinesRef}
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          transform: 'rotate(-12deg) scale(1.4)',
+          transformOrigin: 'center center'
+        }}
+      >
+        <div className="absolute w-full" style={{ top: 0, height: '2400px' }}>
+          {[...Array(35)].map((_, i) => {
+            const spacing = 70;
+            const yPosition = i * spacing;
+            const isBlue = i % 2 === 0;
+            const gradientId = `${uniqueId.current}-grad-${i}`;
+
+            return (
+              <svg
+                key={i}
+                className="absolute w-full"
+                style={{
+                  top: `${yPosition}px`,
+                  height: '100px',
+                  left: 0,
+                  right: 0
+                }}
+                xmlns="http://www.w3.org/2000/svg"
+                preserveAspectRatio="none"
+                viewBox="0 0 1200 100"
+              >
+                <defs>
+                  <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop
+                      offset="0%"
+                      stopColor={isBlue ? 'rgb(59, 130, 246)' : 'rgb(168, 85, 247)'}
+                      stopOpacity="0.08"
+                    />
+                    <stop
+                      offset="50%"
+                      stopColor={isBlue ? 'rgb(59, 130, 246)' : 'rgb(168, 85, 247)'}
+                      stopOpacity="0.2"
+                    />
+                    <stop
+                      offset="100%"
+                      stopColor={isBlue ? 'rgb(59, 130, 246)' : 'rgb(168, 85, 247)'}
+                      stopOpacity="0.08"
+                    />
+                  </linearGradient>
+                </defs>
+                <path
+                  d="M 0 50 Q 300 20, 600 50 T 1200 50"
+                  fill="none"
+                  stroke={`url(#${gradientId})`}
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                />
+              </svg>
+            );
+          })}
+        </div>
+      </div>
 
       {/* Animated Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
