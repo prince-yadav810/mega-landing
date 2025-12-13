@@ -1,17 +1,7 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger);
-}
-
 const BrandsShowcase = () => {
-  const sectionRef = useRef(null);
-  const marqueeRef = useRef(null);
-  const [animationDuration, setAnimationDuration] = useState(60);
+  const animationDuration = 60;
 
   const brands = [
     { name: 'Siemens', logo: '/images/logos/logo_1.png' },

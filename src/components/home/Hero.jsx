@@ -139,6 +139,7 @@ const Hero = () => {
       if (titleRef.current) gsap.killTweensOf(titleRef.current);
       if (subtitleRef.current) gsap.killTweensOf(subtitleRef.current);
       if (ctaRef.current) gsap.killTweensOf(ctaRef.current);
+      if (exploreButtonRef.current) gsap.killTweensOf(exploreButtonRef.current);
       imagesRef.current.forEach(img => {
         if (img) gsap.killTweensOf(img);
       });
