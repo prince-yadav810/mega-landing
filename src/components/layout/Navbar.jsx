@@ -1,29 +1,56 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Menu, X } from 'lucide-react';
-import { gsap } from 'gsap';
+import { Menu, X, ChevronDown, ChevronRight, Shield, Zap, Power, Settings, Sun, Lightbulb, PenTool, Droplet, Hammer, Wrench } from 'lucide-react';
 import GlassSurface from '../ui/GlassSurface';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isStaticMenuOpen, setIsStaticMenuOpen] = useState(false);
-  const navRef = useRef(null);
-  const staticLogoRef = useRef(null);
-  const staticMenuRef = useRef(null);
-  const staticDropdownRef = useRef(null);
+  const [isProductsDropdownOpen, setIsProductsDropdownOpen] = useState(false);
+  const [isMobileProductsOpen, setIsMobileProductsOpen] = useState(false);
+  const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0 });
+  const [mounted, setMounted] = useState(false);
+  const productsButtonRef = useRef(null);
+  const hoverTimeoutRef = useRef(null);
+
+  const productCategories = [
+    { name: 'Safety & PPE', href: '/products/safety-ppe', icon: <Shield className="w-4 h-4" /> },
+    { name: 'Wires & Cables', href: '/products/wires-cables', icon: <Zap className="w-4 h-4" /> },
+    { name: 'Switchgears', href: '/products/switchgears', icon: <Power className="w-4 h-4" /> },
+    { name: 'Motors', href: '/products/motors', icon: <Settings className="w-4 h-4" /> },
+    { name: 'Gearboxes', href: '/products/gearboxes', icon: <Settings className="w-4 h-4" /> },
+    { name: 'Solar', href: '/products/solar', icon: <Sun className="w-4 h-4" /> },
+    { name: 'Lighting', href: '/products/lighting', icon: <Lightbulb className="w-4 h-4" /> },
+    { name: 'Panel Accessories', href: '/products/panel-accessories', icon: <PenTool className="w-4 h-4" /> },
+    { name: 'Lubricants', href: '/products/lubricants', icon: <Droplet className="w-4 h-4" /> },
+  ];
+
+  const services = [
+    { name: 'Fabrication', href: '/services/fabrication', icon: <Hammer className="w-4 h-4" /> },
+    { name: 'Electrical Jobs', href: '/services/electrical-jobs', icon: <Wrench className="w-4 h-4" /> },
+  ];
+
+  const navLinks = [
+    { name: 'Home', href: '/' },
+    { name: 'About', href: '/about' },
+    { name: 'Contact', href: '/contact' },
+  ];
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrolled = window.scrollY > 100;
+      const scrolled = window.scrollY > 50;
       if (scrolled !== isScrolled) {
         setIsScrolled(scrolled);
-        // Close static menu when scrolling
         if (scrolled) {
-          setIsStaticMenuOpen(false);
+          setIsProductsDropdownOpen(false);
         }
       }
     };
@@ -32,279 +59,226 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [isScrolled]);
 
-  // Close dropdown when clicking outside
+  // Update dropdown position when button is hovered
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (
-        staticDropdownRef.current &&
-        !staticDropdownRef.current.contains(event.target) &&
-        staticMenuRef.current &&
-        !staticMenuRef.current.contains(event.target)
-      ) {
-        setIsStaticMenuOpen(false);
-      }
-    };
-
-    if (isStaticMenuOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
+    if (isProductsDropdownOpen && productsButtonRef.current) {
+      const rect = productsButtonRef.current.getBoundingClientRect();
+      setDropdownPosition({
+        top: rect.bottom + 8,
+        left: rect.left - 100,
+      });
     }
+  }, [isProductsDropdownOpen]);
 
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [isStaticMenuOpen]);
+  const handleMouseEnter = () => {
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+      hoverTimeoutRef.current = null;
+    }
+    setIsProductsDropdownOpen(true);
+  };
 
-  useEffect(() => {
-    if (!navRef.current) return;
+  const handleMouseLeave = () => {
+    hoverTimeoutRef.current = setTimeout(() => {
+      setIsProductsDropdownOpen(false);
+    }, 300);
+  };
 
-    const ctx = gsap.context(() => {
-      // Animate floating navbar (shows when scrolled)
-      if (isScrolled) {
-        gsap.to(navRef.current, {
-          y: 0,
-          opacity: 1,
-          duration: 0.5,
-          ease: 'power3.out',
-        });
-      } else {
-        gsap.to(navRef.current, {
-          y: -100,
-          opacity: 0,
-          duration: 0.3,
-          ease: 'power3.in',
-        });
-      }
+  // Portal-based dropdown
+  const ProductsDropdownPortal = () => {
+    if (!mounted || !isProductsDropdownOpen) return null;
 
-      // Animate static elements (hide when scrolled)
-      if (staticLogoRef.current && staticMenuRef.current) {
-        if (isScrolled) {
-          gsap.to([staticLogoRef.current, staticMenuRef.current], {
-            y: -100,
-            opacity: 0,
-            duration: 0.3,
-            ease: 'power3.in',
-            pointerEvents: 'none',
-          });
-        } else {
-          gsap.to([staticLogoRef.current, staticMenuRef.current], {
-            y: 0,
-            opacity: 1,
-            duration: 0.5,
-            ease: 'power3.out',
-            delay: 0.1,
-            pointerEvents: 'auto',
-          });
-        }
-      }
-    });
-
-    return () => {
-      // Clean up all animations when component unmounts or isScrolled changes
-      ctx.revert();
-    };
-  }, [isScrolled]);
-
-  // Cleanup all GSAP animations on component unmount
-  useEffect(() => {
-    return () => {
-      // Kill all tweens targeting our refs when component unmounts
-      if (navRef.current) gsap.killTweensOf(navRef.current);
-      if (staticLogoRef.current) gsap.killTweensOf(staticLogoRef.current);
-      if (staticMenuRef.current) gsap.killTweensOf(staticMenuRef.current);
-    };
-  }, []);
-
-  const navLinks = [
-    { name: 'Home', href: '/' },
-    { name: 'Products', href: '/products' },
-    { name: 'About', href: '/about' },
-    { name: 'Contact', href: '/contact' },
-  ];
-
-  return (
-    <>
-      {/* Static Logo - Top Left (shows when NOT scrolled) */}
+    return createPortal(
       <div
-        ref={staticLogoRef}
-        className="fixed top-6 left-6 z-50 transition-all duration-300"
+        className="fixed z-[9999] animate-in fade-in slide-in-from-top-2 duration-200"
+        style={{ top: dropdownPosition.top, left: dropdownPosition.left }}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       >
-        <Link href="/" className="flex items-center space-x-4 group">
-          <div className="w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-700 rounded-2xl flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300 overflow-hidden p-2 shadow-xl">
-            <Image
-              src="/logo.png"
-              alt="MEGA Logo"
-              width={64}
-              height={64}
-              className="object-contain w-full h-full"
-            />
+        <div className="w-[520px] bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-200/50 overflow-hidden">
+          <div className="p-6">
+            <div className="grid grid-cols-2 gap-8">
+              {/* Products Column */}
+              <div>
+                <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">Product Categories</h3>
+                <div className="space-y-1">
+                  {productCategories.map((item) => (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      onClick={() => setIsProductsDropdownOpen(false)}
+                      className="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-primary-50 text-gray-700 hover:text-primary-600 transition-all group"
+                    >
+                      <span className="text-gray-400 group-hover:text-primary-500">{item.icon}</span>
+                      <span className="font-medium text-sm">{item.name}</span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              {/* Services Column */}
+              <div>
+                <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">Our Services</h3>
+                <div className="space-y-1">
+                  {services.map((item) => (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      onClick={() => setIsProductsDropdownOpen(false)}
+                      className="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-primary-50 text-gray-700 hover:text-primary-600 transition-all group"
+                    >
+                      <span className="text-gray-400 group-hover:text-primary-500">{item.icon}</span>
+                      <span className="font-medium text-sm">{item.name}</span>
+                    </Link>
+                  ))}
+                </div>
+
+                {/* CTA */}
+                <div className="mt-6 p-4 bg-gradient-to-br from-primary-50 to-primary-100 rounded-xl">
+                  <p className="text-sm text-gray-600 mb-3">Need help finding the right product?</p>
+                  <Link
+                    href="/contact"
+                    onClick={() => setIsProductsDropdownOpen(false)}
+                    className="inline-flex items-center text-sm font-semibold text-primary-600 hover:text-primary-700"
+                  >
+                    Contact Us <ChevronRight className="w-4 h-4 ml-1" />
+                  </Link>
+                </div>
+              </div>
+            </div>
+
+            {/* View All Link */}
+            <div className="mt-6 pt-4 border-t border-gray-200/50">
+              <Link
+                href="/products"
+                onClick={() => setIsProductsDropdownOpen(false)}
+                className="flex items-center justify-center text-sm font-semibold text-primary-600 hover:text-primary-700 py-2"
+              >
+                View All Products & Services <ChevronRight className="w-4 h-4 ml-1" />
+              </Link>
+            </div>
           </div>
-          <div className="flex flex-col">
-            <span className="text-2xl font-bold text-gray-900 drop-shadow-sm">MEGA</span>
-            <span className="text-sm text-gray-700 -mt-1 font-medium">Enterprise</span>
-          </div>
+        </div>
+      </div>,
+      document.body
+    );
+  };
+
+  // Navbar content (shared between glass and non-glass versions)
+  const NavbarContent = () => (
+    <div className="flex items-center justify-between h-full w-full px-6 lg:px-8">
+      {/* Logo */}
+      <Link href="/" className="flex items-center space-x-3 group flex-shrink-0">
+        <div className="w-12 h-12 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300 overflow-hidden">
+          <Image src="/logo.png" alt="MEGA Logo" width={48} height={48} className="object-contain w-full h-full" />
+        </div>
+        <div className="hidden sm:flex flex-col">
+          <span className={`text-lg font-bold ${isScrolled ? 'text-gray-900' : 'text-gray-900'}`}>MEGA</span>
+          <span className={`text-[10px] -mt-1 ${isScrolled ? 'text-gray-600' : 'text-gray-600'}`}>Enterprise</span>
+        </div>
+      </Link>
+
+      {/* Desktop Navigation */}
+      <div className="hidden md:flex items-center space-x-8 flex-shrink-0">
+        <Link
+          href="/"
+          className={`font-bold transition-colors duration-200 relative group py-2 ${isScrolled ? 'text-gray-700 hover:text-primary-600' : 'text-gray-700 hover:text-primary-600'}`}
+        >
+          Home
+          <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-500 to-primary-700 group-hover:w-full transition-all duration-300"></span>
+        </Link>
+
+        {/* Products Dropdown Trigger */}
+        <div
+          className="relative"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
+          <button
+            ref={productsButtonRef}
+            className={`flex items-center space-x-1 font-bold transition-colors duration-200 relative group py-2 ${isScrolled ? 'text-gray-700 hover:text-primary-600' : 'text-gray-700 hover:text-primary-600'}`}
+          >
+            <span>Products</span>
+            <ChevronDown className={`w-4 h-4 transition-transform ${isProductsDropdownOpen ? 'rotate-180' : ''}`} />
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-500 to-primary-700 group-hover:w-full transition-all duration-300"></span>
+          </button>
+        </div>
+
+        {navLinks.slice(1).map((link) => (
+          <Link
+            key={link.name}
+            href={link.href}
+            className={`font-bold transition-colors duration-200 relative group py-2 ${isScrolled ? 'text-gray-700 hover:text-primary-600' : 'text-gray-700 hover:text-primary-600'}`}
+          >
+            {link.name}
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-500 to-primary-700 group-hover:w-full transition-all duration-300"></span>
+          </Link>
+        ))}
+
+        <Link
+          href="/contact"
+          className="px-5 py-2.5 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-full font-semibold hover:shadow-lg hover:scale-105 transition-all duration-200 text-sm"
+        >
+          Get Quote
         </Link>
       </div>
 
-      {/* Static Menu Bubble - Top Right (shows when NOT scrolled) */}
-      <div
-        ref={staticMenuRef}
-        className="fixed top-6 right-6 z-50 transition-all duration-300 overflow-visible"
+      {/* Mobile Menu Button */}
+      <button
+        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        className="md:hidden p-2 rounded-lg hover:bg-gray-100/50 transition-colors"
       >
-        <GlassSurface
-          width={70}
-          height={70}
-          borderRadius={20}
-          brightness={98}
-          opacity={0.85}
-          blur={11}
-          displace={4}
-          backgroundOpacity={0.3}
-          saturation={1.1}
-          className="shadow-xl"
-        >
-          <button
-            onClick={() => setIsStaticMenuOpen(!isStaticMenuOpen)}
-            className="w-full h-full flex items-center justify-center hover:scale-110 transition-transform duration-300"
-            aria-label="Toggle Menu"
-          >
-            {isStaticMenuOpen ? (
-              <X className="w-6 h-6 text-gray-900" />
-            ) : (
-              <Menu className="w-6 h-6 text-gray-900" />
-            )}
-          </button>
-        </GlassSurface>
+        {isMobileMenuOpen ? (
+          <X className="w-6 h-6 text-gray-900" />
+        ) : (
+          <Menu className="w-6 h-6 text-gray-900" />
+        )}
+      </button>
+    </div>
+  );
 
-        {/* Dropdown Menu */}
-        {isStaticMenuOpen && !isScrolled && (
-          <div
-            ref={staticDropdownRef}
-            className="absolute top-20 right-0 w-56 animate-in fade-in slide-in-from-top-2 duration-300"
+  return (
+    <>
+      {/* Main Navbar - Always visible, glass effect only when scrolled */}
+      <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-6xl transition-all duration-300">
+        {isScrolled ? (
+          // Glass effect navbar when scrolled
+          <GlassSurface
+            width="100%"
+            height={80}
+            borderRadius={44}
+            brightness={98}
+            opacity={0.85}
+            blur={11}
+            displace={4}
+            backgroundOpacity={0.3}
+            saturation={1.1}
+            className="shadow-2xl"
           >
-            <GlassSurface
-              width="100%"
-              height="auto"
-              borderRadius={20}
-              brightness={98}
-              opacity={0.9}
-              blur={15}
-              displace={4}
-              backgroundOpacity={0.4}
-              saturation={1.1}
-              className="shadow-2xl"
-            >
-              <div className="flex flex-col py-4">
-                {navLinks.map((link) => (
-                  <Link
-                    key={link.name}
-                    href={link.href}
-                    onClick={() => setIsStaticMenuOpen(false)}
-                    className="px-6 py-3 text-gray-700 hover:text-primary-600 hover:bg-gray-50/50 font-semibold transition-all duration-200 border-b border-gray-200/30 last:border-b-0"
-                  >
-                    {link.name}
-                  </Link>
-                ))}
-                <Link
-                  href="/contact"
-                  onClick={() => setIsStaticMenuOpen(false)}
-                  className="mx-4 mt-3 px-6 py-2.5 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-full font-semibold text-center hover:shadow-lg hover:scale-105 transition-all duration-200"
-                >
-                  Get Quote
-                </Link>
-              </div>
-            </GlassSurface>
+            <NavbarContent />
+          </GlassSurface>
+        ) : (
+          // Transparent navbar at top (no background)
+          <div className="w-full h-20">
+            <NavbarContent />
           </div>
         )}
-      </div>
-
-      {/* Floating Glass Navbar - Only appears on scroll */}
-      <nav
-        ref={navRef}
-        className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-6xl opacity-0"
-        style={{ transform: 'translateX(-50%) translateY(-100px)' }}
-      >
-        <GlassSurface
-          width="100%"
-          height={80}
-          borderRadius={44}
-          brightness={98}
-          opacity={0.85}
-          blur={11}
-          displace={4}
-          backgroundOpacity={0.3}
-          saturation={1.1}
-          className="shadow-2xl"
-        >
-          <div className="flex items-center justify-between h-full w-full px-6 lg:px-8">
-            {/* Logo - Left aligned */}
-            <Link href="/" className="flex items-center space-x-3 group flex-shrink-0">
-              <div className="w-11 h-11 bg-gradient-to-br from-primary-500 to-primary-700 rounded-xl flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300 overflow-hidden p-1.5">
-                {/*
-                  Replace this with your actual logo:
-                  <Image src="/logo.png" alt="MEGA Logo" width={44} height={44} className="object-contain w-full h-full" />
-                */}
-                <Image src="/logo.png" alt="MEGA Logo" width={54} height={54} className="object-contain w-full h-full" />
-                {/* <span className="text-white font-bold text-lg">M</span> */}
-              </div>
-              <div className="hidden sm:flex flex-col">
-                <span className="text-lg font-bold text-gray-900">MEGA</span>
-                <span className="text-[10px] text-gray-600 -mt-1">Enterprise</span>
-              </div>
-            </Link>
-
-            {/* Desktop Navigation - Right aligned */}
-            <div className="hidden md:flex items-center space-x-8 flex-shrink-0">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className="text-gray-700 hover:text-primary-600 font-bold transition-colors duration-200 relative group py-2"
-                >
-                  {link.name}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-500 to-primary-700 group-hover:w-full transition-all duration-300"></span>
-                </Link>
-              ))}
-
-              {/* CTA Button */}
-              <Link
-                href="/contact"
-                className="px-5 py-2.5 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-full font-semibold hover:shadow-lg hover:scale-105 transition-all duration-200 text-sm"
-              >
-                Get Quote
-              </Link>
-            </div>
-
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden p-2 rounded-lg hover:bg-gray-100/50 transition-colors"
-            >
-              {isMobileMenuOpen ? (
-                <X className="w-6 h-6 text-gray-900" />
-              ) : (
-                <Menu className="w-6 h-6 text-gray-900" />
-              )}
-            </button>
-          </div>
-        </GlassSurface>
       </nav>
+
+      {/* Portal-based Dropdown */}
+      <ProductsDropdownPortal />
 
       {/* Mobile Menu */}
       <div
-        className={`fixed inset-0 z-40 md:hidden transition-all duration-300 ${isMobileMenuOpen ? 'visible' : 'invisible'
-          }`}
+        className={`fixed inset-0 z-40 md:hidden transition-all duration-300 ${isMobileMenuOpen ? 'visible' : 'invisible'}`}
       >
-        {/* Backdrop */}
         <div
-          className={`absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-100' : 'opacity-0'
-            }`}
+          className={`absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-100' : 'opacity-0'}`}
           onClick={() => setIsMobileMenuOpen(false)}
         ></div>
 
-        {/* Menu Panel */}
         <div
-          className={`absolute top-0 right-0 h-full w-72 transition-transform duration-300 ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
-            }`}
+          className={`absolute top-0 right-0 h-full w-80 transition-transform duration-300 ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
         >
           <GlassSurface
             width="100%"
@@ -316,17 +290,76 @@ const Navbar = () => {
             backgroundOpacity={0.4}
             className="shadow-2xl"
           >
-            <div className="flex flex-col p-6 space-y-6 mt-24">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-lg font-semibold text-gray-700 hover:text-primary-600 transition-colors py-2 border-b border-gray-200/50"
+            <div className="flex flex-col p-6 space-y-2 mt-24 overflow-y-auto max-h-[calc(100vh-120px)]">
+              <Link
+                href="/"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-lg font-semibold text-gray-700 hover:text-primary-600 transition-colors py-3 border-b border-gray-200/50"
+              >
+                Home
+              </Link>
+
+              {/* Mobile Products Accordion */}
+              <div className="border-b border-gray-200/50">
+                <button
+                  onClick={() => setIsMobileProductsOpen(!isMobileProductsOpen)}
+                  className="w-full flex items-center justify-between text-lg font-semibold text-gray-700 hover:text-primary-600 transition-colors py-3"
                 >
-                  {link.name}
-                </Link>
-              ))}
+                  Products & Services
+                  <ChevronDown className={`w-5 h-5 transition-transform ${isMobileProductsOpen ? 'rotate-180' : ''}`} />
+                </button>
+
+                {isMobileProductsOpen && (
+                  <div className="pb-4 space-y-1">
+                    <p className="text-xs font-bold text-gray-400 uppercase px-2 py-1">Products</p>
+                    {productCategories.map((item) => (
+                      <Link
+                        key={item.name}
+                        href={item.href}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="flex items-center space-x-3 px-4 py-2 text-gray-600 hover:text-primary-600 hover:bg-gray-50/50 rounded-lg"
+                      >
+                        {item.icon}
+                        <span className="text-sm font-medium">{item.name}</span>
+                      </Link>
+                    ))}
+                    <p className="text-xs font-bold text-gray-400 uppercase px-2 py-1 mt-3">Services</p>
+                    {services.map((item) => (
+                      <Link
+                        key={item.name}
+                        href={item.href}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="flex items-center space-x-3 px-4 py-2 text-gray-600 hover:text-primary-600 hover:bg-gray-50/50 rounded-lg"
+                      >
+                        {item.icon}
+                        <span className="text-sm font-medium">{item.name}</span>
+                      </Link>
+                    ))}
+                    <Link
+                      href="/products"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="flex items-center px-4 py-2 mt-2 text-primary-600 font-semibold"
+                    >
+                      View All <ChevronRight className="w-4 h-4 ml-1" />
+                    </Link>
+                  </div>
+                )}
+              </div>
+
+              <Link
+                href="/about"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-lg font-semibold text-gray-700 hover:text-primary-600 transition-colors py-3 border-b border-gray-200/50"
+              >
+                About
+              </Link>
+              <Link
+                href="/contact"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-lg font-semibold text-gray-700 hover:text-primary-600 transition-colors py-3 border-b border-gray-200/50"
+              >
+                Contact
+              </Link>
               <Link
                 href="/contact"
                 onClick={() => setIsMobileMenuOpen(false)}

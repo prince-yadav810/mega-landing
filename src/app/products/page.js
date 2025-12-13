@@ -1,211 +1,174 @@
 'use client';
 
-import { useState } from 'react';
-import { Search, Filter } from 'lucide-react';
+import { Shield, Zap, Power, Settings, Sun, Lightbulb, PenTool, Droplet, Hammer, Wrench } from 'lucide-react';
 
 export default function ProductsPage() {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('all');
-
   const categories = [
-    'All Products',
-    'Cables & Wires',
-    'Electrical Switchgear',
-    'LED Lighting',
-    'Pipes & Fittings',
-    'Safety Equipment',
-    'Paints & Coatings',
-    'Power Tools',
-    'Valves & Fittings',
-    'Welding Materials',
+    {
+      name: 'Safety & PPE',
+      description: 'Complete range of personal protective equipment and safety gear.',
+      icon: <Shield className="w-8 h-8" />,
+      color: 'from-orange-500 to-red-600',
+      delay: 0,
+    },
+    {
+      name: 'Wires & Cables',
+      description: 'High-grade industrial wires and cables for all applications.',
+      icon: <Zap className="w-8 h-8" />,
+      color: 'from-blue-500 to-cyan-600',
+      delay: 100,
+    },
+    {
+      name: 'Switchgears',
+      description: 'Reliable switchgear systems for efficient power distribution.',
+      icon: <Power className="w-8 h-8" />,
+      color: 'from-green-500 to-emerald-600',
+      delay: 200,
+    },
+    {
+      name: 'Motors',
+      description: 'Efficient and durable motors for industrial machinery.',
+      icon: <Settings className="w-8 h-8" />,
+      color: 'from-purple-500 to-indigo-600',
+      delay: 0,
+    },
+    {
+      name: 'Gearboxes',
+      description: 'Precision gearboxes for optimal torque and speed control.',
+      icon: <Settings className="w-8 h-8 rotate-90" />, // Reusing icon with rotation
+      color: 'from-gray-600 to-gray-800',
+      delay: 100,
+    },
+    {
+      name: 'Solar',
+      description: 'Sustainable solar energy solutions and components.',
+      icon: <Sun className="w-8 h-8" />,
+      color: 'from-yellow-400 to-orange-500',
+      delay: 200,
+    },
+    {
+      name: 'Lighting',
+      description: 'Advanced LED lighting for industrial and commercial use.',
+      icon: <Lightbulb className="w-8 h-8" />,
+      color: 'from-yellow-300 to-yellow-500',
+      delay: 0,
+    },
+    {
+      name: 'Panel Accessories',
+      description: 'Essential accessories for control panels and distribution boards.',
+      icon: <PenTool className="w-8 h-8" />,
+      color: 'from-blue-400 to-indigo-500',
+      delay: 100,
+    },
+    {
+      name: 'Lubricants',
+      description: 'High-performance lubricants for machinery maintenance.',
+      icon: <Droplet className="w-8 h-8" />,
+      color: 'from-teal-400 to-teal-600',
+      delay: 200,
+    },
   ];
 
-  const products = [
+  const services = [
     {
-      name: 'Industrial Cables',
-      category: 'Cables & Wires',
-      description: 'High-quality industrial cables for various applications',
-      brands: ['Polycab', 'Havells', 'Finolex'],
-      image: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=400&q=80',
+      name: 'Fabrication',
+      description: 'Custom metal fabrication services tailored to your specific industrial needs. Precision engineering and high-quality materials ensuring durability.',
+      icon: <Hammer className="w-10 h-10" />,
+      image: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=800&q=80',
     },
     {
-      name: 'LED Tube Lights',
-      category: 'LED Lighting',
-      description: 'Energy-efficient LED lighting solutions',
-      brands: ['OSRAM', 'Philips', 'Syska'],
-      image: 'https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=400&q=80',
-    },
-    {
-      name: 'Safety Helmets',
-      category: 'Safety Equipment',
-      description: 'Industrial safety helmets and protective gear',
-      brands: ['Karam', '3M', 'Honeywell'],
-      image: 'https://images.unsplash.com/photo-1581578017093-cd30b0e417bf?w=400&q=80',
-    },
-    {
-      name: 'MCB & RCCB',
-      category: 'Electrical Switchgear',
-      description: 'Circuit breakers and protection devices',
-      brands: ['Siemens', 'L&T', 'Schneider'],
-      image: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=400&q=80',
-    },
-    {
-      name: 'PVC Pipes',
-      category: 'Pipes & Fittings',
-      description: 'Durable PVC pipes and fittings',
-      brands: ['Supreme', 'Astral', 'Prince'],
-      image: 'https://images.unsplash.com/photo-1581244277943-fe4a9c777189?w=400&q=80',
-    },
-    {
-      name: 'Angle Grinder',
-      category: 'Power Tools',
-      description: 'Professional-grade power tools',
-      brands: ['Bosch', 'Makita', 'Dewalt'],
-      image: 'https://images.unsplash.com/photo-1504148455328-c376907d081c?w=400&q=80',
+      name: 'Electrical Jobs',
+      description: 'Comprehensive electrical installation, maintenance, and repair services. Expert technicians ensuring safety and compliance with standards.',
+      icon: <Wrench className="w-10 h-10" />,
+      image: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800&q=80',
     },
   ];
-
-  const filteredProducts = products.filter((product) => {
-    const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         product.description.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = selectedCategory === 'all' || product.category.toLowerCase() === selectedCategory.toLowerCase();
-    return matchesSearch && matchesCategory;
-  });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white pt-32 pb-20">
+    <div className="min-h-screen bg-gray-50 pt-32 pb-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Page Header */}
-        <div className="text-center mb-16">
+
+        {/* Header */}
+        <div className="text-center mb-20">
           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-            Our <span className="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Product Catalog</span>
+            Products <span className="text-primary-600">&</span> Services
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Browse through our extensive range of 1000+ products from leading brands
+            Comprehensive industrial solutions including a wide range of products and expert services.
           </p>
         </div>
 
-        {/* Search & Filter */}
-        <div className="mb-12">
-          <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg border border-gray-200 p-6">
-            <div className="flex flex-col md:flex-row gap-4">
-              {/* Search */}
-              <div className="flex-1 relative">
-                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                <input
-                  type="text"
-                  placeholder="Search products..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-12 pr-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-all bg-white/50"
-                />
-              </div>
+        {/* Product Categories */}
+        <div className="mb-24">
+          <div className="flex items-center space-x-4 mb-12">
+            <div className="h-px bg-gray-300 flex-1"></div>
+            <h2 className="text-3xl font-bold text-gray-800">Product Categories</h2>
+            <div className="h-px bg-gray-300 flex-1"></div>
+          </div>
 
-              {/* Category Filter */}
-              <div className="relative">
-                <Filter className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5 pointer-events-none" />
-                <select
-                  value={selectedCategory}
-                  onChange={(e) => setSelectedCategory(e.target.value)}
-                  className="pl-12 pr-8 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-all bg-white/50 appearance-none cursor-pointer"
-                >
-                  {categories.map((category) => (
-                    <option key={category} value={category === 'All Products' ? 'all' : category}>
-                      {category}
-                    </option>
-                  ))}
-                </select>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {categories.map((category, index) => (
+              <div
+                key={index}
+                className="group relative bg-white rounded-3xl p-8 hover:-translate-y-2 transition-all duration-300 shadow-sm hover:shadow-xl border border-gray-100 overflow-hidden"
+              >
+                <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${category.color} opacity-10 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-150 duration-500`}></div>
+
+                <div className={`inline-flex p-4 rounded-2xl bg-gradient-to-br ${category.color} text-white mb-6 shadow-lg`}>
+                  {category.icon}
+                </div>
+
+                <h3 className="text-2xl font-bold text-gray-900 mb-3">{category.name}</h3>
+                <p className="text-gray-600 leading-relaxed mb-6">
+                  {category.description}
+                </p>
+
+                <div className="flex items-center text-primary-600 font-semibold group-hover:translate-x-2 transition-transform cursor-pointer">
+                  Explore Products <span className="ml-2 text-xl">→</span>
+                </div>
               </div>
-            </div>
+            ))}
           </div>
         </div>
 
-        {/* Products Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProducts.map((product, index) => (
-            <div
-              key={index}
-              className="group bg-white rounded-3xl transform hover:scale-105 transition-all duration-300 cursor-pointer h-[420px]"
-              style={{
-                boxShadow: `
-                  0 2px 4px rgba(255, 255, 255, 0.9) inset,
-                  0 -2px 4px rgba(0, 0, 0, 0.05) inset,
-                  0 8px 24px rgba(0, 0, 0, 0.08),
-                  0 2px 8px rgba(0, 0, 0, 0.04),
-                  0 0 0 1px rgba(255, 255, 255, 0.8),
-                  0 0 0 2px rgba(0, 0, 0, 0.03)
-                `,
-                background: 'linear-gradient(145deg, #ffffff 0%, #fafafa 100%)',
-              }}
-            >
-              <div className="relative h-full w-full overflow-hidden rounded-3xl flex flex-col">
-                {/* Image */}
-                <div className="h-48 overflow-hidden rounded-t-3xl">
+        {/* Services Section */}
+        <div>
+          <div className="flex items-center space-x-4 mb-12">
+            <div className="h-px bg-gray-300 flex-1"></div>
+            <h2 className="text-3xl font-bold text-gray-800">Our Services</h2>
+            <div className="h-px bg-gray-300 flex-1"></div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            {services.map((service, index) => (
+              <div key={index} className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100">
+                <div className="relative h-64 overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
                   <img
-                    src={product.image}
-                    alt={product.name}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    src={service.image}
+                    alt={service.name}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />
-                </div>
-
-                {/* Content */}
-                <div className="flex-1 p-6 flex flex-col">
-                  <span className="text-xs font-semibold text-primary-600 mb-2">
-                    {product.category}
-                  </span>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">
-                    {product.name}
-                  </h3>
-                  <p className="text-gray-600 mb-4 flex-1">
-                    {product.description}
-                  </p>
-
-                  {/* Brands */}
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {product.brands.map((brand) => (
-                      <span
-                        key={brand}
-                        className="px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-xs font-medium"
-                      >
-                        {brand}
-                      </span>
-                    ))}
+                  <div className="absolute bottom-6 left-6 z-20 text-white flex items-center space-x-3">
+                    <div className="p-3 bg-white/20 backdrop-blur-md rounded-xl border border-white/30">
+                      {service.icon}
+                    </div>
+                    <h3 className="text-3xl font-bold">{service.name}</h3>
                   </div>
-
-                  {/* CTA */}
-                  <button className="w-full py-2 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-lg font-semibold hover:shadow-lg transition-all">
-                    Get Quote
+                </div>
+                <div className="p-8">
+                  <p className="text-lg text-gray-600 leading-relaxed mb-6">
+                    {service.description}
+                  </p>
+                  <button className="w-full py-4 bg-gray-50 text-gray-900 rounded-xl font-bold hover:bg-primary-600 hover:text-white transition-all duration-300 border border-gray-200 hover:border-transparent">
+                    Enquire Now
                   </button>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
-
-        {/* No Results */}
-        {filteredProducts.length === 0 && (
-          <div className="text-center py-20">
-            <p className="text-xl text-gray-600">No products found matching your search.</p>
-          </div>
-        )}
-
-        {/* CTA Section */}
-        <div className="mt-20 text-center">
-          <div className="bg-white/90 backdrop-blur-sm rounded-3xl shadow-lg border border-gray-200 p-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Can't Find What You're Looking For?
-            </h2>
-            <p className="text-lg text-gray-600 mb-8">
-              We have 1000+ products in stock. Contact us for custom requirements.
-            </p>
-            <a
-              href="/contact"
-              className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-full font-semibold text-lg shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"
-            >
-              Contact Us
-            </a>
+            ))}
           </div>
         </div>
+
       </div>
     </div>
   );
