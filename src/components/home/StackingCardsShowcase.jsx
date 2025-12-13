@@ -336,13 +336,14 @@ const StackingCardsShowcase = () => {
             const viewportHeight = window.innerHeight;
 
             // Calculate travel distance for precise sync
-            const startY = -imageHeight;
+            // Start with bottom 40% of image visible
+            const startY = -imageHeight * 0.53;
             const endY = viewportHeight;
 
-            // Set initial state - image positioned above viewport
+            // Set initial state - image partially visible at start
             gsap.set(img, {
               y: startY,
-              opacity: 0,
+              opacity: 1,              // Fully visible from the start
               force3D: true
             });
 
@@ -357,20 +358,13 @@ const StackingCardsShowcase = () => {
               }
             });
 
-            // Fade in during first 10% of scroll, then move from top to bottom
-            imageTimeline
-              .to(img, {
-                opacity: 1,
-                duration: 0.1,          // Fade in during first 10% of scroll
-                ease: 'none',
-                force3D: true
-              })
-              .to(img, {
-                y: endY,                // Move from top to bottom
-                duration: 0.9,          // Remaining 90% of scroll
-                ease: 'none',           // Linear movement for predictable sync
-                force3D: true
-              }, 0.1);
+            // Move from partially visible to completely off-screen at bottom
+            imageTimeline.to(img, {
+              y: endY,                  // Move from partial visibility to bottom
+              duration: 1,              // Full scroll duration
+              ease: 'none',             // Linear movement for predictable sync
+              force3D: true
+            });
           };
 
           if (img.complete) {

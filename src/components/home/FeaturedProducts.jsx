@@ -175,7 +175,7 @@ const FeaturedProducts = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative py-32 overflow-hidden bg-gradient-to-b from-gray-50 to-white">
+    <section ref={sectionRef} className="relative pt-32 overflow-hidden bg-gradient-to-b from-gray-50 to-white">
       {/* Animated Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 -left-48 w-96 h-96 bg-primary-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
