@@ -317,23 +317,71 @@ const StackingCardsShowcase = () => {
           onComplete: () => {
             // Exciting animations when button finishes animating
             if (!isUnmountingRef.current && exploreButtonRef.current) {
-              // Pulse effect
-              gsap.to(exploreButtonRef.current, {
+              const blueGlowElement = exploreButtonRef.current.querySelector('.blue-glow');
+              const glowElement = exploreButtonRef.current.querySelector('.button-glow');
+
+              // Create a timeline to sync button scale with blue glow
+              const pulseTimeline = gsap.timeline();
+
+              // Button pulse and blue glow appear together
+              pulseTimeline.to(exploreButtonRef.current, {
                 scale: 1.15,
                 duration: 0.4,
-                yoyo: true,
-                repeat: 1,
+                ease: 'power2.inOut',
+              }, 0); // Start immediately
+
+              // Blue glow appears as button scales up
+              if (blueGlowElement) {
+                pulseTimeline.to(blueGlowElement, {
+                  opacity: 0.5,
+                  duration: 0.2,
+                  ease: 'power2.inOut',
+                }, 0); // Start at the same time as button scale
+              }
+
+              // Regular glow effect
+              if (glowElement) {
+                pulseTimeline.to(glowElement, {
+                  opacity: 0.5,
+                  duration: 0.1,
+                  ease: 'power2.inOut',
+                }, 0);
+              }
+
+              // Button scales back down
+              pulseTimeline.to(exploreButtonRef.current, {
+                scale: 1,
+                duration: 0.4,
                 ease: 'power2.inOut',
               });
 
-              // Glow effect
-              const glowElement = exploreButtonRef.current.querySelector('.button-glow');
+              // Blue glow fades but stays visible
+              if (blueGlowElement) {
+                pulseTimeline.to(blueGlowElement, {
+                  opacity: 0.5,
+                  duration: 0.4,
+                  ease: 'power2.inOut',
+                  onComplete: () => {
+                    // Then continuous subtle pulsing
+                    if (!isUnmountingRef.current && blueGlowElement) {
+                      gsap.to(blueGlowElement, {
+                        opacity: 0.5,
+                        duration: 1,
+                        yoyo: true,
+                        repeat: -1,
+                        ease: 'sine.inOut',
+                      });
+                    }
+                  }
+                });
+              }
+
+              // Regular glow fades
               if (glowElement) {
-                gsap.to(glowElement, {
-                  opacity: 0.8,
-                  duration: 0.6,
-                  yoyo: true,
-                  repeat: 1,
+                pulseTimeline.to(glowElement, {
+                  opacity: 0,
+                  duration: 0.4,
+                  ease: 'power2.inOut',
                 });
               }
 
@@ -610,8 +658,11 @@ const StackingCardsShowcase = () => {
               ref={exploreButtonRef}
               className="pointer-events-auto group relative"
             >
+              {/* Blue glow - continuous pulsing */}
+              <div className="blue-glow absolute -inset-2 bg-blue-500 rounded-full opacity-0 blur-2xl transition-all duration-300 group-hover:opacity-70 group-hover:blur-3xl"></div>
+
               {/* Animated glow background */}
-              <div className="button-glow absolute -inset-1 bg-gradient-to-r from-primary-600 via-pink-600 to-primary-600 rounded-full opacity-0 blur-xl transition-all duration-300 group-hover:opacity-100 animate-gradient-xy"></div>
+              <div className="button-glow absolute -inset-1 bg-gradient-to-r from-primary-600 via-primary-700 to-primary-600 rounded-full opacity-0 blur-xl transition-all duration-300 group-hover:opacity-100 animate-gradient-xy"></div>
 
               {/* Main button */}
               <div className="relative px-10 py-5 bg-gradient-to-r from-primary-600 via-primary-700 to-primary-800 text-white rounded-full font-bold text-xl shadow-2xl overflow-hidden transition-all duration-300 group-hover:scale-105 group-hover:shadow-primary-500/50">

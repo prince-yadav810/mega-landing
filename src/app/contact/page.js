@@ -47,37 +47,71 @@ export default function ContactPage() {
           {contactInfo.map((info, index) => {
             const Icon = info.icon;
             return (
-              <div key={index} className="relative rounded-2xl backdrop-blur-xl bg-gradient-to-br from-white/10 via-white/5 to-transparent border border-white/30 shadow-xl transform hover:scale-105 transition-all duration-300 overflow-hidden">
-                {/* Liquid glass shine effect */}
-                <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-white/5 to-transparent pointer-events-none"></div>
-                {/* Bottom gradient for depth */}
-                <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-white/5 to-transparent pointer-events-none"></div>
-                <div className="relative p-6 text-center">
-                  <div className="w-14 h-14 bg-primary-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                    <Icon className="w-7 h-7 text-primary-600" />
+              <div key={index} className="group relative">
+                {/* Animated gradient border */}
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-primary-600 via-primary-400 to-primary-600 rounded-2xl opacity-0 group-hover:opacity-100 blur transition-all duration-500 group-hover:blur-lg animate-gradient-xy"></div>
+
+                {/* Card content */}
+                <div className="relative h-full rounded-2xl bg-white p-8 text-center transform transition-all duration-500 group-hover:-translate-y-2 group-hover:shadow-2xl border border-gray-100">
+                  {/* Animated icon container */}
+                  <div className="relative w-20 h-20 mx-auto mb-6">
+                    {/* Pulsing background */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary-400 to-primary-600 rounded-2xl opacity-20 group-hover:opacity-30 animate-pulse"></div>
+                    {/* Icon background with gradient */}
+                    <div className="relative w-full h-full bg-gradient-to-br from-primary-100 to-primary-200 rounded-2xl flex items-center justify-center transform transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6">
+                      <Icon className="w-10 h-10 text-primary-600 transform transition-transform duration-500 group-hover:scale-110" />
+                    </div>
                   </div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-3">{info.title}</h3>
-                  <div className="space-y-1">
+
+                  {/* Title with gradient on hover */}
+                  <h3 className="text-xl font-bold text-gray-900 mb-4 group-hover:bg-gradient-to-r group-hover:from-primary-600 group-hover:to-primary-700 group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
+                    {info.title}
+                  </h3>
+
+                  {/* Details with better spacing */}
+                  <div className="space-y-2">
                     {info.details.map((detail, idx) => (
                       <div key={idx}>
                         {info.links && info.links[idx] ? (
                           <a
                             href={info.links[idx]}
-                            className="text-sm text-gray-600 hover:text-primary-600 transition-colors block"
+                            className="block text-sm text-gray-600 hover:text-primary-600 transition-colors font-medium py-1 px-2 rounded hover:bg-primary-50"
                           >
                             {detail}
                           </a>
                         ) : (
-                          <p className="text-sm text-gray-600">{detail}</p>
+                          <p className="text-sm text-gray-600 font-medium leading-relaxed">{detail}</p>
                         )}
                       </div>
                     ))}
+                  </div>
+
+                  {/* Hover indicator */}
+                  <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="w-8 h-1 bg-gradient-to-r from-primary-400 to-primary-600 rounded-full"></div>
                   </div>
                 </div>
               </div>
             );
           })}
         </div>
+
+        {/* Add keyframes for gradient animation */}
+        <style jsx>{`
+          @keyframes gradient-xy {
+            0%, 100% {
+              background-position: 0% 50%;
+            }
+            50% {
+              background-position: 100% 50%;
+            }
+          }
+
+          .animate-gradient-xy {
+            background-size: 200% 200%;
+            animation: gradient-xy 3s ease infinite;
+          }
+        `}</style>
 
         {/* Form & Map Section */}
         <div className="grid lg:grid-cols-2 gap-12 mb-16">
