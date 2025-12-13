@@ -16,55 +16,6 @@ const BrandsShowcase = () => {
     { name: 'Jindal', logo: '/images/logos/logo_5.png' },
   ];
 
-  useEffect(() => {
-    if (typeof window === 'undefined' || !sectionRef.current) return;
-
-    let scrollTriggerInstance = null;
-
-    const ctx = gsap.context(() => {
-      // Scroll-lock: Speed up the marquee based on scroll
-      scrollTriggerInstance = ScrollTrigger.create({
-        trigger: sectionRef.current,
-        pin: true,
-        start: 'top top',
-        end: '+=80%',
-        anticipatePin: 1,
-        invalidateOnRefresh: true,
-        scrub: 0.5,
-        onUpdate: (self) => {
-          // Speed up marquee: from 60s (base) down to 35s when scrolling fast
-          const newDuration = 60 - (self.progress * 25);
-          setAnimationDuration(Math.max(35, newDuration));
-        },
-        onLeave: () => {
-          // Smoothly return to base speed
-          setAnimationDuration(60);
-        },
-        onEnterBack: () => {
-          setAnimationDuration(60);
-        }
-      });
-    }, sectionRef);
-
-    return () => {
-      if (scrollTriggerInstance) {
-        scrollTriggerInstance.kill(true);
-      }
-      ctx.revert();
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill(true));
-    };
-  }, []);
-
-  // Responsive handler
-  useEffect(() => {
-    const handleResize = () => {
-      ScrollTrigger.refresh();
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
   return (
     <div className="bg-white">
       <style jsx>{`
@@ -88,7 +39,7 @@ const BrandsShowcase = () => {
         }
       `}</style>
 
-      <section ref={sectionRef} className="py-24 min-h-screen flex items-center">
+      <section className="py-24 flex items-center">
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
           <div className="text-center mb-16">
@@ -101,7 +52,7 @@ const BrandsShowcase = () => {
           </div>
 
           {/* Infinite Marquee */}
-          <div ref={marqueeRef} className="overflow-hidden relative">
+          <div className="overflow-hidden relative">
             <div className="marquee-track">
               {/* First set of brands */}
               {brands.map((brand, index) => (

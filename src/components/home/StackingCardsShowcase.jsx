@@ -15,6 +15,7 @@ const StackingCardsShowcase = () => {
   const cardsContainerRef = useRef(null);
   const cardsRefs = useRef([]);
   const ctaRef = useRef(null);
+  const exploreButtonRef = useRef(null);
   const isUnmountingRef = useRef(false);
   const backgroundLinesRef = useRef(null);
 
@@ -311,8 +312,41 @@ const StackingCardsShowcase = () => {
           opacity: 1,
           scale: 1,
           duration: 0.8,
-          ease: 'power3.out', // Smooth easing without overshoot
-          force3D: true // Ensures GPU acceleration
+          ease: 'back.out(1.7)', // Spring effect for excitement
+          force3D: true, // Ensures GPU acceleration
+          onComplete: () => {
+            // Exciting animations when button finishes animating
+            if (!isUnmountingRef.current && exploreButtonRef.current) {
+              // Pulse effect
+              gsap.to(exploreButtonRef.current, {
+                scale: 1.15,
+                duration: 0.4,
+                yoyo: true,
+                repeat: 1,
+                ease: 'power2.inOut',
+              });
+
+              // Glow effect
+              const glowElement = exploreButtonRef.current.querySelector('.button-glow');
+              if (glowElement) {
+                gsap.to(glowElement, {
+                  opacity: 0.8,
+                  duration: 0.6,
+                  yoyo: true,
+                  repeat: 1,
+                });
+              }
+
+              // Continuous subtle floating animation
+              gsap.to(exploreButtonRef.current, {
+                y: -8,
+                duration: 2.5,
+                ease: 'sine.inOut',
+                yoyo: true,
+                repeat: -1,
+              });
+            }
+          },
         },
         exitLabel + '+=0.5'
       );
@@ -404,6 +438,14 @@ const StackingCardsShowcase = () => {
       if (ctaRef.current) {
         try {
           gsap.killTweensOf(ctaRef.current);
+        } catch (e) {
+          // Ignore errors during cleanup
+        }
+      }
+
+      if (exploreButtonRef.current) {
+        try {
+          gsap.killTweensOf(exploreButtonRef.current);
         } catch (e) {
           // Ignore errors during cleanup
         }
@@ -557,7 +599,7 @@ const StackingCardsShowcase = () => {
             </div>
           ))}
 
-          {/* CTA Button (slides up from bottom after cards exit) */}
+          {/* CTA Button (slides down from top after cards exit) */}
           <div
             ref={ctaRef}
             className="absolute inset-0 flex items-center justify-center pointer-events-none"
@@ -565,10 +607,47 @@ const StackingCardsShowcase = () => {
           >
             <Link
               href="/products"
-              className="pointer-events-auto group inline-flex items-center space-x-3 px-10 py-5 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-full font-semibold text-lg shadow-2xl hover:shadow-primary-500/50 hover:scale-105 transition-all duration-300"
+              ref={exploreButtonRef}
+              className="pointer-events-auto group relative"
             >
-              <span>Explore More Products</span>
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
+              {/* Animated glow background */}
+              <div className="button-glow absolute -inset-1 bg-gradient-to-r from-primary-600 via-pink-600 to-primary-600 rounded-full opacity-0 blur-xl transition-all duration-300 group-hover:opacity-100 animate-gradient-xy"></div>
+
+              {/* Main button */}
+              <div className="relative px-10 py-5 bg-gradient-to-r from-primary-600 via-primary-700 to-primary-800 text-white rounded-full font-bold text-xl shadow-2xl overflow-hidden transition-all duration-300 group-hover:scale-105 group-hover:shadow-primary-500/50">
+                {/* Shimmer effect */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out"></div>
+                </div>
+
+                {/* Particles effect on hover */}
+                <div className="absolute inset-0 overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="particle absolute top-1/4 left-1/4 w-1 h-1 bg-white rounded-full animate-particle-1"></div>
+                  <div className="particle absolute top-1/2 left-1/3 w-1 h-1 bg-white rounded-full animate-particle-2"></div>
+                  <div className="particle absolute top-3/4 left-2/3 w-1 h-1 bg-white rounded-full animate-particle-3"></div>
+                  <div className="particle absolute top-1/3 left-3/4 w-1 h-1 bg-white rounded-full animate-particle-4"></div>
+                </div>
+
+                {/* Border animation */}
+                <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute inset-0 rounded-full border-2 border-white/50 animate-ping-slow"></div>
+                </div>
+
+                {/* Button content */}
+                <div className="relative flex items-center space-x-3">
+                  <span className="relative">
+                    Explore More Products
+                    {/* Underline animation */}
+                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white group-hover:w-full transition-all duration-300"></span>
+                  </span>
+                  <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform duration-300 group-hover:rotate-[-10deg]" />
+
+                  {/* Sparkle on hover */}
+                  <span className="absolute -top-1 -right-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    ✨
+                  </span>
+                </div>
+              </div>
             </Link>
           </div>
         </div>
