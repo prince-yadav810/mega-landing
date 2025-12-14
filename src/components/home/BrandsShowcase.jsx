@@ -1,19 +1,19 @@
 'use client';
 
 const BrandsShowcase = () => {
-  const animationDuration = 60;
+  const animationDuration = 30;
 
   const brands = [
-    { name: 'Siemens', logo: '/images/logos/logo_1.png' },
-    { name: 'Polycab', logo: '/images/logos/logo_2.png' },
-    { name: 'Havells', logo: '/images/logos/logo_3.png' },
-    { name: 'L&T', logo: '/images/logos/logo_4.png' },
-    { name: 'OSRAM', logo: '/images/logos/logo_5.png' },
-    { name: 'Philips', logo: '/images/logos/logo_1.png' },
-    { name: 'TATA', logo: '/images/logos/logo_2.png' },
-    { name: 'Usha', logo: '/images/logos/logo_3.png' },
-    { name: 'Berger', logo: '/images/logos/logo_4.png' },
-    { name: 'Jindal', logo: '/images/logos/logo_5.png' },
+    { name: 'Siemens', logo: '/images/brands/siemens.svg' },
+    { name: 'Polycab', logo: '/images/brands/polycab.svg' },
+    { name: 'Ledvance', logo: '/images/brands/ledvance.svg' },
+    { name: 'Berger Paints', logo: '/images/brands/berger-paints.svg' },
+    { name: 'Shalimar Paints', logo: '/images/brands/shalimar-paints.svg' },
+    { name: 'Usha International', logo: '/images/brands/usha-international.svg' },
+    { name: 'Europa Locks', logo: '/images/brands/europa-locks.svg' },
+    { name: 'Udyogi Safety', logo: '/images/brands/udyogi-safety.svg' },
+    { name: 'British Paints', logo: '/images/brands/british-paints.svg' },
+    { name: 'Link Locks', logo: '/images/brands/link-locks.svg' },
   ];
 
   return (
