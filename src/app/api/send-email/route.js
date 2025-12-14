@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { transporter } from '@/lib/nodemailer';
 import { generateEmailHTML, generatePlainTextEmail } from '@/lib/email-template';
+import { generateCustomerConfirmationHTML, generateCustomerConfirmationPlainText } from '@/lib/customer-confirmation-template';
 
 export async function POST(request) {
   try {
@@ -34,31 +35,50 @@ export async function POST(request) {
       );
     }
 
-    // Generate email content
-    const htmlContent = generateEmailHTML(formData);
-    const textContent = generatePlainTextEmail(formData);
+    // Generate admin notification email
+    const adminHtmlContent = generateEmailHTML(formData);
+    const adminTextContent = generatePlainTextEmail(formData);
 
-    // Email options
-    const mailOptions = {
+    // Admin email options
+    const adminMailOptions = {
       from: {
         name: 'MEGA Enterprise Website',
         address: process.env.EMAIL_FROM,
       },
       to: process.env.EMAIL_TO,
       subject: `New Enquiry from ${name} - ${company}`,
-      text: textContent,
-      html: htmlContent,
+      text: adminTextContent,
+      html: adminHtmlContent,
       replyTo: email, // Allow direct reply to customer
     };
 
-    // Send email
-    await transporter.sendMail(mailOptions);
+    // Generate customer confirmation email
+    const customerHtmlContent = generateCustomerConfirmationHTML(formData);
+    const customerTextContent = generateCustomerConfirmationPlainText(formData);
+
+    // Customer confirmation email options
+    const customerMailOptions = {
+      from: {
+        name: 'MEGA Enterprise',
+        address: process.env.EMAIL_FROM,
+      },
+      to: email, // Send to customer's email
+      subject: 'Thank you for your enquiry - MEGA Enterprise',
+      text: customerTextContent,
+      html: customerHtmlContent,
+    };
+
+    // Send both emails
+    await Promise.all([
+      transporter.sendMail(adminMailOptions),
+      transporter.sendMail(customerMailOptions)
+    ]);
 
     // Return success response
     return NextResponse.json(
       {
         success: true,
-        message: 'Email sent successfully'
+        message: 'Enquiry submitted successfully. Check your email for confirmation.'
       },
       { status: 200 }
     );

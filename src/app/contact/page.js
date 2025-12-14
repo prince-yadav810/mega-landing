@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense, useMemo } from 'react';
+import { Suspense, useMemo, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { MapPin, Phone, Mail, Clock, ArrowRight } from 'lucide-react';
 import ContactForm from '@/components/shared/ContactForm';
@@ -8,13 +8,38 @@ import ContactForm from '@/components/shared/ContactForm';
 function ContactPageContent() {
   const searchParams = useSearchParams();
 
-  // Extract and format product enquiry
+  // Extract and format product enquiry with full details
   const initialRequirements = useMemo(() => {
     const productParam = searchParams.get('product');
+    const descParam = searchParams.get('desc');
+    const specsParam = searchParams.get('specs');
+
     if (productParam) {
-      return `Enquire On - [Product: ${productParam}]`;
+      let enquiry = 'Enquire On - [\n';
+      enquiry += ` - Product: ${productParam}\n`;
+      if (descParam) {
+        enquiry += ` - Description: ${descParam}\n`;
+      }
+      if (specsParam) {
+        enquiry += ` - Specifications: ${specsParam}\n`;
+      }
+      enquiry += ']';
+      return enquiry;
     }
     return '';
+  }, [searchParams]);
+
+  // Auto-scroll to form when coming from product page
+  useEffect(() => {
+    if (searchParams.get('product')) {
+      // Wait for DOM to load
+      setTimeout(() => {
+        document.getElementById('quote-form')?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }, 100);
+    }
   }, [searchParams]);
   const contactInfo = [
     {
@@ -196,7 +221,7 @@ function ContactPageContent() {
         </div>
 
         {/* Contact Form & Instant Communication - Side by Side on Desktop */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+        <div id="quote-form" className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
           {/* Contact Form Section */}
           <div>
             <ContactForm initialRequirements={initialRequirements} />

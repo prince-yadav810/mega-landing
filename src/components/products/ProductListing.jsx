@@ -84,7 +84,7 @@ export default function ProductListing({ title, description, benefits, products,
                                 </div>
 
                                 <Link
-                                    href={`/contact?product=${encodeURIComponent(product.name)}`}
+                                    href={`/contact?product=${encodeURIComponent(product.name)}&desc=${encodeURIComponent(product.description)}&specs=${encodeURIComponent(product.specs?.join(', ') || '')}`}
                                     className="w-full py-3 flex items-center justify-center bg-gray-900 text-white rounded-xl font-semibold hover:bg-primary-600 transition-colors"
                                 >
                                     Enquire Now
