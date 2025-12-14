@@ -58,12 +58,12 @@ const BrandsShowcase = () => {
               {brands.map((brand, index) => (
                 <div
                   key={`first-${index}`}
-                  className="flex-shrink-0 w-40 h-20 bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300 flex items-center justify-center p-4 grayscale hover:grayscale-0 transition-all mx-6"
+                  className="flex-shrink-0 w-40 h-20 bg-white border border-gray-200 rounded-xl shadow-lg flex items-center justify-center p-1 mx-6"
                 >
                   <img
                     src={brand.logo}
                     alt={brand.name}
-                    className="max-w-full max-h-full object-contain"
+                    className="w-full h-full object-contain scale-110"
                   />
                 </div>
               ))}
@@ -71,12 +71,12 @@ const BrandsShowcase = () => {
               {brands.map((brand, index) => (
                 <div
                   key={`second-${index}`}
-                  className="flex-shrink-0 w-40 h-20 bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300 flex items-center justify-center p-4 grayscale hover:grayscale-0 transition-all mx-6"
+                  className="flex-shrink-0 w-40 h-20 bg-white border border-gray-200 rounded-xl shadow-lg flex items-center justify-center p-1 mx-6"
                 >
                   <img
                     src={brand.logo}
                     alt={brand.name}
-                    className="max-w-full max-h-full object-contain"
+                    className="w-full h-full object-contain scale-110"
                   />
                 </div>
               ))}
