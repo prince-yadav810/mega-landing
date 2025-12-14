@@ -666,7 +666,7 @@ const StackingCardsShowcase = () => {
         <div className="absolute top-2/3 -right-48 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob" style={{ animationDelay: '2s' }}></div>
       </div>
 
-      <div className="relative h-screen flex items-start justify-center px-4 sm:px-6 lg:px-8 pt-72">
+      <div className="relative h-screen flex items-start justify-center px-4 sm:px-6 lg:px-8 pt-[168px] md:pt-72">
         {/* Cards Container with Perspective */}
         <div
           ref={cardsContainerRef}

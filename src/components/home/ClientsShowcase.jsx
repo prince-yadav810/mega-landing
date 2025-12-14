@@ -37,7 +37,7 @@ const ClientsShowcase = () => {
   ];
 
   return (
-    <section className="py-24 bg-gradient-to-br from-gray-50 to-white overflow-hidden">
+    <section className="py-[66px] md:py-24 bg-gradient-to-br from-gray-50 to-white overflow-hidden">
       <style jsx>{`
         @keyframes marquee-left {
           0% {

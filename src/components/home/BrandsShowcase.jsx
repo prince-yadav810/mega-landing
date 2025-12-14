@@ -41,7 +41,7 @@ const BrandsShowcase = () => {
         }
       `}</style>
 
-      <section className="py-24 flex items-center">
+      <section className="py-[66px] md:py-24 flex items-center">
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
           <div className="text-center mb-16">

@@ -182,7 +182,7 @@ const Hero = () => {
         </svg>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-[99px] md:pb-32">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           {/* Left Column - Text Content */}
           <div className="text-center lg:text-left">
@@ -202,7 +202,7 @@ const Hero = () => {
             {/* Subtitle */}
             <p
               ref={subtitleRef}
-              className="text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto lg:mx-0 leading-relaxed"
+              className="text-xl md:text-2xl text-gray-600 mb-0 md:mb-12 max-w-3xl mx-auto lg:mx-0 leading-relaxed"
             >
               Your trusted partner in industrial & project materials.
               <span className="font-semibold text-primary-700"> 20+ years of excellence</span>,
@@ -210,7 +210,7 @@ const Hero = () => {
             </p>
 
             {/* CTAs */}
-            <div ref={ctaRef} className="flex flex-col sm:flex-row items-center lg:items-start lg:justify-start justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+            <div ref={ctaRef} className="hidden md:flex flex-col sm:flex-row items-center lg:items-start lg:justify-start justify-center space-y-4 sm:space-y-0 sm:space-x-6">
               <Link
                 href="/contact"
                 className="group px-8 py-4 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-full font-semibold text-lg shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex items-center space-x-2"
@@ -254,8 +254,8 @@ const Hero = () => {
           </div>
 
           {/* Right Column - Animated Images */}
-          <div className="relative block mt-8 lg:-mt-12">
-            <div className="relative w-full h-[400px] lg:h-[600px]">
+          <div className="relative block -mt-12 lg:-mt-12">
+            <div className="relative w-full h-[300px] lg:h-[600px]">
               {/* Decorative Elements */}
               <div className="absolute -top-4 -right-4 w-72 h-72 bg-primary-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
               <div className="absolute -bottom-4 -left-4 w-72 h-72 bg-primary-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" style={{ animationDelay: '1s' }}></div>
