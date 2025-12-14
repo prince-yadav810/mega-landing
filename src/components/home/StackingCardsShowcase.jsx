@@ -419,7 +419,7 @@ const StackingCardsShowcase = () => {
 
             // Calculate travel distance for precise sync
             // Start with bottom 40% of image visible
-            const startY = -imageHeight * 0.53;
+            const startY = -imageHeight * 1.4;
             const endY = viewportHeight;
 
             // Set initial state - image partially visible at start
