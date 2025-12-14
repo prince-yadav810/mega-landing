@@ -271,32 +271,13 @@ const Hero = () => {
                       willChange: 'transform, opacity',
                     }}
                   >
-                    <div className="relative w-full h-full max-w-lg">
-                      {/* Glass morphism card wrapper */}
-                      <div className="relative w-full h-full rounded-3xl backdrop-blur-xl bg-white/10 border border-white/30 shadow-2xl overflow-hidden transform hover:scale-105 transition-all duration-300">
-                        {/* Image */}
-                        <img
-                          src={image}
-                          alt={`Hero showcase ${index + 1}`}
-                          className="w-full h-full object-cover"
-                        />
-
-                        {/* Gradient overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
-
-                        {/* Shine effect */}
-                        <div className="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-500">
-                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full hover:translate-x-full transition-transform duration-1000"></div>
-                        </div>
-                      </div>
-
-                      {/* Floating badges */}
-                      <div className="absolute -bottom-4 -left-4 bg-white/90 backdrop-blur-sm rounded-2xl px-6 py-3 shadow-xl border border-white/40">
-                        <div className="text-sm font-semibold text-primary-700">Premium Quality</div>
-                      </div>
-                      <div className="absolute -top-4 -right-4 bg-white/90 backdrop-blur-sm rounded-2xl px-6 py-3 shadow-xl border border-white/40">
-                        <div className="text-sm font-semibold text-primary-700">Certified Products</div>
-                      </div>
+                    <div className="relative w-full h-full flex items-center justify-center">
+                      {/* Clean Image Display */}
+                      <img
+                        src={image}
+                        alt={`Hero showcase ${index + 1}`}
+                        className="w-full h-full object-contain"
+                      />
                     </div>
                   </div>
                 ))}
