@@ -53,12 +53,13 @@ const BrandsShowcase = () => {
 
           {/* Infinite Marquee */}
           <div className="overflow-hidden relative">
-            <div className="marquee-track">
+            <div className="marquee-track flex flex-nowrap">
               {/* First set of brands */}
               {brands.map((brand, index) => (
                 <div
                   key={`first-${index}`}
-                  className="flex-shrink-0 w-40 h-20 bg-white border border-gray-200 rounded-xl shadow-lg flex items-center justify-center p-1 mx-6"
+                  className="flex-shrink-0 w-28 sm:w-36 md:w-40 h-16 sm:h-18 md:h-20 bg-white border border-gray-200 rounded-xl shadow-lg flex items-center justify-center p-1 mx-2 sm:mx-4 md:mx-6"
+                  style={{ minWidth: '112px' }}
                 >
                   <img
                     src={brand.logo}
@@ -71,7 +72,8 @@ const BrandsShowcase = () => {
               {brands.map((brand, index) => (
                 <div
                   key={`second-${index}`}
-                  className="flex-shrink-0 w-40 h-20 bg-white border border-gray-200 rounded-xl shadow-lg flex items-center justify-center p-1 mx-6"
+                  className="flex-shrink-0 w-28 sm:w-36 md:w-40 h-16 sm:h-18 md:h-20 bg-white border border-gray-200 rounded-xl shadow-lg flex items-center justify-center p-1 mx-2 sm:mx-4 md:mx-6"
+                  style={{ minWidth: '112px' }}
                 >
                   <img
                     src={brand.logo}
