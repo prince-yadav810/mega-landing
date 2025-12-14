@@ -1,5 +1,7 @@
 'use client';
 
+import Link from 'next/link';
+
 const BrandsShowcase = () => {
   const animationDuration = 30;
 
@@ -43,12 +45,9 @@ const BrandsShowcase = () => {
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
               Authorized Partners of <span className="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Leading Brands</span>
             </h2>
-            <p className="text-xl text-gray-600">
-              Trusted dealer and stockist relationships with 20+ international brands
-            </p>
           </div>
 
           {/* Infinite Marquee */}
@@ -87,9 +86,9 @@ const BrandsShowcase = () => {
 
           {/* Additional Info */}
           <div className="mt-12 text-center">
-            <p className="text-gray-600 font-medium">
+            <Link href="/about" className="text-primary-600 font-medium hover:underline inline-block">
               + 20 more authorized partnerships
-            </p>
+            </Link>
           </div>
         </div>
       </section>
