@@ -419,8 +419,8 @@ const StackingCardsShowcase = () => {
 
             // Calculate travel distance for precise sync
             // Start with bottom 40% of image visible
-            const startY = -imageHeight * 1.4;
-            const endY = viewportHeight;
+            const startY = -imageHeight * 0.53;
+            const endY = -imageHeight * -0.2;
 
             // Set initial state - image partially visible at start
             gsap.set(img, {

@@ -7,23 +7,35 @@ import HorizontalScrollSection from '@/components/ui/HorizontalScrollSection';
 
 export default function AboutPage() {
   const [activeStat, setActiveStat] = useState(-1);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile viewport
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
-    // Timings aligned with the 2s dash animation + 0.5s delay
-    // The line moves from left to right, triggering each item
+    // Desktop order: 0 → 1 → 2 → 3 (left to right)
+    // Mobile order: 0 → 1 → 3 → 2 (top-left → top-right → bottom-right → bottom-left following S-curve)
+    const sequence = isMobile ? [0, 1, 3, 2] : [0, 1, 2, 3];
+
+    // Timings aligned with the dash animation + 0.5s delay
     const timeouts = [
-      setTimeout(() => setActiveStat(0), 600),  // Item 1 hit
+      setTimeout(() => setActiveStat(sequence[0]), 600),  // Item 1 hit
       setTimeout(() => setActiveStat(-1), 1000), // Item 1 reset
-      setTimeout(() => setActiveStat(1), 1000), // Item 2 hit
+      setTimeout(() => setActiveStat(sequence[1]), 1000), // Item 2 hit
       setTimeout(() => setActiveStat(-1), 1400), // Item 2 reset
-      setTimeout(() => setActiveStat(2), 1400), // Item 3 hit
+      setTimeout(() => setActiveStat(sequence[2]), 1400), // Item 3 hit
       setTimeout(() => setActiveStat(-1), 1800), // Item 3 reset
-      setTimeout(() => setActiveStat(3), 1800), // Item 4 hit
+      setTimeout(() => setActiveStat(sequence[3]), 1800), // Item 4 hit
       setTimeout(() => setActiveStat(-1), 2200), // Item 4 reset
     ];
 
     return () => timeouts.forEach(t => clearTimeout(t));
-  }, []);
+  }, [isMobile]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white pt-32 pb-20">
@@ -49,7 +61,7 @@ export default function AboutPage() {
 
           {/* Stats - Connected Pill Design */}
           <div className="relative z-10">
-            {/* Wavy Connecting Line (SVG) */}
+            {/* Desktop Wavy Connecting Line (SVG) */}
             <div className="absolute top-[55%] left-0 w-full h-40 -translate-y-1/2 hidden md:block pointer-events-none z-0">
               <svg viewBox="0 0 1200 100" className="w-full h-full" preserveAspectRatio="none">
                 <path
@@ -64,6 +76,33 @@ export default function AboutPage() {
                     strokeDasharray: '1000',
                     strokeDashoffset: '1000',
                     animation: 'dash 2s ease-out forwards 0.5s'
+                  }}
+                />
+              </svg>
+            </div>
+
+            {/* Mobile 2x2 Grid Connecting Line (S-curve through all 4 cards) */}
+            <div className="absolute inset-0 md:hidden pointer-events-none z-0">
+              <svg
+                viewBox="0 0 100 100"
+                className="w-full h-full"
+                preserveAspectRatio="none"
+                style={{ position: 'absolute', top: 0, left: 0 }}
+              >
+                {/* S-curve: card center (25%,25%) → (75%,25%) → (75%,75%) → (25%,75%) */}
+                <path
+                  d="M25,25 L75,25 L75,75 L25,75"
+                  fill="none"
+                  stroke="#3b82f6"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="opacity-70"
+                  vectorEffect="non-scaling-stroke"
+                  style={{
+                    strokeDasharray: '1200',
+                    strokeDashoffset: '1200',
+                    animation: 'dash 2.5s ease-out forwards 0.5s'
                   }}
                 />
               </svg>
@@ -159,36 +198,44 @@ export default function AboutPage() {
         </div>
 
         {/* Our Story - Parallax Section */}
+        {/* Mobile separator lines - top */}
+        <div className="md:hidden w-full space-y-1 mb-0 px-0">
+          <div className="h-[2px] bg-gradient-to-r from-transparent via-primary-400/40 to-transparent"></div>
+          <div className="h-[2px] bg-gradient-to-r from-transparent via-primary-500/60 to-transparent"></div>
+        </div>
         <div
-          className="mb-20 relative rounded-3xl overflow-hidden"
-          style={{
-            backgroundImage: 'url(/images/team-photo.jpg)',
-            backgroundAttachment: 'fixed',
-            backgroundPosition: 'center',
-            backgroundSize: 'cover',
-            backgroundRepeat: 'no-repeat',
-          }}
+          className="mb-20 relative rounded-none md:rounded-3xl overflow-hidden -mx-4 sm:-mx-6 md:mx-0"
         >
+          {/* Background image - separate div for better mobile control */}
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: 'url(/images/team-photo.jpg)',
+              backgroundPosition: 'center 30%',
+              backgroundSize: 'cover',
+              backgroundRepeat: 'no-repeat',
+            }}
+          />
           {/* Blue overlay for better text readability and theme consistency */}
-          <div className="absolute inset-0 bg-primary-700/70" />
+          <div className="absolute inset-0 bg-primary-700/60" />
 
           {/* Content */}
-          <div className="relative z-10 p-12 md:p-16">
-            <h2 className="text-4xl font-bold text-white mb-6">Our Story</h2>
-            <div className="prose prose-lg max-w-none space-y-4">
-              <p className="text-white/90 text-lg leading-relaxed">
+          <div className="relative z-10 px-4 py-8 sm:p-10 md:p-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 md:mb-6">Our Story</h2>
+            <div className="prose prose-lg max-w-none space-y-3 md:space-y-4">
+              <p className="text-white/90 text-base md:text-lg leading-relaxed">
                 Founded in 2003, MEGA Enterprise began with a simple vision: to provide reliable, high-quality
                 industrial materials to businesses across India. What started as a small operation in Navi Mumbai
                 has grown into a trusted name in industrial supply, serving some of the country's largest
                 infrastructure companies.
               </p>
-              <p className="text-white/90 text-lg leading-relaxed">
+              <p className="text-white/90 text-base md:text-lg leading-relaxed">
                 Today, we're proud to be a GeM-approved supplier, authorized dealer for 20+ leading brands, and
                 the preferred material partner for government PSUs and private enterprises alike. Our commitment
                 to quality, reliability, and customer service has earned us partnerships with industry giants like
                 TATA Projects, Afcons Infrastructure, and L&T.
               </p>
-              <p className="text-white/90 text-lg leading-relaxed">
+              <p className="text-white/90 text-base md:text-lg leading-relaxed">
                 With a catalog of 1000+ products spanning electrical materials, safety equipment, LED lighting,
                 pipes, fittings, and more, we're equipped to handle projects of any scale. Our team of experienced
                 professionals ensures seamless procurement, timely delivery, and comprehensive support throughout
@@ -196,6 +243,10 @@ export default function AboutPage() {
               </p>
             </div>
           </div>
+        </div>
+        {/* Mobile separator line - bottom */}
+        <div className="md:hidden w-full mb-10 px-0 -mt-20">
+          <div className="h-[2px] bg-gradient-to-r from-transparent via-primary-400/40 to-transparent"></div>
         </div>
 
         {/* Subsidiaries - Group Network */}
