@@ -274,14 +274,15 @@ const Navbar = () => {
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
-          <button
+          <Link
             ref={productsButtonRef}
+            href="/products"
             className={`flex items-center space-x-1 font-bold transition-colors duration-200 relative group py-2 ${isScrolled ? 'text-gray-700 hover:text-primary-600' : 'text-gray-700 hover:text-primary-600'}`}
           >
             <span>Products</span>
             <ChevronDown className={`w-4 h-4 transition-transform ${isProductsDropdownOpen ? 'rotate-180' : ''}`} />
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-500 to-primary-700 group-hover:w-full transition-all duration-300"></span>
-          </button>
+          </Link>
         </div>
 
         {navLinks.slice(1).map((link) => (
