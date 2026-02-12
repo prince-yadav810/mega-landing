@@ -6,16 +6,16 @@ const BrandsShowcase = () => {
   const animationDuration = 30;
 
   const brands = [
-    { name: 'Siemens', logo: '/images/brands/siemens.svg' },
-    { name: 'Polycab', logo: '/images/brands/polycab.svg' },
-    { name: 'Ledvance', logo: '/images/brands/ledvance.svg' },
-    { name: 'Berger Paints', logo: '/images/brands/berger-paints.svg' },
-    { name: 'Shalimar Paints', logo: '/images/brands/shalimar-paints.svg' },
-    { name: 'Usha International', logo: '/images/brands/usha-international.svg' },
-    { name: 'Europa Locks', logo: '/images/brands/europa-locks.svg' },
-    { name: 'Udyogi Safety', logo: '/images/brands/udyogi-safety.svg' },
-    { name: 'British Paints', logo: '/images/brands/british-paints.svg' },
-    { name: 'Link Locks', logo: '/images/brands/link-locks.svg' },
+    { name: 'Siemens', logo: '/images/brands/download.png' },
+    { name: 'Polycab', logo: '/images/brands/polycab-logo-freelogovectors.net_.png' },
+    { name: 'Ledvance', logo: '/images/brands/images.png' },
+    { name: 'Berger Paints', logo: '/images/brands/images (1).png' },
+    { name: 'Shalimar Paints', logo: '/images/brands/113154.Shalimar-Paints-Paves-The-Way-For-A-New-Era-Wit.jpg' },
+    { name: 'Usha International', logo: '/images/brands/USHA_Logo.pdf.jpg' },
+    { name: 'Europa Locks', logo: '/images/brands/europalocks_logo.png' },
+    { name: 'Udyogi Safety', logo: '/images/brands/images (2).png' },
+    { name: 'British Paints', logo: '/images/brands/images (3).png' },
+    { name: 'Link Locks', logo: '/images/brands/999954.jpg' },
   ];
 
   return (
