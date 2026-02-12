@@ -83,7 +83,7 @@ function ContactPageContent() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white pt-32 pb-0">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white pt-32 pb-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Page Header */}
         <div className="text-center mb-10 md:mb-16">
@@ -159,81 +159,6 @@ function ContactPageContent() {
               ></iframe>
             </div>
           </div>
-
-          {/* Three Column Info Bars */}
-          <div className="grid md:grid-cols-3 gap-6">
-            {/* Call Us */}
-            <div className="group relative overflow-hidden rounded-2xl bg-white border-2 border-primary-300 p-8 transition-shadow duration-300 hover:shadow-2xl">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary-100 to-transparent rounded-full -mr-16 -mt-16 opacity-100"></div>
-              <div className="relative">
-                <div className="flex items-center space-x-4 mb-6">
-                  <div className="w-16 h-16 bg-gradient-to-br from-green-400 to-green-600 rounded-xl flex items-center justify-center transform scale-110 rotate-3">
-                    <Phone className="w-8 h-8 text-white" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-gray-900">Call Us</h3>
-                </div>
-                <div className="space-y-3">
-                  {contactInfo[1].details.map((detail, idx) => (
-                    <a
-                      key={idx}
-                      href={contactInfo[1].links[idx]}
-                      className="block text-gray-700 hover:text-primary-600 font-semibold text-lg transition-colors group/link"
-                    >
-                      <span className="inline-flex items-center space-x-2">
-                        <span className="w-2 h-2 bg-green-500 rounded-full group-hover/link:animate-ping"></span>
-                        <span>{detail}</span>
-                      </span>
-                    </a>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Email Us */}
-            <div className="group relative overflow-hidden rounded-2xl bg-white border-2 border-primary-300 p-8 transition-shadow duration-300 hover:shadow-2xl">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary-100 to-transparent rounded-full -mr-16 -mt-16 opacity-100"></div>
-              <div className="relative">
-                <div className="flex items-center space-x-4 mb-6">
-                  <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center transform scale-110 rotate-3">
-                    <Mail className="w-8 h-8 text-white" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-gray-900">Email Us</h3>
-                </div>
-                <div className="space-y-3">
-                  <a
-                    href={contactInfo[2].links[0]}
-                    className="block text-gray-700 hover:text-primary-600 font-semibold text-lg break-all transition-colors group/link"
-                  >
-                    <span className="inline-flex items-center space-x-2">
-                      <span className="w-2 h-2 bg-blue-500 rounded-full group-hover/link:animate-ping"></span>
-                      <span>{contactInfo[2].details[0]}</span>
-                    </span>
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            {/* Business Hours */}
-            <div className="group relative overflow-hidden rounded-2xl bg-white border-2 border-primary-300 p-8 transition-shadow duration-300 hover:shadow-2xl">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary-100 to-transparent rounded-full -mr-16 -mt-16 opacity-100"></div>
-              <div className="relative">
-                <div className="flex items-center space-x-4 mb-6">
-                  <div className="w-16 h-16 bg-gradient-to-br from-purple-400 to-purple-600 rounded-xl flex items-center justify-center transform scale-110 rotate-3">
-                    <Clock className="w-8 h-8 text-white" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-gray-900">Hours</h3>
-                </div>
-                <div className="space-y-3">
-                  {contactInfo[3].details.map((detail, idx) => (
-                    <p key={idx} className="text-gray-700 font-semibold text-lg flex items-center space-x-2">
-                      <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
-                      <span>{detail}</span>
-                    </p>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
 
         {/* Contact Form & Instant Communication - Side by Side on Desktop */}
@@ -298,9 +223,9 @@ function ContactPageContent() {
                   </div>
                   <h3 className="font-bold text-gray-900 mb-3 group-hover:text-indigo-700 transition-colors tracking-tight">KAILASH DEWASI</h3>
                   <div className="space-y-2">
-                    <a href="tel:+919029652621" className="flex items-center text-gray-600 hover:text-indigo-700 transition-colors text-sm font-medium p-1 -ml-1 rounded-lg hover:bg-indigo-50/50">
+                    <a href="tel:+918591169113" className="flex items-center text-gray-600 hover:text-indigo-700 transition-colors text-sm font-medium p-1 -ml-1 rounded-lg hover:bg-indigo-50/50">
                       <Phone className="w-4 h-4 mr-2 text-indigo-400 group-hover:text-indigo-600" />
-                      +91 9029652621
+                      +91 85911 69113
                     </a>
                     <a href="mailto:kailash@megaenterprise.in" className="flex items-center text-gray-600 hover:text-indigo-700 transition-colors text-xs font-medium p-1 -ml-1 rounded-lg hover:bg-indigo-50/50">
                       <Mail className="w-4 h-4 mr-2 text-indigo-400 group-hover:text-indigo-600" />
