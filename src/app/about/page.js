@@ -224,7 +224,7 @@ export default function AboutPage() {
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 md:mb-6">Our Story</h2>
             <div className="prose prose-lg max-w-none space-y-3 md:space-y-4">
               <p className="text-white/90 text-base md:text-lg leading-relaxed">
-                Founded in 2003, MEGA Enterprise began with a simple vision: to provide reliable, high-quality
+                Founded in 2018, MEGA Enterprise began with a simple vision: to provide reliable, high-quality
                 industrial materials to businesses across India. What started as a small operation in Navi Mumbai
                 has grown into a trusted name in industrial supply, serving some of the country's largest
                 infrastructure companies.
@@ -249,54 +249,6 @@ export default function AboutPage() {
           <div className="h-[2px] bg-gradient-to-r from-transparent via-primary-400/40 to-transparent"></div>
         </div>
 
-        {/* Subsidiaries - Group Network */}
-        <div className="mb-20">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4 text-center">Our Subsidiaries</h2>
-          <p className="text-xl text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-            A robust network of sister concerns extending the reach of MEGA Enterprise across key industrial hubs.
-          </p>
-
-          <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-            {[
-              { name: 'Royal Electricals', location: 'Taloja' },
-              { name: 'Shree Sagar Enterprises', location: 'Chakan, Pune' },
-              { name: 'Tirupati Electricals', location: 'Ambernath' },
-              { name: 'Natural Office Mart', location: 'Turbhe' },
-            ].map((sub, index) => (
-              <BubbleSurface
-                key={index}
-                width="100%"
-                height="auto"
-                borderRadius={24}
-                className="transform hover:-translate-y-1 transition-all duration-300 group"
-              >
-                <div className="p-8 flex items-center space-x-6 relative overflow-hidden">
-                  {/* Decorative background element */}
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-primary-50 rounded-bl-[100px] -mr-8 -mt-8 opacity-50 group-hover:opacity-100 transition-opacity duration-300" />
-
-                  {/* Icon Container */}
-                  <div className="flex-shrink-0 w-16 h-16 bg-white border-2 border-primary-100 rounded-2xl flex items-center justify-center shadow-sm group-hover:border-primary-500 group-hover:shadow-md transition-all duration-300 relative z-10">
-                    <Building2 className="w-8 h-8 text-primary-600" />
-                  </div>
-
-                  {/* Text Content */}
-                  <div className="flex-1 relative z-10">
-                    <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary-700 transition-colors duration-300">
-                      {sub.name}
-                    </h3>
-
-                    <div className="flex items-center text-gray-500 text-sm font-medium">
-                      <div className="flex items-center px-3 py-1 bg-gray-100 rounded-full group-hover:bg-primary-50 group-hover:text-primary-700 transition-colors duration-300">
-                        <MapPin className="w-3.5 h-3.5 mr-1.5 text-primary-500" />
-                        {sub.location}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </BubbleSurface>
-            ))}
-          </div>
-        </div>
 
         {/* Horizontal Scroll Section (Vision, Mission, Industries, Why Us) */}
       </div>
