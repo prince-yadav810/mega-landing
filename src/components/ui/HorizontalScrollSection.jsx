@@ -2,40 +2,156 @@
 
 import { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Shield, Users, TrendingUp, CheckCircle, Factory, Building, Zap, Fuel, Hammer } from 'lucide-react';
 import BubbleSurface from '@/components/ui/BubbleSurface';
+
+if (typeof window !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
+}
 
 const HorizontalScrollSection = () => {
     const targetRef = useRef(null);
     const scrollRef = useRef(null);
     const [scrollRange, setScrollRange] = useState(0);
-    const [viewportWidth, setViewportWidth] = useState(0);
+    const [isMobile, setIsMobile] = useState(false);
 
-    // Update viewport width and scroll range calculation
+    // Mobile stacking refs
+    const mobileSectionRef = useRef(null);
+    const mobileCardsRefs = useRef([]);
+
+    // Detect mobile viewport
     useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
+    // Desktop: Update viewport width and scroll range calculation
+    useEffect(() => {
+        if (isMobile) return;
+
         const updateScrollCalc = () => {
             if (scrollRef.current && targetRef.current) {
-                setViewportWidth(window.innerWidth);
                 const scrollWidth = scrollRef.current.scrollWidth;
                 const clientWidth = window.innerWidth;
-                // Total scrollable distance to reach the end (which aligns the last card)
-                setScrollRange(scrollWidth - clientWidth);
+                const cardWidth = 800; // card width on desktop
+                // Subtract half-card offset so the last card ends centered
+                const centerOffset = (clientWidth - cardWidth) / 2;
+                setScrollRange(scrollWidth - clientWidth + centerOffset);
             }
         };
 
         updateScrollCalc();
+        // Small delay to ensure DOM is fully rendered
+        const timeout = setTimeout(updateScrollCalc, 100);
         window.addEventListener('resize', updateScrollCalc);
-        return () => window.removeEventListener('resize', updateScrollCalc);
-    }, []);
+        return () => {
+            window.removeEventListener('resize', updateScrollCalc);
+            clearTimeout(timeout);
+        };
+    }, [isMobile]);
 
     const { scrollYProgress } = useScroll({
         target: targetRef,
     });
 
-    // Transform maps 0-1 vertical scroll to 0 to -scrollRange horizontal translation
-    // Mapping to [0, 0.93] ensures the horizontal scroll finishes slightly before the vertical scroll ends,
-    // creating a "dwell" or "pause" effect where the last card sits centered for a moment before unpinning.
-    const x = useTransform(scrollYProgress, [0, 0.93], [0, -scrollRange]);
+    // Transform maps vertical scroll to horizontal translation
+    // Ends at 0.85 so the last card "dwells" centered before scroll unlocks
+    const x = useTransform(scrollYProgress, [0, 0.85], [0, -scrollRange]);
+
+    // Mobile: GSAP stacking card animation
+    useEffect(() => {
+        if (!isMobile || !mobileSectionRef.current) return;
+
+        const ctx = gsap.context(() => {
+            const totalCards = cards.length;
+            const stackGap = 20;
+
+            // Set initial positions
+            mobileCardsRefs.current.forEach((card, index) => {
+                if (!card) return;
+                gsap.set(card, {
+                    y: index === 0 ? 0 : window.innerHeight,
+                    opacity: 1,
+                    scale: 1,
+                    zIndex: index === 0 ? 100 : index,
+                    force3D: true,
+                });
+            });
+
+            // Create master timeline with ScrollTrigger
+            const masterTimeline = gsap.timeline({
+                scrollTrigger: {
+                    trigger: mobileSectionRef.current,
+                    pin: true,
+                    scrub: 0.5,
+                    start: 'top top',
+                    end: `+=${totalCards * 100}%`,
+                    anticipatePin: 1,
+                    invalidateOnRefresh: true,
+                    pinSpacing: true,
+                    fastScrollEnd: true,
+                },
+            });
+
+            // Animate each card stacking
+            for (let i = 1; i < totalCards; i++) {
+                const label = `card${i}`;
+                masterTimeline.add(label, i * 1);
+
+                // Compress previous cards upward
+                for (let prev = 0; prev < i; prev++) {
+                    if (!mobileCardsRefs.current[prev]) continue;
+                    const stackLevel = i - prev;
+                    masterTimeline.to(
+                        mobileCardsRefs.current[prev],
+                        {
+                            y: -stackLevel * stackGap,
+                            scale: 1 - stackLevel * 0.05,
+                            zIndex: prev,
+                            duration: 1,
+                            ease: 'none',
+                            force3D: true,
+                        },
+                        label
+                    );
+                }
+
+                // Bring new card from bottom
+                if (mobileCardsRefs.current[i]) {
+                    masterTimeline.fromTo(
+                        mobileCardsRefs.current[i],
+                        {
+                            y: window.innerHeight,
+                            opacity: 1,
+                            scale: 0.95,
+                            force3D: true,
+                        },
+                        {
+                            y: 0,
+                            opacity: 1,
+                            scale: 1,
+                            zIndex: 100,
+                            duration: 1,
+                            ease: 'none',
+                            force3D: true,
+                        },
+                        label
+                    );
+                }
+            }
+
+            // Hold last card centered for a moment
+            masterTimeline.to({}, { duration: 0.5 });
+        }, mobileSectionRef);
+
+        return () => {
+            ctx.revert();
+        };
+    }, [isMobile]);
 
     const cards = [
         {
@@ -146,19 +262,70 @@ const HorizontalScrollSection = () => {
         }
     ];
 
+    // ==================== MOBILE: Stacking Cards ====================
+    if (isMobile) {
+        return (
+            <section ref={mobileSectionRef} className="relative min-h-screen bg-gray-50">
+                <div className="sticky top-0 h-screen flex flex-col overflow-hidden">
+                    {/* Section Header */}
+                    <div className="flex-none w-full text-center z-10 px-4 py-6 bg-gray-50/80 backdrop-blur-sm">
+                        <h2 className="text-2xl font-bold text-gray-900 mb-1">
+                            Reach For Everything You Need
+                        </h2>
+                    </div>
+
+                    {/* Stacking Cards Container */}
+                    <div className="flex-1 relative px-4 pb-4">
+                        {cards.map((card, index) => {
+                            const Icon = card.icon;
+                            return (
+                                <div
+                                    key={card.id}
+                                    ref={(el) => (mobileCardsRefs.current[index] = el)}
+                                    className="absolute inset-x-4 top-0"
+                                    style={{
+                                        willChange: 'transform',
+                                    }}
+                                >
+                                    <div className="bg-white rounded-[1.5rem] p-5 shadow-2xl border border-gray-100 flex flex-col relative overflow-hidden">
+                                        {/* Decorative Background Blob */}
+                                        <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-primary-50 to-transparent rounded-bl-[100px] -mr-10 -mt-10 opacity-60" />
+
+                                        <div className="relative z-10 flex flex-col">
+                                            <div className="flex items-center mb-4 border-b border-gray-100 pb-4">
+                                                <div className="w-10 h-10 rounded-2xl bg-primary-50 flex items-center justify-center mr-3 shadow-sm border border-primary-100">
+                                                    <Icon className="w-5 h-5 text-primary-600" />
+                                                </div>
+                                                <h3 className="text-xl font-bold text-gray-900 tracking-tight">{card.title}</h3>
+                                            </div>
+
+                                            <div className="text-gray-600">
+                                                {card.content}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
+                </div>
+            </section>
+        );
+    }
+
+    // ==================== DESKTOP: Horizontal Scroll ====================
     return (
         <section ref={targetRef} className="relative h-[500vh] bg-gray-50">
             <div className="sticky top-0 flex flex-col h-[100dvh] overflow-hidden">
 
-                {/* Section Header (Flex Item, Natural Flow) */}
+                {/* Section Header */}
                 <div className="flex-none w-full text-center z-10 px-4 py-8 md:py-12 flex flex-col justify-center bg-gray-50/80 backdrop-blur-sm">
                     <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-2">
                         Reach For Everything You Need
                     </h2>
                 </div>
 
-                {/* Scroll Container (Flex-1 to fill remaining space) */}
-                {/* Cards are normal height, no internal scrolling */}
+                {/* Scroll Container */}
                 <motion.div
                     ref={scrollRef}
                     style={{ x }}
