@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect } from 'react';
 import Hero from '@/components/home/Hero';
 import FeaturedProducts from '@/components/home/FeaturedProducts';
 import StackingCardsShowcase from '@/components/home/StackingCardsShowcase';
@@ -9,15 +10,44 @@ import GeMCompliance from '@/components/home/GeMCompliance';
 import CTASection from '@/components/home/CTASection';
 
 export default function Home() {
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px',
+      }
+    );
+
+    const revealElements = document.querySelectorAll('.reveal');
+    revealElements.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <>
       <Hero />
       <FeaturedProducts />
       <StackingCardsShowcase />
-      <BrandsShowcase />
-      <ClientsShowcase />
-      <GeMCompliance />
-      <CTASection />
+      <div className="reveal">
+        <BrandsShowcase />
+      </div>
+      <div className="reveal">
+        <ClientsShowcase />
+      </div>
+      <div className="reveal">
+        <GeMCompliance />
+      </div>
+      <div className="reveal">
+        <CTASection />
+      </div>
     </>
   );
 }
