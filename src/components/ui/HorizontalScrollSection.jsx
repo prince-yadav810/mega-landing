@@ -158,21 +158,21 @@ const HorizontalScrollSection = () => {
             id: 1,
             title: 'Our Vision & Mission',
             content: (
-                <div className="grid md:grid-cols-2 gap-8 h-full">
-                    <div className="bg-primary-50/50 p-6 rounded-2xl border border-primary-100">
-                        <h4 className="text-lg font-bold text-primary-700 mb-3 uppercase tracking-wider flex items-center">
-                            <TrendingUp className="w-5 h-5 mr-2" /> Our Vision
+                <div className="grid md:grid-cols-2 gap-3 md:gap-8 h-full">
+                    <div className="bg-primary-50/50 p-3 md:p-6 rounded-xl md:rounded-2xl border border-primary-100">
+                        <h4 className="text-sm md:text-lg font-bold text-primary-700 mb-1.5 md:mb-3 uppercase tracking-wider flex items-center">
+                            <TrendingUp className="w-4 h-4 md:w-5 md:h-5 mr-1.5 md:mr-2" /> Our Vision
                         </h4>
-                        <p className="text-gray-600 leading-relaxed text-sm">
+                        <p className="text-gray-600 leading-snug md:leading-relaxed text-xs md:text-sm">
                             Market products & services which will ensure customers satisfaction and appreciation.
                             Create & maintain a friendly environment that ensures involvement & commitment in all of us to aim for total quality in everything we do.
                         </p>
                     </div>
-                    <div className="bg-blue-50/50 p-6 rounded-2xl border border-blue-100">
-                        <h4 className="text-lg font-bold text-primary-700 mb-3 uppercase tracking-wider flex items-center">
-                            <Factory className="w-5 h-5 mr-2" /> Our Mission
+                    <div className="bg-blue-50/50 p-3 md:p-6 rounded-xl md:rounded-2xl border border-blue-100">
+                        <h4 className="text-sm md:text-lg font-bold text-primary-700 mb-1.5 md:mb-3 uppercase tracking-wider flex items-center">
+                            <Factory className="w-4 h-4 md:w-5 md:h-5 mr-1.5 md:mr-2" /> Our Mission
                         </h4>
-                        <p className="text-gray-600 leading-relaxed text-sm">
+                        <p className="text-gray-600 leading-snug md:leading-relaxed text-xs md:text-sm">
                             To be the absolute best electrical service provider in the market we serve and to offer our customers a one-stop solution for their entire electrical power distribution needs.
                             We believe in fostering positive business partnerships with our vendors.
                         </p>
@@ -186,8 +186,8 @@ const HorizontalScrollSection = () => {
             title: 'Industries We Care',
             content: (
                 <div className="h-full flex flex-col justify-center">
-                    <p className="text-gray-500 mb-6 text-lg">Powering progress across diverse sectors with specialized solutions.</p>
-                    <ul className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    <p className="text-gray-500 mb-3 md:mb-6 text-sm md:text-lg">Powering progress across diverse sectors with specialized solutions.</p>
+                    <ul className="grid grid-cols-3 md:grid-cols-3 gap-2 md:gap-4">
                         {[
                             { name: 'Construction', icon: Building },
                             { name: 'Infrastructure', icon: Hammer },
@@ -196,9 +196,9 @@ const HorizontalScrollSection = () => {
                             { name: 'Oil & Gas', icon: Fuel },
                             { name: 'Engineering', icon: Hammer },
                         ].map((item, idx) => (
-                            <li key={idx} className="flex flex-col items-center justify-center text-center p-4 rounded-xl bg-gray-50 hover:bg-white hover:shadow-md transition-all duration-300 border border-gray-100 group">
-                                <item.icon className="w-8 h-8 text-primary-400 mb-3 group-hover:text-primary-600 transition-colors" />
-                                <span className="font-semibold text-gray-700 text-sm">{item.name}</span>
+                            <li key={idx} className="flex flex-col items-center justify-center text-center p-2 md:p-4 rounded-lg md:rounded-xl bg-gray-50 hover:bg-white hover:shadow-md transition-all duration-300 border border-gray-100 group">
+                                <item.icon className="w-5 h-5 md:w-8 md:h-8 text-primary-400 mb-1.5 md:mb-3 group-hover:text-primary-600 transition-colors" />
+                                <span className="font-semibold text-gray-700 text-xs md:text-sm">{item.name}</span>
                             </li>
                         ))}
                     </ul>
@@ -210,29 +210,29 @@ const HorizontalScrollSection = () => {
             id: 3,
             title: 'Why Deal With Us?',
             content: (
-                <div className="grid md:grid-cols-5 gap-6 h-full">
+                <div className="grid md:grid-cols-5 gap-3 md:gap-6 h-full">
                     {/* Left Col: Dealers */}
-                    <div className="md:col-span-3 bg-primary-50 p-6 rounded-2xl border border-primary-100 flex flex-col justify-center">
-                        <h4 className="font-bold text-primary-800 mb-4 flex items-center text-lg">
-                            <Shield className="w-6 h-6 mr-2" /> Authorized Dealers
+                    <div className="md:col-span-3 bg-primary-50 p-3 md:p-6 rounded-xl md:rounded-2xl border border-primary-100 flex flex-col justify-center">
+                        <h4 className="font-bold text-primary-800 mb-2 md:mb-4 flex items-center text-sm md:text-lg">
+                            <Shield className="w-4 h-4 md:w-6 md:h-6 mr-1.5 md:mr-2" /> Authorized Dealers
                         </h4>
-                        <p className="text-sm text-primary-600 mb-4">Genuine products from top global brands:</p>
-                        <div className="flex flex-wrap gap-2">
+                        <p className="text-xs md:text-sm text-primary-600 mb-2 md:mb-4">Genuine products from top global brands:</p>
+                        <div className="flex flex-wrap gap-1.5 md:gap-2">
                             {['Siemens', 'Polycab', 'Ledvance', 'Berger', 'Usha', 'Europa', 'Finolex', 'L&T', 'Schneider'].map(brand => (
-                                <span key={brand} className="text-sm bg-white px-3 py-1.5 rounded-lg border border-primary-100 text-primary-700 shadow-sm font-medium">{brand}</span>
+                                <span key={brand} className="text-xs md:text-sm bg-white px-2 py-1 md:px-3 md:py-1.5 rounded-md md:rounded-lg border border-primary-100 text-primary-700 shadow-sm font-medium">{brand}</span>
                             ))}
                         </div>
                     </div>
                     {/* Right Col: Benefits */}
-                    <div className="md:col-span-2 flex flex-col justify-center space-y-3">
-                        <div className="flex items-center p-3 bg-green-50 rounded-lg border border-green-100 text-green-800 font-medium">
-                            <CheckCircle className="w-5 h-5 mr-3 text-green-600" /> Reasonable Prices
+                    <div className="md:col-span-2 flex flex-col justify-center space-y-2 md:space-y-3">
+                        <div className="flex items-center p-2 md:p-3 bg-green-50 rounded-lg border border-green-100 text-green-800 font-medium text-sm md:text-base">
+                            <CheckCircle className="w-4 h-4 md:w-5 md:h-5 mr-2 md:mr-3 text-green-600" /> Reasonable Prices
                         </div>
-                        <div className="flex items-center p-3 bg-blue-50 rounded-lg border border-blue-100 text-blue-800 font-medium">
-                            <CheckCircle className="w-5 h-5 mr-3 text-blue-600" /> Excellent Quality
+                        <div className="flex items-center p-2 md:p-3 bg-blue-50 rounded-lg border border-blue-100 text-blue-800 font-medium text-sm md:text-base">
+                            <CheckCircle className="w-4 h-4 md:w-5 md:h-5 mr-2 md:mr-3 text-blue-600" /> Excellent Quality
                         </div>
-                        <div className="flex items-center p-3 bg-purple-50 rounded-lg border border-purple-100 text-purple-800 font-medium">
-                            <CheckCircle className="w-5 h-5 mr-3 text-purple-600" /> After Sales Support
+                        <div className="flex items-center p-2 md:p-3 bg-purple-50 rounded-lg border border-purple-100 text-purple-800 font-medium text-sm md:text-base">
+                            <CheckCircle className="w-4 h-4 md:w-5 md:h-5 mr-2 md:mr-3 text-purple-600" /> After Sales Support
                         </div>
                     </div>
                 </div>
@@ -244,17 +244,17 @@ const HorizontalScrollSection = () => {
             title: 'Consumer Satisfaction',
             content: (
                 <div className="h-full flex flex-col">
-                    <p className="text-gray-600 mb-6 text-lg">Trusted by over <span className="font-bold text-primary-600">50+ major companies</span> across India for their critical project needs.</p>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 flex-1 content-start">
+                    <p className="text-gray-600 mb-3 md:mb-6 text-sm md:text-lg">Trusted by over <span className="font-bold text-primary-600">50+ major companies</span> across India for their critical project needs.</p>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 flex-1 content-start">
                         {['TATA Projects', 'Afcons Infra', 'L&T', 'Godrej', 'NCC Ltd', 'Shapoorji', 'Reliance', 'Adani'].map((client, idx) => (
-                            <div key={idx} className="bg-white p-4 rounded-xl text-sm font-bold text-gray-700 border border-gray-100 flex items-center justify-center shadow-sm hover:shadow-md transition-shadow text-center">
+                            <div key={idx} className="bg-white p-2.5 md:p-4 rounded-lg md:rounded-xl text-xs md:text-sm font-bold text-gray-700 border border-gray-100 flex items-center justify-center shadow-sm hover:shadow-md transition-shadow text-center">
                                 {client}
                             </div>
                         ))}
                     </div>
-                    <div className="mt-6 pt-4 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-3 md:gap-0 text-center md:text-left">
-                        <span className="text-gray-500 text-sm">Consistent performance across all sectors</span>
-                        <span className="text-primary-600 font-bold text-lg bg-primary-50 px-4 py-1 rounded-full whitespace-nowrap">100% Client Retention</span>
+                    <div className="mt-3 md:mt-6 pt-3 md:pt-4 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-2 md:gap-0 text-center md:text-left">
+                        <span className="text-gray-500 text-xs md:text-sm">Consistent performance across all sectors</span>
+                        <span className="text-primary-600 font-bold text-sm md:text-lg bg-primary-50 px-3 md:px-4 py-1 rounded-full whitespace-nowrap">100% Client Retention</span>
                     </div>
                 </div>
             ),
@@ -266,37 +266,37 @@ const HorizontalScrollSection = () => {
     if (isMobile) {
         return (
             <section ref={mobileSectionRef} className="relative min-h-screen bg-gray-50">
-                <div className="sticky top-0 h-screen flex flex-col overflow-hidden">
+                <div className="sticky top-0 h-screen flex flex-col">
                     {/* Section Header */}
-                    <div className="flex-none w-full text-center z-10 px-4 py-6 bg-gray-50/80 backdrop-blur-sm">
+                    <div className="flex-none w-full text-center z-10 px-4 py-4 bg-gray-50/80 backdrop-blur-sm">
                         <h2 className="text-2xl font-bold text-gray-900 mb-1">
                             Reach For Everything You Need
                         </h2>
                     </div>
 
                     {/* Stacking Cards Container */}
-                    <div className="flex-1 relative px-4 pb-4">
+                    <div className="flex-1 relative px-4 pb-6">
                         {cards.map((card, index) => {
                             const Icon = card.icon;
                             return (
                                 <div
                                     key={card.id}
                                     ref={(el) => (mobileCardsRefs.current[index] = el)}
-                                    className="absolute inset-x-4 top-0"
+                                    className="absolute inset-x-4 top-0 bottom-0"
                                     style={{
                                         willChange: 'transform',
                                     }}
                                 >
-                                    <div className="bg-white rounded-[1.5rem] p-5 shadow-2xl border border-gray-100 flex flex-col relative overflow-hidden">
+                                    <div className="bg-white rounded-[1.5rem] p-4 shadow-2xl border border-gray-100 flex flex-col relative overflow-hidden">
                                         {/* Decorative Background Blob */}
                                         <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-primary-50 to-transparent rounded-bl-[100px] -mr-10 -mt-10 opacity-60" />
 
                                         <div className="relative z-10 flex flex-col">
-                                            <div className="flex items-center mb-4 border-b border-gray-100 pb-4">
-                                                <div className="w-10 h-10 rounded-2xl bg-primary-50 flex items-center justify-center mr-3 shadow-sm border border-primary-100">
-                                                    <Icon className="w-5 h-5 text-primary-600" />
+                                            <div className="flex items-center mb-3 border-b border-gray-100 pb-3">
+                                                <div className="w-9 h-9 rounded-xl bg-primary-50 flex items-center justify-center mr-2.5 shadow-sm border border-primary-100">
+                                                    <Icon className="w-4 h-4 text-primary-600" />
                                                 </div>
-                                                <h3 className="text-xl font-bold text-gray-900 tracking-tight">{card.title}</h3>
+                                                <h3 className="text-lg font-bold text-gray-900 tracking-tight">{card.title}</h3>
                                             </div>
 
                                             <div className="text-gray-600">

@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import { Menu, X, ChevronDown, ChevronRight, Shield, Zap, Power, Settings, Sun, Lightbulb, PenTool, Droplet, Hammer, Wrench } from 'lucide-react';
 import GlassSurface from '../ui/GlassSurface';
@@ -16,6 +17,13 @@ const Navbar = () => {
     const [isMobileView, setIsMobileView] = useState(false);
     const productsButtonRef = useRef(null);
     const hoverTimeoutRef = useRef(null);
+    const pathname = usePathname();
+
+    // Close menus on route change
+    useEffect(() => {
+        setIsMobileMenuOpen(false);
+        setIsProductsDropdownOpen(false);
+    }, [pathname]);
 
     const productCategories = [
         { name: 'Safety & PPE', href: '/products/safety-ppe', icon: <Shield className="w-4 h-4" /> },
@@ -101,7 +109,6 @@ const Navbar = () => {
             document.body.style.position = 'fixed';
             document.body.style.top = `-${scrollY}px`;
             document.body.style.width = '100%';
-            document.body.style.touchAction = 'none';
 
             return () => {
                 document.removeEventListener('keydown', handleEscape);
@@ -109,7 +116,6 @@ const Navbar = () => {
                 document.body.style.position = '';
                 document.body.style.top = '';
                 document.body.style.width = '';
-                document.body.style.touchAction = '';
                 window.scrollTo(0, scrollY);
             };
         }
@@ -120,6 +126,7 @@ const Navbar = () => {
     }, [isMobileMenuOpen, isProductsDropdownOpen]);
 
     const handleMouseEnter = () => {
+        if (window.innerWidth < 1024) return;
         if (hoverTimeoutRef.current) {
             clearTimeout(hoverTimeoutRef.current);
             hoverTimeoutRef.current = null;
@@ -128,6 +135,7 @@ const Navbar = () => {
     };
 
     const handleMouseLeave = () => {
+        if (window.innerWidth < 1024) return;
         hoverTimeoutRef.current = setTimeout(() => {
             setIsProductsDropdownOpen(false);
         }, 300);
@@ -331,7 +339,7 @@ const Navbar = () => {
     return (
         <>
             {/* Main Navbar - Always visible, glass effect on scroll (desktop) and always (mobile) */}
-            <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-6xl transition-all duration-300">
+            <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-[110] w-[95%] max-w-6xl transition-all duration-300">
                 {isScrolled || isMobileView ? (
                     // Glass effect navbar when scrolled OR on mobile
                     <GlassSurface
@@ -362,7 +370,7 @@ const Navbar = () => {
             {/* Backdrop for mobile menu - click outside to close */}
             {isMobileMenuOpen && (
                 <div
-                    className="fixed inset-0 z-[100] lg:hidden transition-opacity duration-75"
+                    className="fixed inset-0 z-[105] lg:hidden transition-opacity duration-75"
                     onClick={() => setIsMobileMenuOpen(false)}
                     aria-hidden="true"
                 ></div>
@@ -370,7 +378,7 @@ const Navbar = () => {
 
             {/* Mobile Menu - Dropdown near burger icon */}
             {isMobileMenuOpen && (
-                <div className="fixed top-20 right-4 w-52 z-[110] lg:hidden transition-all duration-75">
+                <div className="fixed top-20 right-4 w-52 z-[108] lg:hidden transition-all duration-75" style={{ touchAction: 'auto' }}>
                     {/* Custom Glass Effect Dropdown */}
                     <div className="bg-white/25 backdrop-blur-xl rounded-xl shadow-2xl border border-white/30 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-150">
                         <div className="p-3">
