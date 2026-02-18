@@ -468,45 +468,39 @@ const StackingCardsShowcase = () => {
         }
       }
 
-      // Mobile background - animation for mobileBackground.png
-      // Simplified animation to ensure image is always visible
-      if (mobileBackgroundRef.current) {
+      // Mobile background - animation for mobileBackgound1.png
+      // Added directly to master timeline to work properly with pinned section
+      if (mobileBackgroundRef.current && isMobile) {
         const mobileImg = mobileBackgroundRef.current.querySelector('img');
-        if (mobileImg && isMobile) {
+        if (mobileImg) {
           const setupMobileImageAnimation = () => {
-            const imageHeight = mobileImg.naturalHeight || 2000;
-            const imageWidth = mobileImg.naturalWidth || 375;
-            const viewportHeight = window.innerHeight;
-            const viewportWidth = window.innerWidth;
+            const imageHeight = mobileImg.naturalHeight;
 
-            // Calculate scaled height when image fits viewport width
-            const scaledHeight = (imageHeight / imageWidth) * viewportWidth;
+            // Start with top portion of image already visible
+            // End with bottom portion still visible (image never fully disappears)
+            const startY = -imageHeight * 0.28;
+            const endY = -imageHeight * -0.1;
 
-            // How much can we scroll the image (difference between image and viewport)
-            const scrollableDistance = Math.max(0, scaledHeight - viewportHeight);
-
-            // Start with image at top (y: 0), scroll to reveal bottom portions
+            // Set initial state
             gsap.set(mobileImg, {
-              y: 0,
+              y: startY,
               opacity: 1,
               force3D: true
             });
 
-            // Animate from y: 0 to y: -scrollableDistance (revealing bottom of image)
-            gsap.timeline({
-              scrollTrigger: {
-                trigger: sectionRef.current,
-                start: 'top top',
-                end: '+=400%',
-                scrub: 0.5,
-                invalidateOnRefresh: true
-              }
-            }).to(mobileImg, {
-              y: -scrollableDistance,
-              duration: 1,
+            // Get total duration of existing master timeline
+            const totalDuration = masterTimeline.duration();
+
+            // Add background scroll spanning the entire master timeline
+            masterTimeline.fromTo(mobileImg, {
+              y: startY,
+              force3D: true
+            }, {
+              y: endY,
+              duration: totalDuration,
               ease: 'none',
               force3D: true
-            });
+            }, 0);
           };
 
           if (mobileImg.complete && mobileImg.naturalHeight > 0) {
@@ -653,7 +647,7 @@ const StackingCardsShowcase = () => {
         style={{ backgroundColor: '#f2f5ee' }}
       >
         <img
-          src="/mobileBackground.png"
+          src="/mobileBackgound1.png"
           alt=""
           className="absolute w-full h-auto object-cover"
           style={{ willChange: 'transform' }}
