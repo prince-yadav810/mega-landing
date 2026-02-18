@@ -147,9 +147,6 @@ const StackingCardsShowcase = () => {
     // Reset unmounting flag
     isUnmountingRef.current = false;
 
-    // Ensure smooth scrolling is enabled across all browsers
-    ScrollTrigger.normalizeScroll(true);
-
     let scrollTriggerInstance = null;
 
     const ctx = gsap.context(() => {
@@ -575,12 +572,7 @@ const StackingCardsShowcase = () => {
         }
       }
 
-      // Disable normalize scroll before cleanup
-      try {
-        ScrollTrigger.normalizeScroll(false);
-      } catch (e) {
-        // Ignore errors during cleanup
-      }
+
 
       // Revert the GSAP context
       try {

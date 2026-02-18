@@ -44,7 +44,7 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en">
       <body className={`${inter.variable} font-sans`}>
         <SmoothScroll />
         <WelcomeScreen />

@@ -125,11 +125,6 @@
   scrollbar-color: #d1d5db transparent;
 }
 
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
-}
-
 /* Prevent horizontal scroll jank — lets Lenis work cleanly */
 body {
   overflow-x: hidden;
