@@ -1,0 +1,42 @@
+import ProductListing from '@/components/products/ProductListing';
+
+const products = [
+    { name: 'ACB (Air Circuit Breaker)', description: 'Air circuit breakers for high current applications in industrial power distribution and protection systems.', image: '/images/products/electrical/switchgears/acb-air-circuit-breaker.jpg', specs: ['Rating: 800A–6300A', 'Breaking: Up to 100kA', 'Type: Draw-out/Fixed'] },
+    { name: 'MCB (Miniature Circuit Breaker)', description: 'Compact circuit breakers for overload and short circuit protection in residential and commercial panels.', image: '/images/products/electrical/switchgears/mcb-miniature-circuit-breaker.jpg', specs: ['Rating: 0.5A–63A', 'Curve: B/C/D', 'Poles: 1P/2P/3P/4P'] },
+    { name: 'DB (Distribution Board)', description: 'Pre-wired distribution boards for circuit management and load distribution in buildings.', image: '/images/products/electrical/switchgears/distribution-board-electrical.jpg', specs: ['Ways: 4–24', 'Material: Metal/Plastic', 'IP Rating: IP43/IP54'] },
+    { name: 'MCCB (Moulded Case Circuit Breaker)', description: 'Molded case circuit breakers for medium current industrial and commercial applications.', image: '/images/products/electrical/switchgears/mccb-moulded-case-circuit-breaker.jpg', specs: ['Rating: 16A–800A', 'Breaking: Up to 70kA', 'Adjustable Trip'] },
+    { name: 'RDs (Residual Current Devices)', description: 'RCCB and RCBO devices for earth leakage protection and personal safety against electric shock.', image: '/images/products/electrical/switchgears/rccb-residual-current-device.jpg', specs: ['Sensitivity: 30/100/300mA', 'Poles: 2P/4P', 'Type: AC/A'] },
+    { name: 'Contactors', description: 'Power contactors for switching motors, lighting loads, and capacitor banks in industrial applications.', image: '/images/products/electrical/switchgears/electrical-contactor.jpg', specs: ['Rating: 9A–630A', 'Coil: AC/DC', 'Category: AC-1/AC-3'] },
+    { name: 'MPCB (Motor Protection Circuit Breaker)', description: 'Dedicated motor protection circuit breakers with adjustable overload and short circuit settings.', image: '/images/products/electrical/switchgears/mpcb-motor-protection-circuit-breaker.jpg', specs: ['Range: 0.1A–100A', 'Protection: Overload/SC', 'Adjustable Trip'] },
+    { name: 'Capacitors', description: 'Power factor correction capacitors for improving power quality and reducing electricity bills.', image: '/images/products/electrical/switchgears/power-factor-correction-capacitor.jpg', specs: ['Rating: 1–50 kVAR', 'Voltage: 440V/690V', 'Type: MPP/APP'] },
+    { name: 'Relays', description: 'Control relays, overload relays, and protection relays for motor control and automation circuits.', image: '/images/products/electrical/switchgears/bimetallic-overload-relay.jpg', specs: ['Type: Thermal/Electronic', 'Range: 0.1A–630A', 'Contact: NO/NC'] },
+    { name: 'Starters', description: 'DOL, Star-Delta, and soft starters for controlled motor starting and reduced inrush current.', image: '/images/products/electrical/switchgears/dol-starter-motor.jpg', specs: ['Type: DOL/Star-Delta/Soft', 'Rating: Up to 500HP', 'Voltage: 415V'] },
+    { name: 'Fuses', description: 'HRC fuses, kit kat fuses, and fuse links for overcurrent protection in electrical circuits.', image: '/images/products/electrical/switchgears/hrc-fuse-electrical.jpg', specs: ['Type: HRC/Kit Kat', 'Rating: 2A–800A', 'Breaking: Up to 80kA'] },
+    { name: 'Switch Disconnectors', description: 'Load break switch disconnectors for safe isolation of electrical circuits during maintenance.', image: '/images/products/electrical/switchgears/switch-disconnector.jpg', specs: ['Rating: 16A–3150A', 'Poles: 3P/4P', 'Operation: Manual/Motor'] },
+    { name: 'Push Buttons', description: 'Industrial push button switches, emergency stops, and control station components for machine control.', image: '/images/products/electrical/switchgears/industrial-push-button-switch.jpg', specs: ['Type: Flush/Extended', 'Contact: NO/NC', 'IP Rating: IP65'] },
+    { name: 'Change Over Switches', description: 'Manual and automatic changeover switches for switching between mains and generator power supply.', image: '/images/products/electrical/switchgears/change-over-switch-electrical.jpg', specs: ['Rating: 16A–3200A', 'Type: Manual/Auto', 'Poles: 3P/4P'] },
+    { name: 'SIMOCODE', description: 'Siemens SIMOCODE motor management system for intelligent motor protection and monitoring.', image: '/images/products/electrical/switchgears/simocode-motor-management.jpg', specs: ['Communication: Profibus/Profinet', 'Motor Range: Up to 700A', 'Smart Protection'] },
+    { name: 'Screw Terminals', description: 'DIN rail screw terminal blocks for secure wire connections in control panels and distribution boards.', image: '/images/products/electrical/switchgears/din-rail-screw-terminal-block.jpg', specs: ['Size: 2.5–150 sq mm', 'Material: PA66', 'Mounting: DIN Rail'] },
+    { name: 'Limit Switches', description: 'Industrial limit switches for position sensing and machine control in automation applications.', image: '/images/products/electrical/switchgears/industrial-limit-switch.jpg', specs: ['Type: Roller/Plunger', 'Contact: SPDT/DPDT', 'IP Rating: IP67'] },
+    { name: 'Meters', description: 'Digital and analog meters for voltage, current, power, and energy measurement in panels.', image: '/images/products/electrical/switchgears/digital-panel-meter-ammeter-voltmeter.jpg', specs: ['Type: Ammeter/Voltmeter/MFM', 'Display: Digital/Analog', 'Accuracy: Class 0.5'] },
+    { name: 'Surge Protection Devices', description: 'SPD devices for protecting sensitive equipment from voltage surges and lightning strikes.', image: '/images/products/electrical/switchgears/surge-protection-device-spd.jpg', specs: ['Type: Type 1/2/3', 'Discharge: Up to 100kA', 'Protection: 275V/385V'] },
+    { name: 'Birelay', description: 'Bimetallic overload relay for thermal protection of motors against overheating and overcurrent.', image: 'https://images.unsplash.com/photo-1581092334241-cb19ecef850f?w=600&h=600&fit=crop', specs: ['Range: 0.1A–100A', 'Type: Bimetallic', 'Reset: Manual/Auto'] },
+    { name: 'Plugs and Sockets', description: 'Industrial plugs, sockets, and interlocking connectors for safe power connections in factories.', image: '/images/products/electrical/switchgears/industrial-plug-and-socket.jpg', specs: ['Rating: 16A–125A', 'IP Rating: IP44/IP67', 'Poles: 3P+E/3P+N+E'] },
+    { name: 'Wiring Accessories', description: 'Modular switches, plates, sockets, and accessories for residential and commercial wiring.', image: 'https://images.unsplash.com/photo-1581092334241-cb19ecef850f?w=600&h=600&fit=crop', specs: ['Type: Modular', 'Rating: 6A/16A/20A', 'Material: PC/Polycarbonate'] },
+    { name: 'Desk Solutions', description: 'Under-desk and desk-mounted power solutions with integrated USB and data ports for modern workspaces.', image: '/images/products/electrical/switchgears/under-desk-power-solution.jpg', specs: ['Ports: Power+USB+Data', 'Mounting: Clamp/Grommet', 'Finish: Black/Silver'] },
+    { name: 'Floor Solutions', description: 'Floor boxes, floor sockets, and raised floor power distribution systems for offices and data centers.', image: '/images/products/electrical/switchgears/floor-box-power-socket.jpg', specs: ['Type: Flush/Pop-up', 'IP Rating: IP44', 'Material: Stainless Steel'] },
+    { name: 'Movement Detector (Sensors)', description: 'PIR motion sensors and presence detectors for automated lighting control and energy saving.', image: '/images/products/electrical/switchgears/pir-motion-sensor-detector.jpg', specs: ['Detection: PIR/Microwave', 'Range: 6–12m', 'Angle: 180°/360°'] },
+    { name: 'Wall Trunking', description: 'PVC cable trunking and mini-trunking for organized surface cable management in buildings.', image: '/images/products/electrical/switchgears/pvc-cable-trunking.jpg', specs: ['Material: PVC', 'Fire Rating: Self-Extinguishing', 'Sizes: Various'] },
+];
+
+export default function SwitchgearsPage() {
+    return (
+        <ProductListing
+            title="Switchgears"
+            description="Complete range of switchgear and protection devices for industrial, commercial, and residential electrical installations. Quality products from top brands."
+            benefits={['ISI/IEC Certified', 'All Voltage Ratings', 'Expert Support', 'Bulk Pricing Available']}
+            products={products}
+            categoryBackLink="/products"
+        />
+    );
+}

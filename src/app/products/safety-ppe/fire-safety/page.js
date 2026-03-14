@@ -5,25 +5,25 @@ export default function FireSafetyPage() {
         {
             name: 'ABC Powder Extinguisher',
             description: 'Multipurpose dry chemical powder extinguishers for Class A, B, and C fires.',
-            image: 'https://images.unsplash.com/photo-1582236523992-80512db20b92?w=800&q=80', // Fire extinguisher
+            image: 'https://images.unsplash.com/photo-1581092334241-cb19ecef850f?w=600&h=600&fit=crop', // Fire extinguisher
             specs: ['ISI Marked', '4kg / 6kg / 9kg', 'Squeeze Grip'],
         },
         {
             name: 'CO2 Fire Extinguisher',
             description: 'Carbon Dioxide extinguishers for electrical fires and sensitive equipment.',
-            image: 'https://images.unsplash.com/photo-1527014695078-75d5cc6be829?w=800&q=80', // Industrial setting
+            image: 'https://images.unsplash.com/photo-1581092334241-cb19ecef850f?w=600&h=600&fit=crop', // Industrial setting
             specs: ['Seamless Cylinder', '4.5kg Capacity', 'Non-Corrosive'],
         },
         {
             name: 'Fire Blanket',
             description: 'Fiberglass fire blankets for smothering small fires and kitchen safety.',
-            image: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800&q=80', // Placeholder
+            image: 'https://images.unsplash.com/photo-1581092334241-cb19ecef850f?w=600&h=600&fit=crop', // Placeholder
             specs: ['Heat Resistant > 500°C', 'Quick Release Tabs', 'Compact Box'],
         },
         {
             name: 'Hydrant Valve',
             description: 'Single headed hydrant landing valves for fire fighting water systems.',
-            image: 'https://images.unsplash.com/photo-1584464871032-9df7fe78427f?w=800&q=80', // Valves
+            image: 'https://images.unsplash.com/photo-1581092334241-cb19ecef850f?w=600&h=600&fit=crop', // Valves
             specs: ['Stainless Steel / Gunmetal', '63mm dia', 'Flanged Inlet'],
         },
     ];
