@@ -5,19 +5,19 @@ export default function PlanetaryGearboxPage() {
         {
             name: 'Standard Planetary Gearbox',
             description: 'General-purpose planetary reducers with high power density.',
-            image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800&q=80',
+            image: 'https://images.unsplash.com/photo-1581092334241-cb19ecef850f?w=600&h=600&fit=crop',
             specs: ['Inline Design', '1 to 4 Stages', 'Low Backlash'],
         },
         {
             name: 'Precision Planetary Gearbox',
             description: 'High-precision reducers for servo motor and robotics applications.',
-            image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800&q=80',
+            image: 'https://images.unsplash.com/photo-1581092334241-cb19ecef850f?w=600&h=600&fit=crop',
             specs: ['< 3 arcmin Backlash', 'Servo Rated', 'High Acceleration'],
         },
         {
             name: 'Heavy Duty Planetary',
             description: 'Industrial planetary gearboxes for extreme torque applications.',
-            image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800&q=80',
+            image: 'https://images.unsplash.com/photo-1581092334241-cb19ecef850f?w=600&h=600&fit=crop',
             specs: ['Mining/Steel', 'High Shock Load', 'Extreme Duty'],
         },
     ];

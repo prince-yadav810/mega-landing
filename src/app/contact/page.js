@@ -61,6 +61,26 @@ export default function ContactPage() {
               ></iframe>
             </div>
 
+
+        </div>
+
+        {/* Contact Form & Instant Communication - Side by Side on Desktop */}
+        <div id="quote-form" className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-24">
+          {/* Contact Form Section */}
+          <div>
+            {cartCount > 0 && !searchParams.get('product') && (
+              <div className="mb-4 p-4 bg-green-50 border border-green-200 rounded-xl flex items-center justify-between">
+                <div className="flex items-center space-x-2">
+                  <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                    {cartCount}
+                  </div>
+                  <span className="text-green-800 font-medium">
+                    {cartCount} {cartCount === 1 ? 'product' : 'products'} in your enquiry
+                  </span>
+                </div>
+              </div>
+            )}
+            <ContactForm initialRequirements={initialRequirements} />
             {/* Desktop: Full Floating Card Overlay (hidden on mobile) */}
             <div className="hidden sm:block absolute top-1/2 -translate-y-1/2 left-12 w-[400px] bg-white/95 backdrop-blur-md p-8 rounded-2xl shadow-xl z-10 border border-gray-100">
               <h3 className="text-2xl font-bold text-gray-900 mb-6">Visit Our Office</h3>

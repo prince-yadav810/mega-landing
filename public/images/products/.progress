@@ -1,0 +1,369 @@
+electrical/wires-cables/Aluminum Armored Cable
+electrical/wires-cables/House Wires
+electrical/wires-cables/Multicore Flexible Cables
+electrical/wires-cables/High Tension Cables
+electrical/wires-cables/CCTV Cables
+electrical/wires-cables/Coaxial Cables
+electrical/wires-cables/Copper Armoured Cable
+electrical/wires-cables/Fiber Optical Cable
+electrical/wires-cables/JFTC Cables
+electrical/wires-cables/LAN Cables
+electrical/wires-cables/Single Core Flexible Cables
+electrical/wires-cables/Speaker Cables
+electrical/wires-cables/Submersible Cables
+electrical/wires-cables/Telephone Switchboard Cables
+electrical/wires-cables/Winding Wires
+electrical/wires-cables/Braided Cables
+electrical/wires-cables/Fire Survival Cable
+electrical/wires-cables/Welding Cables
+electrical/wires-cables/Solar DC Cables
+electrical/switchgears/ACB Air Circuit Breaker
+electrical/switchgears/MCB Miniature Circuit Breaker
+electrical/switchgears/Distribution Board electrical
+electrical/switchgears/MCCB Moulded Case Circuit Breaker
+electrical/switchgears/RCCB Residual Current Device
+electrical/switchgears/Electrical Contactor
+electrical/switchgears/MPCB Motor Protection Circuit Breaker
+electrical/switchgears/Power Factor Correction Capacitor
+electrical/switchgears/Control Relay electrical
+electrical/switchgears/DOL Starter motor
+electrical/switchgears/HRC Fuse electrical
+electrical/switchgears/Switch Disconnector
+electrical/switchgears/Industrial Push Button switch
+electrical/switchgears/Change Over Switch electrical
+electrical/switchgears/SIMOCODE motor management
+electrical/switchgears/DIN Rail Screw Terminal Block
+electrical/switchgears/Industrial Limit Switch
+electrical/switchgears/Digital Panel Meter ammeter voltmeter
+electrical/switchgears/Surge Protection Device SPD
+electrical/switchgears/Bimetallic Overload Relay
+electrical/switchgears/Industrial Plug and Socket
+electrical/switchgears/Modular Switch and Socket
+electrical/switchgears/Under Desk Power Solution
+electrical/switchgears/Floor Box power socket
+electrical/switchgears/PIR Motion Sensor detector
+electrical/switchgears/PVC Cable Trunking
+electrical/motors/Industrial Electric Motor
+electrical/motors/AC Motor three phase
+electrical/motors/Squirrel Cage Induction Motor
+electrical/motors/Servo Motor industrial
+electrical/motors/Submersible Pump borewell
+electrical/motors/Centrifugal Pump industrial
+electrical/motors/Monoblock Pump water
+electrical/motors/Pressure Booster Pump
+electrical/motors/Sewage Submersible Pump dewatering
+electrical/motors/Chemical Dosing Pump metering
+electrical/fans/Industrial Exhaust Fan ventilation
+electrical/fans/Ceiling Fan residential
+electrical/fans/Pedestal Fan standing
+electrical/fans/Wall Mounted Fan industrial
+electrical/fans/Air Circulator Fan drum
+electrical/fans/Heavy Duty Industrial Man Cooler Fan
+electrical/led/LED Panel Light office
+electrical/led/LED Tube Light T8
+electrical/led/LED Bulb B22
+electrical/led/LED Flood Light outdoor
+electrical/led/LED Street Light pole mounted
+electrical/led/LED Highbay Light warehouse
+electrical/led/LED Downlight recessed ceiling
+electrical/led/LED Strip Light RGB flexible
+electrical/led/LED Batten Light surface
+electrical/led/LED Spotlight track
+electrical/led/Emergency LED Light battery backup
+electrical/led/Solar LED Street Light
+electrical/led/Surface Mounted LED Ceiling Light
+electrical/led/LED Ceiling Light decorative
+electrical/led/Industrial LED Light fixture
+electrical/led/Signal Tower Light indicator
+electrical/led/Explosion Proof LED Light hazardous
+electrical/led/Clean Room LED Panel Light
+electrical/led/Flame Proof LED Light fitting
+electrical/led/LED Wall Light outdoor
+electrical/lugs-glands/Copper Tubular Cable Lug
+electrical/lugs-glands/Aluminum Cable Lug crimping
+electrical/lugs-glands/Bimetallic Cable Lug copper aluminum
+electrical/lugs-glands/Ring Terminal Lug insulated
+electrical/lugs-glands/Pin Terminal Fork Lug
+electrical/lugs-glands/Bootlace Ferrule insulated
+electrical/lugs-glands/Brass Cable Gland IP68
+electrical/lugs-glands/Single Compression Cable Gland
+electrical/lugs-glands/Double Compression Cable Gland weatherproof
+electrical/lugs-glands/Flameproof Cable Gland explosion proof
+electrical/lugs-glands/PG Metric Thread Cable Gland
+electrical/lugs-glands/Nylon Cable Gland PA66
+electrical/electrical-panels/LT Panel power distribution
+electrical/electrical-panels/HT Panel high tension
+electrical/electrical-panels/PCC Panel power control center
+electrical/electrical-panels/MCC Panel motor control center
+electrical/electrical-panels/APFC Panel automatic power factor
+electrical/electrical-panels/VFD Panel variable frequency drive
+electrical/electrical-panels/PLC Panel automation control
+electrical/electrical-panels/Electrical Distribution Panel board
+electrical/cable-tray/Perforated Cable Tray GI
+electrical/cable-tray/Ladder Type Cable Tray heavy duty
+electrical/cable-tray/Wire Mesh Cable Tray
+electrical/cable-tray/Solid Bottom Cable Tray enclosed
+electrical/cable-tray/Channel Cable Tray slotted
+electrical/cable-tray/Cable Tray Fittings bend tee reducer
+hardware/power-hand-tools/Angle Grinder power tool
+hardware/power-hand-tools/Electric Drill machine
+hardware/power-hand-tools/Hammer Drill SDS
+hardware/power-hand-tools/Circular Saw power tool
+hardware/power-hand-tools/Jigsaw power tool
+hardware/power-hand-tools/Heat Gun industrial
+hardware/power-hand-tools/Electric Planer woodworking
+hardware/power-hand-tools/Die Grinder rotary tool
+hardware/power-hand-tools/Impact Wrench pneumatic
+hardware/power-hand-tools/Pipe Wrench plumbing
+hardware/power-hand-tools/Combination Spanner Set
+hardware/power-hand-tools/Allen Key Hex Set
+hardware/tarpaulin/HDPE Tarpaulin blue
+hardware/tarpaulin/PVC Coated Tarpaulin waterproof
+hardware/tarpaulin/Canvas Tarpaulin heavy duty
+hardware/tarpaulin/Silpaulin Tarpaulin cross laminated
+hardware/tarpaulin/Green Net Shade cloth
+hardware/tarpaulin/Monsoon Tarpaulin construction site
+hardware/hessian-cloths/Jute Hessian Cloth burlap
+hardware/hessian-cloths/LMC Hessian Cloth curing
+hardware/hessian-cloths/Jute Gunny Bags sack
+hardware/hessian-cloths/Jute Rope natural fiber
+hardware/hessian-cloths/Jute Geotextile erosion control
+hardware/fasteners/Hex Bolt steel grade
+hardware/fasteners/Hex Nut zinc plated
+hardware/fasteners/Spring Washer flat washer
+hardware/fasteners/Anchor Bolt foundation
+hardware/fasteners/Self Drilling Screw
+hardware/fasteners/Wood Screw brass
+hardware/fasteners/Machine Screw countersunk
+hardware/fasteners/Eye Bolt lifting
+hardware/fasteners/U Bolt pipe clamp
+hardware/fasteners/Threaded Rod studding
+hardware/fasteners/Rivet Pop blind
+hardware/fasteners/Cotter Pin split pin
+hardware/lubricants/Engine Oil synthetic
+hardware/lubricants/Gear Oil industrial
+hardware/lubricants/Hydraulic Oil ISO VG
+hardware/lubricants/Compressor Oil rotary screw
+hardware/lubricants/Turbine Oil industrial
+hardware/lubricants/Cutting Oil coolant
+hardware/lubricants/Transformer Oil electrical
+hardware/lubricants/Grease NLGI lithium
+hardware/lubricants/Rust Preventive Oil spray
+hardware/lubricants/Penetrating Oil WD40 type
+hardware/lubricants/Chain Lubricant spray
+hardware/lubricants/Silicone Spray lubricant
+hardware/abrasives/Cutting Disc angle grinder
+hardware/abrasives/Grinding Disc metal
+hardware/abrasives/Flap Disc sanding
+hardware/abrasives/Wire Brush Cup wheel
+hardware/abrasives/Sandpaper Sheet abrasive
+hardware/abrasives/Emery Cloth Roll
+hardware/abrasives/Buffing Wheel polishing
+hardware/abrasives/Diamond Cutting Blade concrete
+hardware/water-tanks/PVC Water Tank overhead
+hardware/water-tanks/Stainless Steel Water Tank
+hardware/water-tanks/FRP Water Tank fiberglass
+hardware/water-tanks/Underground Water Tank HDPE
+hardware/water-tanks/Loft Water Tank rectangular
+hardware/water-tanks/Insulated Water Tank double wall
+construction-chemicals/waterproofing/Waterproofing Membrane liquid applied
+construction-chemicals/waterproofing/Cementitious Waterproofing coating
+construction-chemicals/waterproofing/Bituminous Waterproofing membrane
+construction-chemicals/waterproofing/Crystalline Waterproofing admixture
+construction-chemicals/waterproofing/Polyurethane Waterproofing coating
+construction-chemicals/waterproofing/Water Repellent Silicone coating
+construction-chemicals/adhesives-sealants/Epoxy Adhesive structural
+construction-chemicals/adhesives-sealants/Tile Adhesive cementitious
+construction-chemicals/adhesives-sealants/Silicone Sealant RTV
+construction-chemicals/adhesives-sealants/PU Sealant polyurethane
+construction-chemicals/adhesives-sealants/Construction Adhesive multipurpose
+construction-chemicals/adhesives-sealants/Acrylic Sealant paintable
+construction-chemicals/concrete-admixtures/Plasticizer Concrete admixture
+construction-chemicals/concrete-admixtures/Superplasticizer PCE admixture
+construction-chemicals/concrete-admixtures/Retarder Concrete admixture
+construction-chemicals/concrete-admixtures/Accelerator Concrete admixture
+construction-chemicals/concrete-admixtures/Air Entraining Agent concrete
+construction-chemicals/concrete-admixtures/Corrosion Inhibitor concrete
+construction-chemicals/wall-putty-primers/White Cement Wall Putty
+construction-chemicals/wall-putty-primers/Acrylic Wall Putty
+construction-chemicals/wall-putty-primers/Cement Primer exterior
+construction-chemicals/wall-putty-primers/Interior Wall Primer
+construction-chemicals/wall-putty-primers/Metal Primer red oxide
+construction-chemicals/wall-putty-primers/Wood Primer water based
+construction-chemicals/interior-paints/Interior Emulsion Paint
+construction-chemicals/interior-paints/Premium Emulsion luxury paint
+construction-chemicals/interior-paints/Acrylic Distemper interior
+construction-chemicals/interior-paints/Texture Paint wall coating
+construction-chemicals/interior-paints/Washable Paint interior
+construction-chemicals/interior-paints/Antimicrobial Paint hospital grade
+construction-chemicals/exterior-paints/Exterior Emulsion Paint weatherproof
+construction-chemicals/exterior-paints/Apex Exterior Paint acrylic
+construction-chemicals/exterior-paints/Elastomeric Paint flexible
+construction-chemicals/exterior-paints/Textured Exterior Paint
+construction-chemicals/exterior-paints/Anti Algae Exterior Paint
+construction-chemicals/exterior-paints/Heat Reflective Roof Paint
+construction-chemicals/wood-coatings/Wood Polish Melamine coating
+construction-chemicals/wood-coatings/PU Wood Finish polyurethane
+construction-chemicals/wood-coatings/Wood Stain color
+construction-chemicals/wood-coatings/Wood Varnish clear coat
+construction-chemicals/wood-coatings/Wood Sealer Primer
+construction-chemicals/wood-coatings/Wood Preservative treatment
+structural-steel/tmt-bars/TMT Bar Fe500D reinforcement
+structural-steel/tmt-bars/TMT Bar Fe550D high strength
+structural-steel/tmt-bars/TMT Bar Fe600 construction
+structural-steel/tmt-bars/Stainless Steel TMT Bar
+structural-steel/tmt-bars/CRS TMT Bar corrosion resistant
+structural-steel/tmt-bars/TMT Bar Bundle 12mm construction
+structural-steel/ms-angles/Mild Steel Angle equal leg
+structural-steel/ms-angles/MS Unequal Angle steel
+structural-steel/ms-angles/Galvanized Steel Angle
+structural-steel/ms-angles/Slotted Steel Angle rack
+structural-steel/ms-angles/Stainless Steel Angle bar
+structural-steel/ms-channels/MS Channel ISMC steel
+structural-steel/ms-channels/MS Parallel Flange Channel
+structural-steel/ms-channels/Galvanized Steel Channel
+structural-steel/ms-channels/Slotted Steel Channel
+structural-steel/ms-beams/MS I Beam ISMB structural
+structural-steel/ms-beams/MS H Beam HE steel
+structural-steel/ms-beams/Universal Steel Beam column
+structural-steel/ms-beams/Welded Steel Beam fabricated
+structural-steel/ms-beams/Galvanized Steel Beam
+structural-steel/ms-plates/MS Plate hot rolled
+structural-steel/ms-plates/Stainless Steel Plate 304
+structural-steel/ms-plates/Galvanized Steel Sheet
+structural-steel/ms-plates/Chequered Steel Plate anti slip
+structural-steel/ms-plates/Boiler Quality Steel Plate
+structural-steel/ms-plates/HR Steel Coil hot rolled
+structural-steel/ms-pipes/MS Round Pipe ERW
+structural-steel/ms-pipes/MS Square Pipe hollow section
+structural-steel/ms-pipes/MS Rectangular Tube hollow section
+structural-steel/ms-pipes/Galvanized Steel Pipe GI
+structural-steel/ms-pipes/Scaffolding Pipe steel
+structural-steel/ms-pipes/Structural Steel Tube CHS
+structural-steel/porta-cabins/Portable Site Office cabin
+structural-steel/porta-cabins/Modular Porta Cabin prefab
+structural-steel/porta-cabins/Security Guard Cabin portable
+structural-steel/porta-cabins/Portable Toilet restroom
+structural-steel/porta-cabins/Storage Container portable
+structural-steel/porta-cabins/Labour Camp Portable cabin
+safety/safety-gloves/Nitrile Coated Safety Gloves
+safety/safety-gloves/Leather Work Gloves industrial
+safety/safety-gloves/Rubber Insulated Electrical Gloves
+safety/safety-gloves/Cut Resistant Safety Gloves
+safety/safety-gloves/PVC Chemical Resistant Gloves
+safety/safety-gloves/Welding Leather Gauntlet Gloves
+safety/safety-gloves/Cotton Hand Gloves disposable
+safety/safety-gloves/Kevlar Heat Resistant Gloves
+safety/fall-protection/Full Body Safety Harness
+safety/fall-protection/Safety Lanyard shock absorber
+safety/fall-protection/Retractable Fall Arrester lifeline
+safety/fall-protection/Safety Net construction
+safety/fall-protection/Anchor Point fall protection
+safety/fall-protection/Safety Helmet with Chinstrap
+safety/eye-protection/Safety Goggles chemical splash
+safety/eye-protection/Safety Spectacles clear lens
+safety/eye-protection/Welding Goggles dark lens
+safety/eye-protection/Face Shield full protection
+safety/eye-protection/UV Protection Safety Glasses
+safety/eye-protection/Anti Fog Safety Goggles
+safety/fire-safety/ABC Fire Extinguisher dry chemical
+safety/fire-safety/CO2 Fire Extinguisher
+safety/fire-safety/Fire Hose Reel cabinet
+safety/fire-safety/Fire Alarm System smoke detector
+safety/fire-safety/Fire Blanket safety
+safety/fire-safety/Fire Sprinkler System head
+safety/road-safety/Traffic Safety Cone orange
+safety/road-safety/Road Safety Barrier plastic
+safety/road-safety/Reflective Safety Vest high visibility
+safety/road-safety/Speed Breaker rubber
+safety/road-safety/Road Warning Sign board
+safety/road-safety/Retractable Safety Bollard
+safety/respiratory-protection/Dust Mask N95 respirator
+safety/respiratory-protection/Half Face Respirator cartridge
+safety/respiratory-protection/Full Face Gas Mask respirator
+safety/respiratory-protection/Disposable Face Mask FFP2
+safety/respiratory-protection/Powered Air Purifying Respirator PAPR
+safety/respiratory-protection/Escape Breathing Apparatus
+safety/rainy-season/Safety Gumboot PVC rain boot
+safety/rainy-season/Raincoat PVC heavy duty
+safety/rainy-season/Waterproof Rain Suit jacket pant
+safety/rainy-season/Rain Poncho disposable
+safety/rainy-season/Waterproof Shoe Cover rubber
+safety/rainy-season/Non Slip Safety Shoe waterproof
+construction-equipment/concrete-mixers/Concrete Mixer Machine drum
+construction-equipment/concrete-mixers/Reversible Drum Mixer concrete
+construction-equipment/concrete-mixers/Pan Type Concrete Mixer
+construction-equipment/concrete-mixers/Mobile Concrete Batching Plant
+construction-equipment/concrete-mixers/Transit Mixer truck concrete
+construction-equipment/concrete-mixers/Laboratory Concrete Mixer small
+construction-equipment/scaffolding/Cuplock Scaffolding System
+construction-equipment/scaffolding/H Frame Scaffolding steel
+construction-equipment/scaffolding/Ringlock Scaffolding modular
+construction-equipment/scaffolding/Shuttering Plate steel formwork
+construction-equipment/scaffolding/Scaffolding Plank walk board
+construction-equipment/scaffolding/Prop Jack adjustable support
+construction-equipment/compactors-rollers/Plate Compactor vibratory
+construction-equipment/compactors-rollers/Roller Compactor ride on
+construction-equipment/compactors-rollers/Tamping Rammer jumping jack
+construction-equipment/compactors-rollers/Smooth Drum Roller compactor
+construction-equipment/compactors-rollers/Pneumatic Tire Roller
+construction-equipment/compactors-rollers/Mini Road Roller compact
+construction-equipment/bar-bending-cutting/Bar Bending Machine rebar
+construction-equipment/bar-bending-cutting/Bar Cutting Machine electric
+construction-equipment/bar-bending-cutting/Ring Making Machine stirrup
+construction-equipment/bar-bending-cutting/Bar Thread Rolling Machine
+construction-equipment/bar-bending-cutting/Manual Bar Cutter hand operated
+construction-equipment/concrete-vibrators/Needle Vibrator concrete immersion
+construction-equipment/concrete-vibrators/Surface Vibrator screed
+construction-equipment/concrete-vibrators/Table Vibrator concrete mould
+construction-equipment/concrete-vibrators/Flexible Shaft Vibrator
+construction-equipment/concrete-vibrators/Backpack Vibrator portable concrete
+construction-equipment/welding-machines/Arc Welding Machine MMA
+construction-equipment/welding-machines/MIG Welding Machine wire feed
+construction-equipment/welding-machines/TIG Welding Machine argon
+construction-equipment/welding-machines/Inverter Welding Machine portable
+construction-equipment/welding-machines/Spot Welding Machine
+construction-equipment/welding-machines/Plasma Cutting Machine
+construction-equipment/earth-moving/Excavator machine JCB type
+construction-equipment/earth-moving/Backhoe Loader construction
+construction-equipment/earth-moving/Wheel Loader front end
+construction-equipment/earth-moving/Bulldozer earth moving
+construction-equipment/earth-moving/Motor Grader road construction
+construction-equipment/earth-moving/Mini Excavator compact
+construction-equipment/tower-cranes/Tower Crane construction site
+construction-equipment/tower-cranes/Chain Hoist Block lifting
+construction-equipment/tower-cranes/Electric Wire Rope Hoist
+construction-equipment/tower-cranes/Mobile Crane truck mounted
+construction-equipment/tower-cranes/Gantry Crane overhead
+construction-equipment/tower-cranes/Material Hoist construction lift
+pipes-fittings/pvc/PVC Pipe SWR drainage
+pipes-fittings/pvc/PVC Pipe Schedule 40 pressure
+pipes-fittings/pvc/PVC Elbow Fitting 90 degree
+pipes-fittings/pvc/PVC Tee Fitting equal
+pipes-fittings/pvc/PVC Coupler Socket
+pipes-fittings/pvc/PVC Ball Valve threaded
+pipes-fittings/pvc/PVC Pipe Casing bore well
+pipes-fittings/upvc/UPVC Pipe Column plumbing
+pipes-fittings/upvc/UPVC Pipe Solvent Weld
+pipes-fittings/upvc/UPVC Elbow Fitting pressure
+pipes-fittings/upvc/UPVC Tee Fitting plumbing
+pipes-fittings/upvc/UPVC Ball Valve socket
+pipes-fittings/upvc/UPVC Pipe Schedule 80
+pipes-fittings/cpvc/CPVC Pipe Hot Water plumbing
+pipes-fittings/cpvc/CPVC Elbow Fitting 90
+pipes-fittings/cpvc/CPVC Tee Fitting hot water
+pipes-fittings/cpvc/CPVC Ball Valve brass
+pipes-fittings/cpvc/CPVC Pipe Clip bracket
+pipes-fittings/cpvc/CPVC Reducer Coupling
+pipes-fittings/hdpe/HDPE Pipe PE100 water supply
+pipes-fittings/hdpe/HDPE Coil Pipe irrigation
+pipes-fittings/hdpe/HDPE Elbow Fitting butt weld
+pipes-fittings/hdpe/HDPE Tee Fitting electrofusion
+pipes-fittings/hdpe/HDPE Ball Valve compression
+pipes-fittings/hdpe/HDPE Coupler Fitting
+pipes-fittings/ms/MS Pipe ERW Mild Steel
+pipes-fittings/ms/MS Pipe Seamless Schedule
+pipes-fittings/ms/MS Elbow Fitting butt weld
+pipes-fittings/ms/MS Tee Fitting welded
+pipes-fittings/ms/MS Reducer Fitting concentric
+pipes-fittings/ms/MS Flange Slip On mild steel

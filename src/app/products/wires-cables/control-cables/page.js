@@ -5,25 +5,25 @@ export default function ControlCablesPage() {
         {
             name: 'PVC Control Cable',
             description: 'Multi-core PVC insulated control cables for industrial instrumentation.',
-            image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80',
+            image: 'https://images.unsplash.com/photo-1581092334241-cb19ecef850f?w=600&h=600&fit=crop',
             specs: ['2 to 61 Cores', 'Copper Conductor', 'Screened/Unscreened'],
         },
         {
             name: 'XLPE Control Cable',
             description: 'Cross-linked polyethylene insulated cables for higher temperature ratings.',
-            image: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=800&q=80',
+            image: 'https://images.unsplash.com/photo-1581092334241-cb19ecef850f?w=600&h=600&fit=crop',
             specs: ['90°C Operating Temp', 'Low Smoke', 'Flame Retardant'],
         },
         {
             name: 'Instrumentation Cable',
             description: 'Precision cables for process control and measurement with shielding.',
-            image: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&q=80',
+            image: 'https://images.unsplash.com/photo-1581092334241-cb19ecef850f?w=600&h=600&fit=crop',
             specs: ['Individual/Overall Screen', 'Twisted Pairs', 'Low Capacitance'],
         },
         {
             name: 'Thermocouple Extension Cable',
             description: 'Temperature sensing extension cables matched to thermocouple types.',
-            image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80',
+            image: 'https://images.unsplash.com/photo-1581092334241-cb19ecef850f?w=600&h=600&fit=crop',
             specs: ['J/K/T/E/R/S Types', 'Compensating Grade', 'High Accuracy'],
         },
     ];

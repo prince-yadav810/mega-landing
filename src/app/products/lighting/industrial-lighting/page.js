@@ -5,25 +5,25 @@ export default function IndustrialLightingPage() {
         {
             name: 'LED High Bay Light',
             description: 'High-output fixtures for warehouses, factories, and industrial facilities.',
-            image: 'https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?w=800&q=80',
+            image: 'https://images.unsplash.com/photo-1581092334241-cb19ecef850f?w=600&h=600&fit=crop',
             specs: ['100W to 400W', 'IP65 Rating', '150 lm/W'],
         },
         {
             name: 'LED Flood Light',
             description: 'Area lighting for outdoor industrial spaces and yards.',
-            image: 'https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?w=800&q=80',
+            image: 'https://images.unsplash.com/photo-1581092334241-cb19ecef850f?w=600&h=600&fit=crop',
             specs: ['50W to 500W', 'Weatherproof', 'Wide Beam'],
         },
         {
             name: 'Flameproof Light',
             description: 'Explosion-proof luminaires for hazardous area installations.',
-            image: 'https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?w=800&q=80',
+            image: 'https://images.unsplash.com/photo-1581092334241-cb19ecef850f?w=600&h=600&fit=crop',
             specs: ['Zone 1 & 2', 'Ex d IIB/IIC', 'ATEX Certified'],
         },
         {
             name: 'Clean Room Light',
             description: 'IP65 sealed luminaires for pharmaceutical and food industries.',
-            image: 'https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?w=800&q=80',
+            image: 'https://images.unsplash.com/photo-1581092334241-cb19ecef850f?w=600&h=600&fit=crop',
             specs: ['Dust Tight', 'Washable', 'Uniform Light'],
         },
     ];

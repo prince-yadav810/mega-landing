@@ -5,25 +5,25 @@ export default function CableGlandsLugsPage() {
         {
             name: 'Brass Cable Gland',
             description: 'Nickel-plated brass cable glands for armoured and unarmoured cables.',
-            image: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800&q=80',
+            image: 'https://images.unsplash.com/photo-1581092334241-cb19ecef850f?w=600&h=600&fit=crop',
             specs: ['A1/A2 Type', 'IP68 Rating', 'Metric/PG Thread'],
         },
         {
             name: 'Double Compression Gland',
             description: 'Industrial grade glands with inner and outer sealing.',
-            image: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800&q=80',
+            image: 'https://images.unsplash.com/photo-1581092334241-cb19ecef850f?w=600&h=600&fit=crop',
             specs: ['E1W/CW Type', 'Weatherproof', 'For Armoured Cable'],
         },
         {
             name: 'Copper Lugs',
             description: 'Crimping type copper cable lugs for secure terminations.',
-            image: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800&q=80',
+            image: 'https://images.unsplash.com/photo-1581092334241-cb19ecef850f?w=600&h=600&fit=crop',
             specs: ['Electrolytic Copper', '2.5 to 630 sq.mm', 'Tin Plated'],
         },
         {
             name: 'Aluminium Lugs',
             description: 'Bimetallic and aluminium lugs for aluminium cable terminations.',
-            image: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800&q=80',
+            image: 'https://images.unsplash.com/photo-1581092334241-cb19ecef850f?w=600&h=600&fit=crop',
             specs: ['Palm Type', 'Various Hole Sizes', 'Crimping Grade'],
         },
     ];
