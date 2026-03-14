@@ -1,62 +1,9 @@
 'use client';
 
-import { Suspense, useMemo, useEffect, useState } from 'react';
-import { useSearchParams } from 'next/navigation';
 import { MapPin, Phone, Mail, Clock, ArrowRight, User } from 'lucide-react';
 import ContactForm from '@/components/shared/ContactForm';
-import { getCart, getCartCount, formatCartForRequirements } from '@/lib/cart';
 
-function ContactPageContent() {
-  const searchParams = useSearchParams();
-  const [cartCount, setCartCount] = useState(0);
-
-  // Update cart count on mount
-  useEffect(() => {
-    setCartCount(getCartCount());
-  }, []);
-
-  // Extract and format product enquiry with full details
-  const initialRequirements = useMemo(() => {
-    const productParam = searchParams.get('product');
-    const descParam = searchParams.get('desc');
-    const specsParam = searchParams.get('specs');
-
-    // Priority 1: Single product enquiry via query params (Enquire Now button)
-    if (productParam) {
-      let enquiry = 'Enquire On - [\n';
-      enquiry += ` - Product: ${productParam}\n`;
-      if (descParam) {
-        enquiry += ` - Description: ${descParam}\n`;
-      }
-      if (specsParam) {
-        enquiry += ` - Specifications: ${specsParam}\n`;
-      }
-      enquiry += ']';
-      return enquiry;
-    }
-
-    // Priority 2: Cart products (+ button)
-    const cartRequirements = formatCartForRequirements();
-    if (cartRequirements) {
-      return cartRequirements;
-    }
-
-    // Priority 3: Empty
-    return '';
-  }, [searchParams]);
-
-  // Auto-scroll to form when coming from product page
-  useEffect(() => {
-    if (searchParams.get('product')) {
-      // Wait for DOM to load
-      setTimeout(() => {
-        document.getElementById('quote-form')?.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        });
-      }, 100);
-    }
-  }, [searchParams]);
+export default function ContactPage() {
   const contactInfo = [
     {
       icon: MapPin,
@@ -83,7 +30,7 @@ function ContactPageContent() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white pt-32 pb-0">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white pt-32 pb-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Page Header */}
         <div className="text-center mb-10 md:mb-16">
@@ -97,10 +44,10 @@ function ContactPageContent() {
 
         {/* Contact Info - Unique Split Layout */}
         <div className="mb-20">
-          {/* Visit Us - Large Featured Section */}
-          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 mb-8 group">
-            {/* Desktop: Map on right side */}
-            <div className="hidden md:block absolute top-0 right-0 w-1/2 h-full overflow-hidden rounded-r-3xl">
+          {/* Visit Us - Redesigned Full Width Section */}
+          <div className="relative w-full h-[500px] sm:h-[600px] rounded-3xl overflow-hidden shadow-2xl mb-12">
+            {/* Full Width Map Background */}
+            <div className="absolute inset-0 w-full h-full">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3771.5447892345!2d73.1089!3d19.0760!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDA0JzMzLjYiTiA3M8KwMDYnMzIuMCJF!5e0!3m2!1sen!2sin!4v1234567890"
                 width="100%"
@@ -113,52 +60,6 @@ function ContactPageContent() {
                 className="w-full h-full"
               ></iframe>
             </div>
-
-            {/* Content */}
-            <div className="relative z-10 p-6 sm:p-8 md:p-12">
-              <div className="flex items-start space-x-4 sm:space-x-6">
-                <div className="flex-shrink-0">
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-white/20 backdrop-blur-xl rounded-2xl flex items-center justify-center transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
-                    <MapPin className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-white" />
-                  </div>
-                </div>
-                <div className="flex-1 md:max-w-[45%]">
-                  <h3 className="text-2xl sm:text-3xl font-bold text-white mb-3 sm:mb-4">Visit Our Office</h3>
-                  <div className="space-y-1 sm:space-y-2 text-white/90 text-base sm:text-lg">
-                    <p className="font-semibold">{contactInfo[0].details[0]}</p>
-                    <p>{contactInfo[0].details[1]}</p>
-                    <p>{contactInfo[0].details[2]}</p>
-                  </div>
-                  <div className="mt-4 sm:mt-6">
-                    <a
-                      href="https://maps.google.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center space-x-2 px-5 sm:px-6 py-2.5 sm:py-3 bg-white text-primary-600 rounded-full font-semibold text-sm sm:text-base hover:shadow-xl hover:scale-105 transition-all duration-300"
-                    >
-                      <span>Get Directions</span>
-                      <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Mobile: Map below content */}
-            <div className="md:hidden w-full h-48 sm:h-56 overflow-hidden">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3771.5447892345!2d73.1089!3d19.0760!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDA0JzMzLjYiTiA3M8KwMDYnMzIuMCJF!5e0!3m2!1sen!2sin!4v1234567890"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen=""
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="MEGA Enterprise Location"
-                className="w-full h-full"
-              ></iframe>
-            </div>
-          </div>
 
 
         </div>
@@ -180,8 +81,63 @@ function ContactPageContent() {
               </div>
             )}
             <ContactForm initialRequirements={initialRequirements} />
+            {/* Desktop: Full Floating Card Overlay (hidden on mobile) */}
+            <div className="hidden sm:block absolute top-1/2 -translate-y-1/2 left-12 w-[400px] bg-white/95 backdrop-blur-md p-8 rounded-2xl shadow-xl z-10 border border-gray-100">
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">Visit Our Office</h3>
+
+              <div className="space-y-6">
+                {/* Address */}
+                <div className="flex items-start space-x-4">
+                  <MapPin className="w-6 h-6 text-gray-400 flex-shrink-0 mt-1" />
+                  <div>
+                    <p className="text-gray-900 leading-relaxed font-medium">
+                      Plot No. 57, Opp M.I.D.C Water Tank TALOJA<br />
+                      Navi Mumbai - 410208<br />
+                      Maharashtra, India
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Get Directions Button */}
+              <div className="mt-8">
+                <a
+                  href="https://maps.google.com/?q=Plot+No.+57,+Opp+M.I.D.C+Water+Tank+TALOJA,+Navi+Mumbai+-+410208"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center w-full px-6 py-3 bg-[#0066FF] hover:bg-blue-700 text-white rounded-full font-semibold transition-all duration-300 shadow-lg hover:shadow-blue-200"
+                >
+                  <span>Get Directions</span>
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </a>
+              </div>
+            </div>
+
+            {/* Mobile: Only Get Directions Button at bottom (visible only on mobile) */}
+            <div className="sm:hidden absolute bottom-6 left-4 right-4 z-10">
+              <a
+                href="https://maps.google.com/?q=Plot+No.+57,+Opp+M.I.D.C+Water+Tank+TALOJA,+Navi+Mumbai+-+410208"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center w-full px-6 py-4 bg-[#0066FF] hover:bg-blue-700 text-white rounded-full font-semibold transition-all duration-300 shadow-xl"
+              >
+                <MapPin className="w-5 h-5 mr-2" />
+                <span>Get Directions</span>
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Contact Form & Messaging - Side by Side */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+          {/* Contact Form Section (Get a Quote) */}
+          {/* Mobile: Order 1 (First), Desktop: Order 1 (Left) */}
+          <div className="order-1 lg:order-1">
+            <ContactForm />
           </div>
 
+          {/* Contact Details & WhatsApp */}
           {/* Contact Details & WhatsApp - Clean Professional Look */}
           <div className="order-2 lg:order-2">
             <div className="relative bg-gradient-to-br from-blue-50 via-white to-indigo-50 rounded-3xl p-8 shadow-xl border border-blue-100/50 h-full flex flex-col overflow-hidden">
@@ -225,9 +181,9 @@ function ContactPageContent() {
                   </div>
                   <h3 className="font-bold text-gray-900 mb-3 group-hover:text-indigo-700 transition-colors tracking-tight">KAILASH DEWASI</h3>
                   <div className="space-y-2">
-                    <a href="tel:+919029652621" className="flex items-center text-gray-600 hover:text-indigo-700 transition-colors text-sm font-medium p-1 -ml-1 rounded-lg hover:bg-indigo-50/50">
+                    <a href="tel:+918591169113" className="flex items-center text-gray-600 hover:text-indigo-700 transition-colors text-sm font-medium p-1 -ml-1 rounded-lg hover:bg-indigo-50/50">
                       <Phone className="w-4 h-4 mr-2 text-indigo-400 group-hover:text-indigo-600" />
-                      +91 9029652621
+                      +91 85911 69113
                     </a>
                     <a href="mailto:kailash@megaenterprise.in" className="flex items-center text-gray-600 hover:text-indigo-700 transition-colors text-xs font-medium p-1 -ml-1 rounded-lg hover:bg-indigo-50/50">
                       <Mail className="w-4 h-4 mr-2 text-indigo-400 group-hover:text-indigo-600" />
@@ -274,20 +230,5 @@ function ContactPageContent() {
         </div>
       </div>
     </div>
-  );
-}
-
-export default function ContactPage() {
-  return (
-    <Suspense fallback={
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white pt-32 pb-0 flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading...</p>
-        </div>
-      </div>
-    }>
-      <ContactPageContent />
-    </Suspense>
   );
 }

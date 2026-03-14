@@ -7,33 +7,31 @@ const ClientsShowcase = () => {
 
   // Row 1 - scrolls left to right
   const clientsRow1 = [
-    { name: 'TATA Projects', logo: '/images/clients/tata-projects.svg' },
-    { name: 'Afcons Infrastructure', logo: '/images/clients/afcons.svg' },
-    { name: 'HCC Ltd', logo: '/images/clients/hcc.svg' },
-    { name: 'J Kumar Infra', logo: '/images/clients/jkumar.svg' },
-    { name: 'ITD Cementation', logo: '/images/clients/itd.svg' },
-    { name: 'NCC Ltd', logo: '/images/clients/ncc.svg' },
-    { name: 'Montecarlo Ltd', logo: '/images/clients/montecarlo.svg' },
-    { name: 'Godrej Properties', logo: '/images/clients/godrej.svg' },
-    { name: 'Leighton India', logo: '/images/clients/leighton.svg' },
-    { name: 'Coastal Marine', logo: '/images/clients/coastal.svg' },
-    { name: 'B G Shirke', logo: '/images/clients/shirke.svg' },
-    { name: 'Rubberwala Housing', logo: '/images/clients/rubberwala.svg' },
+    { name: 'TATA Projects', logo: '/images/clients/TATA-Projects-.png' },
+    { name: 'Afcons Infrastructure', logo: '/images/clients/images.png' },
+    { name: 'HCC Ltd', logo: '/images/clients/images (1).png' },
+    { name: 'ITD Cementation', logo: '/images/clients/images (1).jpeg' },
+    { name: 'NCC Ltd', logo: '/images/clients/images (2).jpeg' },
+    { name: 'Montecarlo Ltd', logo: '/images/clients/images (2).png' },
+    { name: 'Godrej Properties', logo: '/images/clients/GPL_Logo.jpg' },
+    { name: 'Leighton India', logo: '/images/clients/images (3).png' },
+    { name: 'Coastal Marine', logo: '/images/clients/images (4).png' },
+    { name: 'B G Shirke', logo: '/images/clients/images (5).png' },
+    { name: 'Rubberwala Housing', logo: '/images/clients/images (3).jpeg' },
   ];
 
   // Row 2 - scrolls right to left (opposite direction)
   const clientsRow2 = [
-    { name: 'Sunteck Realty', logo: '/images/clients/sunteck.svg' },
-    { name: 'Shrim Bhanu Construction', logo: '/images/clients/bhanu.svg' },
-    { name: 'Glass Wall Systems', logo: '/images/clients/glasswall.svg' },
-    { name: 'Afita Constructions', logo: '/images/clients/afita.svg' },
-    { name: 'Ganesh Benzoplast', logo: '/images/clients/ganesh.svg' },
-    { name: 'Suasth Health Care', logo: '/images/clients/suasth.svg' },
-    { name: 'Multistoreys Projects', logo: '/images/clients/multistoreys.svg' },
-    { name: 'Futech Projects', logo: '/images/clients/futech.svg' },
-    { name: 'Shelke Constructions', logo: '/images/clients/shelke.svg' },
-    { name: 'Sharad Constructions', logo: '/images/clients/sharad.svg' },
-    { name: 'Bearys Properties', logo: '/images/clients/bearys.svg' },
+    { name: 'Sunteck Realty', logo: '/images/clients/images1.png' },
+    { name: 'Shrim Bhanu Construction', logo: '/images/clients/images (11).jpeg' },
+    { name: 'Glass Wall Systems', logo: '/images/clients/20210623234529.jpg' },
+    { name: 'Ganesh Benzoplast', logo: '/images/clients/logo.jpg' },
+    { name: 'Suasth Health Care', logo: '/images/clients/suasth_hospital_logo.jpeg' },
+    { name: 'Multistoreys Projects', logo: '/images/clients/multi_storeys_projects_private_limited_logo.jpeg' },
+    { name: 'Futech Projects', logo: '/images/clients/futechindia_logo.jpeg' },
+    { name: 'Shelke Constructions', logo: '/images/clients/images (22).jpeg' },
+    { name: 'Sharad Constructions', logo: '/images/clients/images (13).png' },
+    { name: 'Bearys Properties', logo: '/images/clients/1745992853528.jpeg' },
   ];
 
   return (

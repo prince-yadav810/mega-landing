@@ -4,6 +4,7 @@ import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import GSAPCleanup from '@/components/utils/GSAPCleanup';
 import WelcomeScreen from '@/components/WelcomeScreen';
+import SmoothScroll from '@/components/utils/SmoothScroll';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -43,8 +44,9 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en">
       <body className={`${inter.variable} font-sans`}>
+        <SmoothScroll />
         <WelcomeScreen />
         <GSAPCleanup />
         <Navbar />

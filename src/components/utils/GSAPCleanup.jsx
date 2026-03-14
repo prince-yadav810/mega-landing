@@ -52,12 +52,7 @@ const GSAPCleanup = () => {
           // Ignore errors during cleanup
         }
 
-        // STEP 3: Disable normalize scroll
-        try {
-          ScrollTrigger.normalizeScroll(false);
-        } catch (e) {
-          // Ignore errors during cleanup
-        }
+
 
         // STEP 4: Kill all GSAP tweens
         try {
@@ -66,12 +61,7 @@ const GSAPCleanup = () => {
           // Ignore errors during cleanup
         }
 
-        // STEP 5: Clear all GSAP timelines
-        try {
-          gsap.globalTimeline.clear();
-        } catch (e) {
-          // Ignore errors during cleanup
-        }
+
 
         // STEP 6: Clear props on all elements that might have been animated
         try {
