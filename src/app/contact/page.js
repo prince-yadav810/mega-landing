@@ -30,7 +30,7 @@ export default function ContactPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white pt-32 pb-0">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white pt-32 pb-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Page Header */}
         <div className="text-center mb-10 md:mb-16">
@@ -161,9 +161,9 @@ export default function ContactPage() {
                   </div>
                   <h3 className="font-bold text-gray-900 mb-3 group-hover:text-indigo-700 transition-colors tracking-tight">KAILASH DEWASI</h3>
                   <div className="space-y-2">
-                    <a href="tel:+919029652621" className="flex items-center text-gray-600 hover:text-indigo-700 transition-colors text-sm font-medium p-1 -ml-1 rounded-lg hover:bg-indigo-50/50">
+                    <a href="tel:+918591169113" className="flex items-center text-gray-600 hover:text-indigo-700 transition-colors text-sm font-medium p-1 -ml-1 rounded-lg hover:bg-indigo-50/50">
                       <Phone className="w-4 h-4 mr-2 text-indigo-400 group-hover:text-indigo-600" />
-                      +91 9029652621
+                      +91 85911 69113
                     </a>
                     <a href="mailto:kailash@megaenterprise.in" className="flex items-center text-gray-600 hover:text-indigo-700 transition-colors text-xs font-medium p-1 -ml-1 rounded-lg hover:bg-indigo-50/50">
                       <Mail className="w-4 h-4 mr-2 text-indigo-400 group-hover:text-indigo-600" />

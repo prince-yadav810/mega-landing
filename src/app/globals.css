@@ -6,11 +6,12 @@
   * {
     @apply border-border;
   }
-  
+
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
+
   :root {
     --background: 0 0% 100%;
     --foreground: 0 0% 3.9%;
@@ -38,6 +39,7 @@
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
   }
+
   .dark {
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
@@ -123,9 +125,32 @@
   scrollbar-color: #d1d5db transparent;
 }
 
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
+/* Prevent horizontal scroll jank — lets Lenis work cleanly */
+body {
+  overflow-x: hidden;
+}
+
+/* Scroll reveal animation — blur-in + slide-up on intersection */
+.reveal {
+  opacity: 0;
+  filter: blur(5px);
+  transform: translateY(20px);
+  transition: all 0.8s ease-out;
+}
+
+.reveal.visible {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateY(0);
+}
+
+/* GPU-accelerated card transitions — bouncy easing */
+.smooth-card {
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.smooth-card:hover {
+  transform: translateY(-5px) scale(1.01);
 }
 
 /* Animation delays */
@@ -156,11 +181,9 @@ html {
 /* Lightweight glass card effect - optimized for stacking cards */
 .glass-card {
   position: relative;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.15) 0%,
-    rgba(255, 255, 255, 0.08) 100%
-  );
+  background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.15) 0%,
+      rgba(255, 255, 255, 0.08) 100%);
   backdrop-filter: blur(12px) saturate(1.2) brightness(0.98);
   -webkit-backdrop-filter: blur(12px) saturate(1.2) brightness(0.98);
   box-shadow:
@@ -179,12 +202,10 @@ html {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.12) 0%,
-    rgba(255, 255, 255, 0.05) 50%,
-    rgba(255, 255, 255, 0.08) 100%
-  );
+  background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.12) 0%,
+      rgba(255, 255, 255, 0.05) 50%,
+      rgba(255, 255, 255, 0.08) 100%);
   border-radius: inherit;
   pointer-events: none;
 }
@@ -192,11 +213,9 @@ html {
 /* Fallback for browsers without backdrop-filter support */
 @supports not (backdrop-filter: blur(12px)) {
   .glass-card {
-    background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.3) 0%,
-      rgba(255, 255, 255, 0.2) 100%
-    );
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.3) 0%,
+        rgba(255, 255, 255, 0.2) 100%);
     box-shadow:
       0 8px 32px 0 rgba(31, 38, 135, 0.25),
       inset 0 1px 2px 0 rgba(255, 255, 255, 0.5);
@@ -229,4 +248,43 @@ input[type="number"]::-webkit-outer-spin-button {
 
 input[type="number"] {
   -moz-appearance: textfield;
+}
+
+/* Welcome Screen Animations */
+@keyframes logo-entrance {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes text-entrance {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-logo-entrance {
+  animation: logo-entrance 0.8s ease-out forwards;
+}
+
+.animate-text-entrance {
+  animation: text-entrance 0.6s ease-out forwards;
+  animation-delay: 0.2s;
+  opacity: 0;
+}
+
+.duration-800 {
+  transition-duration: 800ms;
 }

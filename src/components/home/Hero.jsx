@@ -205,7 +205,7 @@ const Hero = () => {
               className="text-xl md:text-2xl text-gray-600 mb-0 md:mb-12 max-w-3xl mx-auto lg:mx-0 leading-relaxed"
             >
               Your trusted partner in industrial & project materials.
-              <span className="font-semibold text-primary-700"> 20+ years of excellence</span>,
+              <span className="font-semibold text-primary-700"> 8+ years of excellence</span>,
               serving <span className="font-semibold text-primary-700">50+ major clients</span> across India.
             </p>
 
@@ -289,8 +289,8 @@ const Hero = () => {
                   <div
                     key={index}
                     className={`h-2 rounded-full transition-all duration-300 ${index === currentImageIndex
-                        ? 'w-8 bg-primary-600'
-                        : 'w-2 bg-gray-300'
+                      ? 'w-8 bg-primary-600'
+                      : 'w-2 bg-gray-300'
                       }`}
                   ></div>
                 ))}

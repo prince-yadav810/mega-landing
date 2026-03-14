@@ -28,7 +28,7 @@ const Footer = () => {
 
   const contacts = [
     { name: 'NIRMAL DEWASI', phone: '+91 750 6070 157', email: 'nirmal@megaenterprise.in' },
-    { name: 'KAILASH DEWASI', phone: '+91 9029652621', email: 'kailash@megaenterprise.in' },
+    { name: 'KAILASH DEWASI', phone: '+91 85911 69113', email: 'kailash@megaenterprise.in' },
   ];
 
   const emails = [

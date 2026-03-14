@@ -1,0 +1,81 @@
+/* Soft Bubble Card - Base style for search/filter and CTA sections */
+.bubble-card {
+  position: relative;
+  background: white;
+  border-radius: 1.5rem;
+  overflow: hidden;
+
+  /* Pillowy border effect with layered shadows */
+  box-shadow:
+    /* Outset shadows - create elevation and depth */
+    0 10px 30px -5px rgba(0, 0, 0, 0.1),
+    0 4px 15px -3px rgba(0, 0, 0, 0.05),
+    /* Inset shadows - create pillowy border effect */
+    inset 0 1px 3px rgba(255, 255, 255, 0.8),
+    inset 0 -2px 8px rgba(0, 0, 0, 0.06);
+
+  transition: box-shadow 0.3s ease;
+}
+
+/* Product Card - Enhanced bubble effect with stronger 3D appearance */
+.bubble-card-product {
+  position: relative;
+  background: white;
+  border-radius: 2rem;
+  overflow: hidden;
+
+  /* Enhanced pillowy border effect */
+  box-shadow:
+    /* Stronger outset shadows for product cards */
+    0 15px 35px -5px rgba(0, 0, 0, 0.12),
+    0 5px 20px -3px rgba(0, 0, 0, 0.08),
+    /* Inset shadows for pillowy border */
+    inset 0 2px 4px rgba(255, 255, 255, 0.9),
+    inset 0 -3px 10px rgba(0, 0, 0, 0.08);
+
+  will-change: transform, box-shadow;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Product card hover state - lift effect with enhanced shadows */
+.bubble-card-product:hover {
+  transform: translateY(-8px);
+  box-shadow:
+    /* Enhanced depth on hover */
+    0 20px 45px -5px rgba(0, 0, 0, 0.15),
+    0 8px 25px -3px rgba(0, 0, 0, 0.1),
+    /* Brighter highlights on hover */
+    inset 0 2px 4px rgba(255, 255, 255, 1),
+    inset 0 -3px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .bubble-card {
+    background: linear-gradient(to bottom, #1a1a1a, #151515);
+    box-shadow:
+      /* Adjusted outset shadows for dark mode */
+      0 10px 30px -5px rgba(0, 0, 0, 0.5),
+      0 4px 15px -3px rgba(0, 0, 0, 0.3),
+      /* Lighter inset highlights for dark mode */
+      inset 0 1px 3px rgba(255, 255, 255, 0.1),
+      inset 0 -2px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  .bubble-card-product {
+    background: #1a1a1a;
+    box-shadow:
+      0 15px 35px -5px rgba(0, 0, 0, 0.6),
+      0 5px 20px -3px rgba(0, 0, 0, 0.4),
+      inset 0 2px 4px rgba(255, 255, 255, 0.15),
+      inset 0 -3px 10px rgba(0, 0, 0, 0.4);
+  }
+
+  .bubble-card-product:hover {
+    box-shadow:
+      0 20px 45px -5px rgba(0, 0, 0, 0.7),
+      0 8px 25px -3px rgba(0, 0, 0, 0.5),
+      inset 0 2px 4px rgba(255, 255, 255, 0.2),
+      inset 0 -3px 10px rgba(0, 0, 0, 0.5);
+  }
+}
