@@ -272,7 +272,67 @@ const Navbar = () => {
                     <span className={`text-lg font-bold ${isScrolled ? 'text-gray-900' : 'text-gray-900'}`}>MEGA</span>
                     <span className={`text-[10px] -mt-1 ${isScrolled ? 'text-gray-600' : 'text-gray-600'}`}>Enterprise</span>
                 </div>
-            </Link>
+              </div>
+
+              {/* View All Link */}
+              <div className="mt-6 pt-4 border-t border-gray-200/50">
+                <Link
+                  href="/products"
+                  onClick={() => setIsProductsDropdownOpen(false)}
+                  className="flex items-center justify-center text-sm font-semibold text-primary-600 hover:text-primary-700 py-2"
+                >
+                  View All Products & Services <ChevronRight className="w-4 h-4 ml-1" />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+
+    return createPortal(dropdownContent, document.body);
+  };
+
+  // Navbar content (shared between glass and non-glass versions)
+  const NavbarContent = () => (
+    <div className="flex items-center justify-between h-full w-full px-6 lg:px-8">
+      {/* Logo */}
+      <Link href="/" className="flex items-center space-x-3 group flex-shrink-0">
+        <div className="w-12 h-12 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300 overflow-hidden">
+          <Image src="/logo.png" alt="MEGA Logo" width={48} height={48} className="object-contain w-full h-full" />
+        </div>
+        <div className="hidden sm:flex flex-col">
+          <span className={`text-lg font-bold ${isScrolled ? 'text-gray-900' : 'text-gray-900'}`}>MEGA</span>
+          <span className={`text-[10px] -mt-1 ${isScrolled ? 'text-gray-600' : 'text-gray-600'}`}>Enterprise</span>
+        </div>
+      </Link>
+
+      {/* Desktop Navigation */}
+      <div className="hidden md:flex items-center space-x-8 flex-shrink-0">
+        <Link
+          href="/"
+          className={`font-bold transition-colors duration-200 relative group py-2 ${isScrolled ? 'text-gray-700 hover:text-primary-600' : 'text-gray-700 hover:text-primary-600'}`}
+        >
+          Home
+          <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-500 to-primary-700 group-hover:w-full transition-all duration-300"></span>
+        </Link>
+
+        {/* Products Dropdown Trigger */}
+        <div
+          className="relative"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
+          <Link
+            ref={productsButtonRef}
+            href="/products"
+            className={`flex items-center space-x-1 font-bold transition-colors duration-200 relative group py-2 ${isScrolled ? 'text-gray-700 hover:text-primary-600' : 'text-gray-700 hover:text-primary-600'}`}
+          >
+            <span>Products</span>
+            <ChevronDown className={`w-4 h-4 transition-transform ${isProductsDropdownOpen ? 'rotate-180' : ''}`} />
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-500 to-primary-700 group-hover:w-full transition-all duration-300"></span>
+          </Link>
+        </div>
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8 flex-shrink-0">
