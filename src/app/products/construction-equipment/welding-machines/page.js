@@ -6,7 +6,7 @@ const products = [
     { name: 'TIG Welding Machine', description: 'Gas tungsten arc welding machines for precision welding of stainless steel, aluminum, and exotic metals.', image: '/images/products/construction-equipment/welding-machines/tig-welding-machine-argon.jpg', specs: ['Current: 200–400A', 'AC/DC: Both', 'Gas: Pure Argon'] },
     { name: 'Spot Welding Machine', description: 'Resistance spot welding machines for joining sheet metal and wire mesh in manufacturing.', image: '/images/products/construction-equipment/welding-machines/spot-welding-machine.jpg', specs: ['Capacity: 2+2mm', 'Power: 16–100 kVA', 'Type: Pedestal/Portable'] },
     { name: 'Plasma Cutter', description: 'Plasma arc cutting machines for precision cutting of steel, stainless steel, and aluminum plates.', image: '/images/products/construction-equipment/welding-machines/plasma-cutting-machine.jpg', specs: ['Cut: Up to 40mm', 'Type: Air Plasma', 'Duty Cycle: 60%'] },
-    { name: 'Welding Accessories', description: 'Welding consumables, electrodes, wires, helmets, and accessories for all welding processes.', image: '/images/products/construction-equipment/welding-machines/arc-welding-machine-mma.jpg', specs: ['Electrodes: All Types', 'Wire: MIG/TIG', 'Safety Gear: Complete'] },
+    { name: 'Welding Accessories', description: 'Welding consumables, electrodes, wires, helmets, and accessories for all welding processes.', image: '/images/products/construction-equipment/welding-machines/arc-welding-machine-mma1.jpg', specs: ['Electrodes: All Types', 'Wire: MIG/TIG', 'Safety Gear: Complete'] },
 ];
 
 export default function WeldingMachinesPage() {

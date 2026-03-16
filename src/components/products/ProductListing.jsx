@@ -63,11 +63,11 @@ export default function ProductListing({ title, description, benefits, products,
                 <div id="products" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {products.map((product, index) => (
                         <div key={index} className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group">
-                            <div className={`h-64 overflow-hidden relative flex items-center justify-center ${fitImages ? 'bg-white' : 'bg-gray-100'}`}>
+                            <div className={`h-64 overflow-hidden relative flex items-center justify-center ${fitImages || product.fitImage ? 'bg-white' : 'bg-gray-100'}`}>
                                 <img
                                     src={product.image || 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&q=80'}
                                     alt={product.name}
-                                    className={`w-full h-full ${fitImages ? 'object-contain group-hover:scale-125' : 'object-cover group-hover:scale-110'} transition-transform duration-500`}
+                                    className={`w-full h-full ${fitImages || product.fitImage ? 'object-contain group-hover:scale-125' : 'object-cover group-hover:scale-110'} transition-transform duration-500`}
                                 />
                                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
                             </div>
