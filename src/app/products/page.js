@@ -85,7 +85,7 @@ export default function ProductsPage() {
         { name: 'PVC Pipes & Fittings', href: '/products/pipes-fittings/pvc', image: '/images/Products_preview/PVCPipes&Fittings.png' },
         { name: 'UPVC Pipes & Fittings', href: '/products/pipes-fittings/upvc', image: '/images/Products_preview/UPVCPipes&Fittings.png' },
         { name: 'CPVC Pipes & Fittings', href: '/products/pipes-fittings/cpvc', image: '/images/Products_preview/CPVCPipes&Fittings.png' },
-        { name: 'HDPE Pipes & Fittings', href: '/products/pipes-fittings/hdpe', image: '/images/Products_preview/PVCPipes&Fittings.png' },
+        { name: 'HDPE Pipes & Fittings', href: '/products/pipes-fittings/hdpe', image: '/images/Products_preview/HDPEPipes&Fittings.png' },
         { name: 'MS Pipes & Fittings', href: '/products/pipes-fittings/ms', image: '/images/Products_preview/MSPipes&Fittings.png' },
         { name: 'GI Pipes & Fittings', href: '/products/pipes-fittings/gi', image: '/images/Products_preview/GIPipes&Fittings.png' },
         { name: 'SS Pipes & Fittings', href: '/products/pipes-fittings/ss', image: '/images/Products_preview/SSPipes&Fittings.png' },
