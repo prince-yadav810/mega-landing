@@ -20,37 +20,37 @@ const FeaturedProducts = () => {
     {
       title: 'Cables & Wires',
       description: 'Premium quality cables and wiring solutions from authorized dealers',
-      image: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=800&q=80',
+      image: '/images/Products_preview/Wires&Cables.png',
       color: 'from-blue-500 to-blue-700',
     },
     {
       title: 'LED Lighting',
       description: 'Energy-efficient LED solutions for industrial and commercial spaces',
-      image: 'https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=800&q=80',
+      image: '/images/Products_preview/LED.png',
       color: 'from-yellow-500 to-yellow-700',
     },
     {
       title: 'Safety Equipment',
       description: 'Complete range of safety gear and industrial protection equipment',
-      image: 'https://images.unsplash.com/photo-1581578017093-cd30b0e417bf?w=800&q=80',
+      image: '/images/Products_preview/SafetyGloves.png',
       color: 'from-red-500 to-red-700',
     },
     {
       title: 'Electrical Switchgear',
       description: 'High-quality switchgear and control systems for power distribution',
-      image: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800&q=80',
+      image: '/images/Products_preview/Switchgears.png',
       color: 'from-green-500 to-green-700',
     },
     {
       title: 'Pipes & Fittings',
       description: 'Durable pipes and fittings for industrial plumbing applications',
-      image: 'https://images.unsplash.com/photo-1581244277943-fe4a9c777189?w=800&q=80',
+      image: '/images/Products_preview/PVCPipes&Fittings.png',
       color: 'from-purple-500 to-purple-700',
     },
     {
       title: 'Power Tools',
       description: 'Professional-grade power tools for construction and maintenance',
-      image: 'https://images.unsplash.com/photo-1504148455328-c376907d081c?w=800&q=80',
+      image: '/images/Products_preview/PowerTools&HandTools.png',
       color: 'from-orange-500 to-orange-700',
     },
   ];
