@@ -9,7 +9,7 @@ const products = [
     { name: 'Chemical Gloves', description: 'Long-cuff chemical-resistant gloves for handling acids, alkalis, and industrial chemicals.', image: '/images/products/safety/safety-gloves/pvc-chemical-resistant-gloves.jpg', specs: ['Material: Neoprene/PVC', 'Length: 14"–18"', 'Chemical Resistant'] },
     { name: 'Cut Resistant Gloves', description: 'HPPE and steel-fiber cut-resistant gloves for sheet metal, glass, and blade handling.', image: '/images/products/safety/safety-gloves/cut-resistant-safety-gloves.jpg', specs: ['Cut Level: A4–A8', 'Material: HPPE', 'Coating: PU/Nitrile'] },
     { name: 'Electrical Gloves', description: 'Insulated rubber electrical safety gloves for live wire work and high-voltage maintenance.', image: '/images/products/safety/safety-gloves/rubber-insulated-electrical-gloves.jpg', specs: ['Class: 00–4', 'Voltage: Up to 36kV', 'Standard: IS 4770'] },
-];
+]; 
 
 export default function SafetyGlovesPage() {
     return (
