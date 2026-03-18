@@ -6,7 +6,7 @@ import { MapPin, Phone, Mail, Clock, ArrowRight, User } from 'lucide-react';
 import ContactForm from '@/components/shared/ContactForm';
 import { getCartCount, formatCartForRequirements } from '@/lib/cart';
 
-export default function ContactPage() {
+function ContactContent() {
   const searchParams = useSearchParams();
   const [cartCount, setCartCount] = useState(0);
   const [initialRequirements, setInitialRequirements] = useState('');
@@ -21,35 +21,9 @@ export default function ContactPage() {
     }
   }, []);
 
-  const contactInfo = [
-    {
-      icon: MapPin,
-      title: 'Visit Us',
-      details: ['Plot No. 57, Opp M.I.D.C Water Tank TALOJA', 'Navi Mumbai - 410208', 'Maharashtra, India'],
-    },
-    {
-      icon: Phone,
-      title: 'Call Us',
-      details: ['+91 750 6070 157', '022 2741 0775'],
-      links: ['tel:+917506070157', 'tel:02227410775'],
-    },
-    {
-      icon: Mail,
-      title: 'Email Us',
-      details: ['megaenterprise.info@gmail.com'],
-      links: ['mailto:megaenterprise.info@gmail.com'],
-    },
-    {
-      icon: Clock,
-      title: 'Business Hours',
-      details: ['Monday - Saturday: 9AM - 7PM', 'Sunday: Closed'],
-    },
-  ];
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white pt-32 pb-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Page Header */}
         <div className="text-center mb-10 md:mb-16">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-4 md:mb-6">
             Get In <span className="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent">Touch</span>
@@ -59,31 +33,64 @@ export default function ContactPage() {
           </p>
         </div>
 
-        {/* Contact Info - Unique Split Layout */}
         <div className="mb-20">
-          {/* Visit Us - Redesigned Full Width Section */}
-          <div className="relative w-full h-[500px] sm:h-[600px] rounded-3xl overflow-hidden shadow-2xl mb-12">
-            {/* Full Width Map Background */}
-            <div className="absolute inset-0 w-full h-full">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3771.5447892345!2d73.1089!3d19.0760!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDA0JzMzLjYiTiA3M8KwMDYnMzIuMCJF!5e0!3m2!1sen!2sin!4v1234567890"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen=""
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="MEGA Enterprise Location"
+          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 mb-8 group">
+            <div className="hidden md:block absolute top-0 right-0 w-1/2 h-full overflow-hidden rounded-r-3xl">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3771.5447892345!2d73.1089!3d19.0760!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDA0JzMzLjYiTiA3M8KwMDYnMzIuMCJF!5e0!3m2!1sen!2sin!4v1234567890" 
+                width="100%" 
+                height="100%" 
+                style={{ border: 0 }} 
+                loading="lazy" 
+                referrerPolicy="no-referrer-when-downgrade" 
+                title="MEGA Enterprise Location" 
                 className="w-full h-full"
               ></iframe>
             </div>
-
+            <div className="relative z-10 p-6 sm:p-8 md:p-12">
+              <div className="flex items-start space-x-4 sm:space-x-6">
+                <div className="flex-shrink-0">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-white/20 backdrop-blur-xl rounded-2xl flex items-center justify-center transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
+                    <MapPin className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-white" />
+                  </div>
+                </div>
+                <div className="flex-1 md:max-w-[45%]">
+                  <h3 className="text-2xl sm:text-3xl font-bold text-white mb-3 sm:mb-4">Visit Our Office</h3>
+                  <div className="space-y-1 sm:space-y-2 text-white/90 text-base sm:text-lg">
+                    <p className="font-semibold">Plot No. 57, Opp M.I.D.C Water Tank TALOJA</p>
+                    <p>Navi Mumbai - 410208</p>
+                    <p>Maharashtra, India</p>
+                  </div>
+                  <div className="mt-4 sm:mt-6">
+                    <a 
+                      href="https://maps.google.com/?q=Plot+No.+57,+Opp+M.I.D.C+Water+Tank+TALOJA,+Navi+Mumbai+-+410208" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="inline-flex items-center space-x-2 px-5 sm:px-6 py-2.5 sm:py-3 bg-white text-primary-600 rounded-full font-semibold text-sm sm:text-base hover:shadow-xl hover:scale-105 transition-all duration-300"
+                    >
+                      <span>Get Directions</span>
+                      <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="md:hidden w-full h-48 sm:h-56 overflow-hidden">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3771.5447892345!2d73.1089!3d19.0760!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDA0JzMzLjYiTiA3M8KwMDYnMzIuMCJF!5e0!3m2!1sen!2sin!4v1234567890" 
+              width="100%" 
+              height="100%" 
+              style={{ border: 0 }} 
+              loading="lazy" 
+              referrerPolicy="no-referrer-when-downgrade" 
+              title="MEGA Enterprise Location" 
+              className="w-full h-full"
+            ></iframe>
+          </div>
         </div>
-        </div>
 
-        {/* Contact Form & Instant Communication - Side by Side on Desktop */}
-        <div id="quote-form" className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-24">
-          {/* Contact Form Section */}
+        <div id="quote-form" className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
           <div>
             {mounted && cartCount > 0 && !searchParams.get('product') ? (
               <div className="mb-4 p-4 bg-green-50 border border-green-200 rounded-xl flex items-center justify-between">
@@ -98,70 +105,12 @@ export default function ContactPage() {
               </div>
             ) : null}
             <ContactForm initialRequirements={initialRequirements} />
-            {/* Desktop: Full Floating Card Overlay (hidden on mobile) */}
-            <div className="hidden sm:block absolute top-1/2 -translate-y-1/2 left-12 w-[400px] bg-white/95 backdrop-blur-md p-8 rounded-2xl shadow-xl z-10 border border-gray-100">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">Visit Our Office</h3>
-
-              <div className="space-y-6">
-                {/* Address */}
-                <div className="flex items-start space-x-4">
-                  <MapPin className="w-6 h-6 text-gray-400 flex-shrink-0 mt-1" />
-                  <div>
-                    <p className="text-gray-900 leading-relaxed font-medium">
-                      Plot No. 57, Opp M.I.D.C Water Tank TALOJA<br />
-                      Navi Mumbai - 410208<br />
-                      Maharashtra, India
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Get Directions Button */}
-              <div className="mt-8">
-                <a
-                  href="https://maps.google.com/?q=Plot+No.+57,+Opp+M.I.D.C+Water+Tank+TALOJA,+Navi+Mumbai+-+410208"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center w-full px-6 py-3 bg-[#0066FF] hover:bg-blue-700 text-white rounded-full font-semibold transition-all duration-300 shadow-lg hover:shadow-blue-200"
-                >
-                  <span>Get Directions</span>
-                  <ArrowRight className="w-4 h-4 ml-2" />
-                </a>
-              </div>
-            </div>
-
-            {/* Mobile: Only Get Directions Button at bottom (visible only on mobile) */}
-            <div className="sm:hidden absolute bottom-6 left-4 right-4 z-10">
-              <a
-                href="https://maps.google.com/?q=Plot+No.+57,+Opp+M.I.D.C+Water+Tank+TALOJA,+Navi+Mumbai+-+410208"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center w-full px-6 py-4 bg-[#0066FF] hover:bg-blue-700 text-white rounded-full font-semibold transition-all duration-300 shadow-xl"
-              >
-                <MapPin className="w-5 h-5 mr-2" />
-                <span>Get Directions</span>
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </a>
-            </div>
           </div>
-        </div>
-
-        {/* Contact Form & Messaging - Side by Side */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-          {/* Contact Form Section (Get a Quote) */}
-          {/* Mobile: Order 1 (First), Desktop: Order 1 (Left) */}
-          <div className="order-1 lg:order-1">
-            <ContactForm />
-          </div>
-
-          {/* Contact Details & WhatsApp */}
-          {/* Contact Details & WhatsApp - Clean Professional Look */}
           <div className="order-2 lg:order-2">
             <div className="relative bg-gradient-to-br from-blue-50 via-white to-indigo-50 rounded-3xl p-8 shadow-xl border border-blue-100/50 h-full flex flex-col overflow-hidden">
-              {/* Decorative background element */}
               <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-full -mr-32 -mt-32 opacity-40 pointer-events-none blur-3xl"></div>
               <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-purple-100 to-pink-100 rounded-full -ml-32 -mb-32 opacity-40 pointer-events-none blur-3xl"></div>
-
+              
               <div className="relative z-10 mb-8">
                 <h2 className="text-3xl font-bold text-gray-900 mb-4">
                   <span className="bg-gradient-to-r from-primary-700 to-primary-500 bg-clip-text text-transparent">Prefer Instant Communication?</span>
@@ -171,9 +120,7 @@ export default function ContactPage() {
                 </p>
               </div>
 
-              {/* Contact Persons Grid */}
               <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                {/* Person 1 */}
                 <div className="p-5 bg-gradient-to-br from-white to-blue-50/30 rounded-2xl border border-blue-100 shadow-sm hover:shadow-lg hover:border-blue-300 transition-all duration-300 group">
                   <div className="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-blue-600 transition-all duration-300 shadow-sm">
                     <User className="w-6 h-6 text-blue-700 group-hover:text-white transition-colors" />
@@ -191,7 +138,6 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                {/* Person 2 */}
                 <div className="p-5 bg-gradient-to-br from-white to-indigo-50/30 rounded-2xl border border-indigo-100 shadow-sm hover:shadow-lg hover:border-indigo-300 transition-all duration-300 group">
                   <div className="w-12 h-12 rounded-xl bg-indigo-100 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-indigo-600 transition-all duration-300 shadow-sm">
                     <User className="w-6 h-6 text-indigo-700 group-hover:text-white transition-colors" />
@@ -210,7 +156,6 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              {/* General Emails */}
               <div className="relative z-10 mb-8">
                 <h3 className="text-sm font-bold text-gray-500 uppercase tracking-wider mb-4 pl-1 flex items-center">
                   <span className="w-8 h-0.5 bg-gray-300 mr-2 rounded-full"></span>
@@ -228,7 +173,6 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              {/* WhatsApp CTA */}
               <div className="relative z-10 mt-auto">
                 <a
                   href="https://wa.me/917506070157?text=Hello%20MEGA%20Enterprise%2C%20I%27m%20interested%20in%20your%20products"
@@ -247,5 +191,13 @@ export default function ContactPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function ContactPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-gray-50 flex items-center justify-center"><div className="animate-pulse w-8 h-8 rounded-full bg-primary-500"></div></div>}>
+      <ContactContent />
+    </Suspense>
   );
 }
