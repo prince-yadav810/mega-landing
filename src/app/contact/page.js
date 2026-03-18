@@ -1,9 +1,26 @@
 'use client';
 
+import { useState, useEffect, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { MapPin, Phone, Mail, Clock, ArrowRight, User } from 'lucide-react';
 import ContactForm from '@/components/shared/ContactForm';
+import { getCartCount, formatCartForRequirements } from '@/lib/cart';
 
 export default function ContactPage() {
+  const searchParams = useSearchParams();
+  const [cartCount, setCartCount] = useState(0);
+  const [initialRequirements, setInitialRequirements] = useState('');
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    setCartCount(getCartCount());
+    const formatted = formatCartForRequirements();
+    if (formatted) {
+      setInitialRequirements(formatted);
+    }
+  }, []);
+
   const contactInfo = [
     {
       icon: MapPin,
@@ -68,7 +85,7 @@ export default function ContactPage() {
         <div id="quote-form" className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-24">
           {/* Contact Form Section */}
           <div>
-            {cartCount > 0 && !searchParams.get('product') && (
+            {mounted && cartCount > 0 && !searchParams.get('product') ? (
               <div className="mb-4 p-4 bg-green-50 border border-green-200 rounded-xl flex items-center justify-between">
                 <div className="flex items-center space-x-2">
                   <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
@@ -79,7 +96,7 @@ export default function ContactPage() {
                   </span>
                 </div>
               </div>
-            )}
+            ) : null}
             <ContactForm initialRequirements={initialRequirements} />
             {/* Desktop: Full Floating Card Overlay (hidden on mobile) */}
             <div className="hidden sm:block absolute top-1/2 -translate-y-1/2 left-12 w-[400px] bg-white/95 backdrop-blur-md p-8 rounded-2xl shadow-xl z-10 border border-gray-100">
