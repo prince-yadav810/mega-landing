@@ -6,7 +6,7 @@ const products = [
     { name: 'Retarders', description: 'Set retarding admixtures for extending concrete setting time in hot weather and long transit conditions.', image: '/images/products/construction-chemicals/concrete-admixtures/retarder-concrete-admixture.jpg', specs: ['Retardation: 2–6 Hours', 'Dosage: 200–500 ml/bag', 'For: Hot Weather'] },
     { name: 'Accelerators', description: 'Set accelerating admixtures for fast-track construction, cold weather concreting, and early strength gain.', image: '/images/products/construction-chemicals/concrete-admixtures/accelerator-concrete-admixture.jpg', specs: ['Acceleration: 30–70%', 'Chloride Free: Yes', 'For: Cold Weather'] },
     { name: 'Air Entraining Agents', description: 'Air entraining admixtures for improving freeze-thaw resistance and workability of concrete.', image: '/images/products/construction-chemicals/concrete-admixtures/air-entraining-agent-concrete.jpg', specs: ['Air Content: 4–6%', 'Dosage: 50–200 ml/bag', 'For: Frost Resistance'] },
-    { name: 'Waterproofing Admixtures', description: 'Integral waterproofing admixtures mixed into concrete to make it water-impermeable from within.', image: '/images/products/construction-chemicals/concrete-admixtures/superplasticizer-pce-admixture.jpg', specs: ['Type: Crystalline/Pore Blocking', 'Dosage: 1–2% by cement', 'Permanent Protection'] },
+    { name: 'Waterproofing Admixtures', description: 'Integral waterproofing admixtures mixed into concrete to make it water-impermeable from within.', image: '/images/products/construction-chemicals/concrete-admixtures/waterproofing-admixtures.jpg', specs: ['Type: Crystalline/Pore Blocking', 'Dosage: 1–2% by cement', 'Permanent Protection'] },
 ];
 
 export default function ConcreteAdmixturesPage() {
