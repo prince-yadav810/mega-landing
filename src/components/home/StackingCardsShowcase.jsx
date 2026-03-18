@@ -30,114 +30,114 @@ const StackingCardsShowcase = () => {
   }, []);
 
   // 12 products for desktop (4 stacks of 3)
-  const products = [
+    const products = [
     {
       id: 1,
-      title: 'Industrial Cables',
-      description: 'Heavy-duty cables for industrial applications with superior conductivity',
-      image: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=800&q=80',
+      title: 'Leather Gloves',
+      description: 'Genuine leather safety gloves for welding, grinding, and heavy material handling operations.',
+      image: '/images/products/safety/safety-gloves/leather-work-gloves-industrial.jpg',
       color: 'from-blue-500 to-blue-700',
-      category: 'Electrical',
-      icon: Cable
-    },
-    {
-      id: 2,
-      title: 'Smart Lighting',
-      description: 'IoT-enabled LED lighting systems for modern facilities',
-      image: 'https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=800&q=80',
-      color: 'from-yellow-500 to-yellow-700',
-      category: 'Lighting',
-      icon: Lightbulb
-    },
-    {
-      id: 3,
-      title: 'Safety Gear Pro',
-      description: 'Advanced protective equipment meeting international standards',
-      image: 'https://images.unsplash.com/photo-1581578017093-cd30b0e417bf?w=800&q=80',
-      color: 'from-red-500 to-red-700',
       category: 'Safety',
       icon: Shield
     },
     {
+      id: 2,
+      title: 'Nitrile Gloves',
+      description: 'Chemical-resistant nitrile gloves for handling oils, solvents, and hazardous chemicals.',
+      image: '/images/products/safety/safety-gloves/nitrile-coated-safety-gloves.jpg',
+      color: 'from-cyan-500 to-cyan-700',
+      category: 'Safety',
+      icon: Shield
+    },
+    {
+      id: 3,
+      title: 'Safety Goggles',
+      description: 'Splash-proof and chemical-resistant safety goggles for laboratory and industrial environments.',
+      image: '/images/products/safety/eye-protection/safety-goggles-chemical-splash1.jpg',
+      color: 'from-yellow-500 to-yellow-700',
+      category: 'Safety',
+      icon: Lightbulb
+    },
+    {
       id: 4,
-      title: 'Power Distribution',
-      description: 'Robust switchgear and distribution panels for optimal power management',
-      image: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800&q=80',
-      color: 'from-green-500 to-green-700',
-      category: 'Electrical',
+      title: 'Welding Helmet',
+      description: 'Auto-darkening welding helmets for arc welding with adjustable shade and sensitivity.',
+      image: '/images/products/safety/eye-protection/welding-goggles-dark-lens.jpg',
+      color: 'from-red-500 to-red-700',
+      category: 'Safety',
       icon: Zap
     },
     {
       id: 5,
-      title: 'Automation Systems',
-      description: 'Cutting-edge industrial automation and control solutions',
-      image: 'https://images.unsplash.com/photo-1581244277943-fe4a9c777189?w=800&q=80',
-      color: 'from-purple-500 to-purple-700',
-      category: 'Automation',
-      icon: Cpu
-    },
-    {
-      id: 6,
-      title: 'Precision Tools',
-      description: 'Professional-grade tools for precision engineering and maintenance',
-      image: 'https://images.unsplash.com/photo-1504148455328-c376907d081c?w=800&q=80',
+      title: 'Fire Extinguisher',
+      description: 'ABC dry powder, CO2, foam, and clean agent fire extinguishers for all fire classes.',
+      image: '/images/products/safety/fire-safety/fire-hose-reel-cabinet.jpg',
       color: 'from-orange-500 to-orange-700',
-      category: 'Tools',
-      icon: Wrench
-    },
-    {
-      id: 7,
-      title: 'Control Systems',
-      description: 'Advanced control panels and monitoring systems for industrial processes',
-      image: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&q=80',
-      color: 'from-indigo-500 to-indigo-700',
-      category: 'Control',
+      category: 'Safety',
       icon: Settings
     },
     {
-      id: 8,
-      title: 'Packaging Solutions',
-      description: 'Industrial packaging equipment and materials for secure handling',
-      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80',
-      color: 'from-pink-500 to-pink-700',
-      category: 'Packaging',
+      id: 6,
+      title: 'Smoke Detector',
+      description: 'Optical and ionization smoke detectors for early fire warning in commercial and residential properties.',
+      image: '/images/products/safety/fire-safety/fire-alarm-system-smoke-detector1.jpg',
+      color: 'from-purple-500 to-purple-700',
+      category: 'Safety',
+      icon: Zap
+    },
+    {
+      id: 7,
+      title: 'Traffic Cone',
+      description: 'Reflective PVC traffic cones for road diversions, construction zones, and parking management.',
+      image: '/images/products/safety/road-safety/traffic-safety-cone-orange.jpg',
+      color: 'from-orange-400 to-orange-600',
+      category: 'Safety',
       icon: Package
     },
     {
-      id: 9,
-      title: 'Storage Systems',
-      description: 'Heavy-duty storage racks and warehouse management solutions',
-      image: 'https://images.unsplash.com/photo-1553413077-190dd305871c?w=800&q=80',
-      color: 'from-teal-500 to-teal-700',
-      category: 'Storage',
+      id: 8,
+      title: 'Road Barrier',
+      description: 'Water-filled and concrete road barriers for highway construction zones and traffic management.',
+      image: '/images/products/safety/road-safety/road-safety-barrier-plastic.jpg',
+      color: 'from-red-600 to-red-800',
+      category: 'Safety',
       icon: Box
     },
     {
+      id: 9,
+      title: 'Kevlar Gloves',
+      description: 'Cut-resistant Kevlar gloves for glass handling, metalworking, and sharp-edge applications.',
+      image: '/images/products/safety/safety-gloves/kevlar-heat-resistant-gloves.jpg',
+      color: 'from-yellow-600 to-amber-800',
+      category: 'Safety',
+      icon: Shield
+    },
+    {
       id: 10,
-      title: 'Smart Processors',
-      description: 'Industrial-grade processors for automated control systems',
-      image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80',
-      color: 'from-cyan-500 to-cyan-700',
-      category: 'Electronics',
-      icon: BrainCircuit
+      title: 'Face Shield',
+      description: 'Full-face protective shields for grinding, cutting, and chemical splash protection.',
+      image: '/images/products/safety/eye-protection/face-shield-full-protection.jpg',
+      color: 'from-indigo-500 to-indigo-700',
+      category: 'Safety',
+      icon: Shield
     },
     {
       id: 11,
-      title: 'Heavy Machinery',
-      description: 'Construction and industrial heavy machinery equipment',
-      image: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&q=80',
-      color: 'from-amber-500 to-amber-700',
-      category: 'Machinery',
-      icon: Hammer
+      title: 'Fire Blanket',
+      description: 'Fire-resistant blankets for smothering small fires and protecting persons during evacuation.',
+      image: '/images/products/safety/fire-safety/fire-blanket-safety.jpg',
+      color: 'from-pink-500 to-pink-700',
+      category: 'Safety',
+      icon: Package
     },
     {
       id: 12,
-      title: 'Power Backup',
-      description: 'UPS systems and power backup solutions for critical operations',
-      image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80',
-      color: 'from-lime-500 to-lime-700',
-      category: 'Power',
-      icon: BatteryCharging
+      title: 'Speed Breaker',
+      description: 'Rubber and plastic speed breakers for speed control in parking lots and residential areas.',
+      image: '/images/products/safety/road-safety/speed-breaker-rubber.jpg',
+      color: 'from-gray-600 to-gray-800',
+      category: 'Safety',
+      icon: Wrench
     }
   ];
 
